@@ -6,6 +6,7 @@ just a test of github
  */
 package largeandspacious;
 
+import largeandspacious.model.Game;
 import largeandspacious.model.Player;
 
 /**
@@ -25,6 +26,14 @@ public class LargeAndSpacious {
         
         String playerInfo = playerOne.toString();
         System.out.println(playerInfo);
+        
+        Game gameOne = new Game();
+        gameOne.setGameID(1);
+        gameOne.setRemainingTime(10);
+        gameOne.setTotalTime(15);
+        String gameInfo = gameOne.toString();
+        System.out.println(gameInfo);
+        
     }
     
 }
