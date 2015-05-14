@@ -6,6 +6,8 @@ just a test of github
  */
 package largeandspacious;
 
+import largeandspacious.model.ChallengeScene;
+import largeandspacious.model.CombinationScene;
 import largeandspacious.model.Game;
 import largeandspacious.model.Player;
 import largeandspacious.model.Map;
@@ -80,6 +82,24 @@ public class LargeAndSpacious {
         mapLocation.setSceneTypeId(4);
         String locationInfo = mapLocation.toString();
         System.out.println(mapLocation);
+        
+        ChallengeScene challengeScene = new ChallengeScene();
+        challengeScene.setSceneTypeID(32);
+        challengeScene.setChallengeID(45);
+        challengeScene.setItemID(56);
+        challengeScene.setDescription("This is challenge scene 45 and is not for the faint of heart!");
+        String challengeSceneInfo = challengeScene.toString();
+        System.out.println(challengeScene);
+        
+        CombinationScene combinationScene = new CombinationScene();
+        combinationScene.setSceneTypeID(99);
+        combinationScene.setQuestionID(88);
+        combinationScene.setChallengeID(77);
+        combinationScene.setItemID(66);
+        combinationScene.setDescription("This is the combination scene.  Double trouble!");
+        String combinationSceneInfo = combinationScene.toString();
+        System.out.println(combinationScene);
+        
     }
     
 }
