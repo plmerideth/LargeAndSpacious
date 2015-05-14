@@ -17,9 +17,7 @@ public class Player implements Serializable
     private double bestScore;
 
     public Player() {
-    }
-
-    
+    }  
     
     public String getName() {
         return name;
