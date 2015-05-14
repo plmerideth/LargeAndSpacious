@@ -81,7 +81,7 @@ public class LargeAndSpacious {
         mapLocation.setCol(2);
         mapLocation.setSceneTypeId(4);
         String locationInfo = mapLocation.toString();
-        System.out.println(mapLocation);
+        System.out.println(locationInfo);
         
         ChallengeScene challengeScene = new ChallengeScene();
         challengeScene.setSceneTypeID(32);
@@ -89,7 +89,7 @@ public class LargeAndSpacious {
         challengeScene.setItemID(56);
         challengeScene.setDescription("This is challenge scene 45 and is not for the faint of heart!");
         String challengeSceneInfo = challengeScene.toString();
-        System.out.println(challengeScene);
+        System.out.println(challengeSceneInfo);
         
         CombinationScene combinationScene = new CombinationScene();
         combinationScene.setSceneTypeID(99);
@@ -98,7 +98,7 @@ public class LargeAndSpacious {
         combinationScene.setItemID(66);
         combinationScene.setDescription("This is the combination scene.  Double trouble!");
         String combinationSceneInfo = combinationScene.toString();
-        System.out.println(combinationScene);
+        System.out.println(combinationSceneInfo);
         
     }
     
