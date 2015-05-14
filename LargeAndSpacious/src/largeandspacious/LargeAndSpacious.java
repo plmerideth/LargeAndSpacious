@@ -12,6 +12,7 @@ import largeandspacious.model.Map;
 import largeandspacious.model.QuestionScene;
 import largeandspacious.model.Questions;
 import largeandspacious.model.Item;
+import largeandspacious.model.Location;
 
 /**
  *
@@ -72,6 +73,13 @@ public class LargeAndSpacious {
         
         String haveItems = myItem.toString();
         System.out.println(haveItems);
+        
+        Location mapLocation = new Location();
+        mapLocation.setRow(3);
+        mapLocation.setCol(2);
+        mapLocation.setSceneTypeId(4);
+        String locationInfo = mapLocation.toString();
+        System.out.println(mapLocation);
     }
     
 }
