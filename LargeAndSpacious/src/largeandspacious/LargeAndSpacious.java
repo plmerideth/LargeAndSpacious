@@ -7,6 +7,7 @@ just a test of github
 package largeandspacious;
 
 import largeandspacious.model.ChallengeScene;
+import largeandspacious.model.Challenges;
 import largeandspacious.model.CombinationScene;
 import largeandspacious.model.Game;
 import largeandspacious.model.Player;
@@ -97,9 +98,15 @@ public class LargeAndSpacious {
         combinationScene.setChallengeID(77);
         combinationScene.setItemID(66);
         combinationScene.setDescription("This is the combination scene.  Double trouble!");
-        String mySceneInfo = combinationScene.toString();
-        System.out.println(mySceneInfo);
+        String combinationSceneInfo = combinationScene.toString();
+        System.out.println(combinationSceneInfo);
         
+        Challenges challenges = new Challenges();
+        challenges.setChallengeID(200);
+        challenges.setChallengeValue(15);
+        challenges.setDescription("The Mists of Darkness will destroy you if you're not careful!");
+        String challengesInfo = challenges.toString();
+        System.out.println(challengesInfo);
     }
     
 }
