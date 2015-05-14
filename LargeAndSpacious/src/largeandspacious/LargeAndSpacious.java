@@ -11,6 +11,7 @@ import largeandspacious.model.Player;
 import largeandspacious.model.Map;
 import largeandspacious.model.QuestionScene;
 import largeandspacious.model.Questions;
+import largeandspacious.model.Item;
 
 /**
  *
@@ -61,6 +62,16 @@ public class LargeAndSpacious {
         
         String myQuest = quest.toString();
         System.out.println(myQuest);
+        
+        Item myItem = new Item();
+        myItem.setItemID(4);
+        myItem.setName("Obedience");
+        myItem.setDescription("Your level of obedience");
+        myItem.setValue(3);
+        myItem.setItemCount(1);
+        
+        String haveItems = myItem.toString();
+        System.out.println(haveItems);
     }
     
 }
