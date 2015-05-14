@@ -64,6 +64,11 @@ public class CombinationScene implements Serializable {
     }
 
     @Override
+    public String toString() {
+        return "CombinationScene{" + "sceneTypeID=" + sceneTypeID + ", questionID=" + questionID + ", challengeID=" + challengeID + ", itemID=" + itemID + ", description=" + description + '}';
+    }
+
+    @Override
     public int hashCode() {
         int hash = 5;
         hash = 47 * hash + this.sceneTypeID;
