@@ -97,8 +97,8 @@ public class LargeAndSpacious {
         combinationScene.setChallengeID(77);
         combinationScene.setItemID(66);
         combinationScene.setDescription("This is the combination scene.  Double trouble!");
-        String combinationSceneInfo = combinationScene.toString();
-        System.out.println(combinationSceneInfo);
+        String mySceneInfo = combinationScene.toString();
+        System.out.println(mySceneInfo);
         
     }
     
