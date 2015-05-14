@@ -8,6 +8,9 @@ package largeandspacious;
 
 import largeandspacious.model.Game;
 import largeandspacious.model.Player;
+import largeandspacious.model.Map;
+import largeandspacious.model.QuestionScene;
+import largeandspacious.model.Questions;
 
 /**
  *
@@ -31,9 +34,33 @@ public class LargeAndSpacious {
         gameOne.setGameID(1);
         gameOne.setRemainingTime(10);
         gameOne.setTotalTime(15);
+        
         String gameInfo = gameOne.toString();
         System.out.println(gameInfo);
         
+        Map firstMap = new Map();
+        firstMap.setRow(3);
+        firstMap.setColumn(5);
+        
+        String myMap = firstMap.toString();
+        System.out.println(myMap);
+        
+        QuestionScene questScene = new QuestionScene();
+        questScene.setSceneTypeID(2);
+        questScene.setQuestionID(7);
+        questScene.setItemID(2);
+        questScene.setDescription("Question about Lehi's dream.");
+        
+        String myQuestScene = questScene.toString();
+        System.out.println(myQuestScene);
+        
+        Questions quest = new Questions();
+        quest.setQuestionsID(9);
+        quest.setQuestion("What does the iron rod represent in Lehi's dream?");
+        quest.setAnswer("The word of God.");
+        
+        String myQuest = quest.toString();
+        System.out.println(myQuest);
     }
     
 }
