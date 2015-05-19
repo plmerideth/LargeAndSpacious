@@ -6,6 +6,7 @@ just a test of github
  */
 package largeandspacious;
 
+import largeandspacious.model.Actor;
 import largeandspacious.model.ChallengeScene;
 import largeandspacious.model.Challenges;
 import largeandspacious.model.CombinationScene;
@@ -107,6 +108,12 @@ public class LargeAndSpacious {
         challenges.setDescription("The Mists of Darkness will destroy you if you're not careful!");
         String challengesInfo = challenges.toString();
         System.out.println(challengesInfo);
+        
+        Actor actor = new Actor();
+        actor.setActorID(2);
+        actor.setActorName("Nephi");
+        String actorInfo = actor.toString();
+        System.out.println(actorInfo);
     }
     
 }
