@@ -11,10 +11,10 @@ package largeandspacious.control;
  */
 public class CombinationControl
 {
-  public double getChallengeResult( double PlayerObedience, double R1, double ChallengeObedience, double R2)
+  public double getChallengeResult( double PlayerObedience, double R1, double ChallengeObedience, double R2, double ObedienceInventory)
   {
     
-      if( PlayerObedience > 9 || ChallengeObedience < 0 )
+      if( PlayerObedience > ObedienceInventory || ChallengeObedience < 0 )
           return -9999;
       if( R1>5 || R1<0 || R2>5 || R2<0)
           return -9999;
