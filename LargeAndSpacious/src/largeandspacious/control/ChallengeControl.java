@@ -18,7 +18,7 @@ public class ChallengeControl {
             or the challenge obedience points are less than zero*/
                 return -9999;
         }
-	if ( rollOne > 5 || rollOne < 0 || rollTwo > 5 || rollTwo < 0) {
+	if ((rollOne > 5) || (rollOne < 0) || (rollTwo > 5) || (rollTwo < 0)) {
             /* the first roll should not be greater than 5 or less than 0
             or the 2nd roll should be greater than 5 or less than 0*/
 		return -9999;

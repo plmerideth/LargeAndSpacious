@@ -23,17 +23,21 @@ public class ChallengeControlTest {
     @Test
     public void testGetChallengeResult() {
         System.out.println("getChallengeResult");
-        double playerObedience = 4.0;
-        double rollOne = -3.0;
-        double challengeObedience = 2.0;
-        double rollTwo = 5.0;
-        double inventory = 6.0;
+        /* Test Case #1 */
+        System.out.println("\tTest case #7");
+        double playerObedience = 2;
+        double rollOne = 3;
+        double challengeObedience = 2;
+        double rollTwo = 5;
+        double inventory = 9;
         ChallengeControl instance = new ChallengeControl();
-        double expResult = 0.0;
-        double result = instance.getChallengeResult(playerObedience, rollOne, challengeObedience, rollTwo, inventory);
+        double expResult = -4;
+        double result; 
+        result = instance.getChallengeResult(playerObedience, rollOne, 
+                challengeObedience, rollTwo, inventory);
         assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The rollOne is less than 0.");
     }
     
 }
