@@ -9,6 +9,18 @@ package largeandspacious.control;
  *
  * @author julzlee
  */
-public class CombinationControl {
+public class CombinationControl
+{
+  public double getChallengeResult( double PlayerObedience, double R1, double ChallengeObedience, double R2)
+  {
     
+      if( PlayerObedience > 9 || ChallengeObedience < 0 )
+          return -9999;
+      if( R1>5 || R1<0 || R2>5 || R2<0)
+          return -9999;
+      
+      double Result = ((PlayerObedience * R1) - ChallengeObedience) - ((ChallengeObedience * R2) - PlayerObedience);
+      
+      return Result;
+  }  
 }
