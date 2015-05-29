@@ -114,8 +114,7 @@ public class ChallengeControlTest {
         result = instance.getChallengeResult(playerObedience, rollOne, 
                 challengeObedience, rollTwo, inventory);
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The rollOne is less than 0.");
+            
     }
     
 }
