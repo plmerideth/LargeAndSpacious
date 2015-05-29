@@ -113,6 +113,7 @@ public class CombinationControlTest {
 
     /**
      * Test of getCombinationResult method, of class CombinationControl.
+     * author julzlee
      */
     @Test
     public void testGetCombinationResult() {
