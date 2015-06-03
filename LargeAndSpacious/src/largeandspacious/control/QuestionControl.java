@@ -28,7 +28,7 @@ public class QuestionControl {
 
         if( Time > 5 && Time <= 30 )
         {
-            //Calculate log base5 of Time.
+            //Calculate log base5 of Time and then round Points to 2 decimal places
             Points = DifficultyLevel * 2 * 1/(Math.log10(Time)/Math.log10(5));
         }
              
