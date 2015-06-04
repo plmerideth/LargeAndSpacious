@@ -5,15 +5,10 @@
  */
 package largeandspacious.control;
 
-import largeandspacious.model.Player;
-
 /**
  *
  * @author julzlee
  */
 public class GameControl {
-    public static void createNewGame(Player player) {
-        System.out.println("\n*** createNewGame stub function called ***");
-    }
     
 }

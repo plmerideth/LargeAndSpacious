@@ -28,13 +28,7 @@ public class LargeAndSpacious
     private static Game currentGame = null;
     private static Player player = null;
 
-    public static void setCurrentGame(Game currentGame) {
-        LargeAndSpacious.currentGame = currentGame;
-    }
 
-    public static void setPlayer(Player player) {
-        LargeAndSpacious.player = player;
-    }
     
     /**
      * @param args the command line arguments
@@ -44,6 +38,21 @@ public class LargeAndSpacious
         //Create StartProgramView and start the program
         StartProgramView startProgramView = new StartProgramView();
         startProgramView.startProgram();
+        
+    }
+   
+    public static Game getCurrentGame() {
+        return currentGame;
     }
     
+   public static void setCurrentGame(Game currentGame) {
+        LargeAndSpacious.currentGame = currentGame;
+    }
+    public static Player getPlayer() {
+        return player;
+    }
+    
+       public static void setPlayer(Player player) {
+        LargeAndSpacious.player = player;
+    }
 }
