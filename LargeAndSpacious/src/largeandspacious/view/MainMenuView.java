@@ -37,6 +37,7 @@ public class MainMenuView {
             
             this.doAction(selection); // do action based on selection
         } while (selection != 'E'); // the selection is not "Exit"
+        System.out.println("\n*** MainMenuView displayMenu stub function called ***");
     }
 
     private String getInput() {

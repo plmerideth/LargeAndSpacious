@@ -36,7 +36,7 @@ public class GameMenuView {
             
             this.doAction(selection); // do action based on selection
         } while (selection != 'R'); // the selection is not "Return to Main Menu"
-        System.out.println("\n*** displayMenu stub function called ***");
+        System.out.println("\n*** GameMenuView displayMenu stub function called ***");
     }
 
     private String getInput() {
@@ -89,9 +89,6 @@ public class GameMenuView {
             case 'H':
                 //Help menu
                 this.displayHelpMenu();
-                break;
-            case 'E':
-                //Exit
                 break;
             default: 
                 System.out.println("Invalid selection");

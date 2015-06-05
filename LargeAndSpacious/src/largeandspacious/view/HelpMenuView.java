@@ -24,8 +24,7 @@ public class HelpMenuView {
             + "\n| I - Explains how to use items            |"
             + "\n| L - Lists Items                          |"
             + "\n| C - Lists Challenges                     |"
-            + "\n| R - Go to Main Menu                      |"
-            + "\n| E - Go to Game Menu                      |"
+            + "\n| R - Return to last Menu                  |"
             + "\n|------------------------------------------|";
     
     public void displayMenu() {
@@ -38,7 +37,7 @@ public class HelpMenuView {
             
             this.doAction(selection); // do action based on selection
         } while (selection != 'R'); // the selection is not "Return to Main Menu"
-        System.out.println("\n*** displayMenu stub function called ***");
+        System.out.println("\n*** HelpMenuView displayMenu stub function called ***");
     }
 
     private String getInput() {
@@ -97,12 +96,8 @@ public class HelpMenuView {
                 this.displayChallenges();
                 break;
             case 'R':
-                // Return to Main Menu  
+                // Return to Menu  
                 this.returnToMainMenu();
-                break;
-            case 'E':
-                // Return to Game Menu  
-                this.displayGameMenu();
                 break;
             default: 
                 System.out.println("Invalid selection");
@@ -144,10 +139,5 @@ public class HelpMenuView {
         mainMenu.displayMenu();
     }
 
-    private void displayGameMenu() {
-        //Create a new Game Menu View
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
-    }
     
 }
