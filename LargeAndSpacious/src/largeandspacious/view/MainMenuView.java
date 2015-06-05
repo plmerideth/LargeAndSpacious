@@ -6,7 +6,6 @@
 package largeandspacious.view;
 
 import java.util.Scanner;
-import largeandspacious.LargeAndSpacious;
 import static largeandspacious.LargeAndSpacious.getPlayer;
 import largeandspacious.control.GameControl;
 
@@ -20,12 +19,12 @@ public class MainMenuView {
             + "\n|------------------------------------------|"
             + "\n|  Main Menu                               |"
             + "\n|------------------------------------------|"
-            + "\n|  G - Start game                          |"
-            + "\n|  H - Get help on how to play the game    |"
-            + "\n|  P - Show players and high scores        |"
-            + "\n|  S - Save game                           |"
-            + "\n|  L - Load game                           |"
-            + "\n|  E - Exit                                |"
+            + "\n| G - Start game                           |"
+            + "\n| H - Go to the help menu                  |"
+            + "\n| P - Show players and high scores         |"
+            + "\n| S - Save game                            |"
+            + "\n| L - Load game                            |"
+            + "\n| E - Exit game                            |"
             + "\n|------------------------------------------|";
 
     public void displayMenu() {
@@ -47,12 +46,13 @@ public class MainMenuView {
         
         while( !valid )
         {
-            //Prompt for the player's name
+            //Prompt for the player's selection
             System.out.println("Enter the menu selection below:");
             
             //Get the name from the keyboard and trim off spaces
             playersInput = keyboard.nextLine();
             playersInput = playersInput.trim();
+            playersInput = playersInput.toUpperCase();
             
             if( playersInput.length() < 1 )
             {
@@ -115,7 +115,9 @@ public class MainMenuView {
     }
 
     private void displayHelpMenu() {
-        System.out.println("*** displayHelpMenu function called ***");
+        //Create a new help Menu View
+        HelpMenuView helpMenu = new HelpMenuView();
+        helpMenu.displayMenu();
     }
 
     private void displayPlayersScores() {

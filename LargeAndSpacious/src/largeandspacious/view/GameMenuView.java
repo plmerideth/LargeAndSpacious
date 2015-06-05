@@ -21,22 +21,21 @@ public class GameMenuView {
             + "\n| D - Display Map                          |"
             + "\n| I - List player items                    |"
             + "\n| C - List challenges                      |"
-            + "\n| R - Return to Main Menu                  |"
+            + "\n| R - Go to Main Menu                      |"
             + "\n| H - Help                                 |"
-            + "\n| E - Exit                                 |"
             + "\n|------------------------------------------|";
 
     
     public void displayMenu() {
         char selection = ' ';
         do {
-            System.out.println(MENU); // display the main menu
+            System.out.println(MENU); // display the game menu
             
             String input = this.getInput();  // get the user's selection
             selection = input.charAt(0);  // get first character of string
             
             this.doAction(selection); // do action based on selection
-        } while (selection != 'E'); // the selection is not "Exit"
+        } while (selection != 'R'); // the selection is not "Return to Main Menu"
         System.out.println("\n*** displayMenu stub function called ***");
     }
 
@@ -47,12 +46,13 @@ public class GameMenuView {
         
         while( !valid )
         {
-            //Prompt for the player's name
+            //Prompt for the player's selection
             System.out.println("Enter the menu selection below:");
             
             //Get the name from the keyboard and trim off spaces
             playersInput = keyboard.nextLine();
             playersInput = playersInput.trim();
+            playersInput = playersInput.toUpperCase();
             
             if( playersInput.length() < 1 )
             {
@@ -100,7 +100,9 @@ public class GameMenuView {
     }
 
     private void displayHelpMenu() {
-        System.out.println("*** displayHelpMenu function called ***");
+        //Create a new help Menu View
+        HelpMenuView helpMenu = new HelpMenuView();
+        helpMenu.displayMenu();
     }
 
     private void displayMoveMenu() {
@@ -120,7 +122,9 @@ public class GameMenuView {
     }
 
     private void returnToMainMenu() {
-        System.out.println("*** returnToMainMenu function called ***");
+        //Create a new Main Menu View
+        MainMenuView mainMenu = new MainMenuView();
+        mainMenu.displayMenu();
     }
     
 }
