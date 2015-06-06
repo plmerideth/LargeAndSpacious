@@ -103,8 +103,8 @@ public class MainMenuView {
         GameControl.createNewGame(getPlayer());
         //Create a new Game Menu View
         GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
         //Display the Game Menu
+        gameMenu.displayMenu();
     }
 
     private void loadExistingGame() {
@@ -119,6 +119,7 @@ public class MainMenuView {
         //Create a new help Menu View
         HelpMenuView helpMenu = new HelpMenuView();
         helpMenu.displayMenu();
+        System.out.println("*** displayHelpMenu function called ***");
     }
 
     private void displayPlayersScores() {

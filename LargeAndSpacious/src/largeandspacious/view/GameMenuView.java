@@ -21,7 +21,7 @@ public class GameMenuView {
             + "\n| D - Display Map                          |"
             + "\n| I - List player items                    |"
             + "\n| C - List challenges                      |"
-            + "\n| R - Go to Main Menu                      |"
+            + "\n| R - Return to Menu                       |"
             + "\n| H - Help                                 |"
             + "\n|------------------------------------------|";
 
@@ -83,8 +83,7 @@ public class GameMenuView {
                 this.listChallenges();
                 break;
             case 'R': 
-                //Return to Main Menu
-                this.returnToMainMenu();
+                //Return to Menu
                 break;
             case 'H':
                 //Help menu
@@ -100,6 +99,7 @@ public class GameMenuView {
         //Create a new help Menu View
         HelpMenuView helpMenu = new HelpMenuView();
         helpMenu.displayMenu();
+        System.out.println("*** displayHelpMenu function called ***");
     }
 
     private void displayMoveMenu() {
@@ -116,12 +116,6 @@ public class GameMenuView {
 
     private void listChallenges() {
         System.out.println("*** listChallenges function called ***");
-    }
-
-    private void returnToMainMenu() {
-        //Create a new Main Menu View
-        MainMenuView mainMenu = new MainMenuView();
-        mainMenu.displayMenu();
     }
     
 }

@@ -24,7 +24,7 @@ public class HelpMenuView {
             + "\n| I - Explains how to use items            |"
             + "\n| L - Lists Items                          |"
             + "\n| C - Lists Challenges                     |"
-            + "\n| R - Return to last Menu                  |"
+            + "\n| R - Return to Menu                       |"
             + "\n|------------------------------------------|";
     
     public void displayMenu() {
@@ -36,7 +36,7 @@ public class HelpMenuView {
             selection = input.charAt(0);  // get first character of string
             
             this.doAction(selection); // do action based on selection
-        } while (selection != 'R'); // the selection is not "Return to Main Menu"
+        } while (selection != 'R'); // the selection is not "Return to Menu"
         System.out.println("\n*** HelpMenuView displayMenu stub function called ***");
     }
 
@@ -97,7 +97,7 @@ public class HelpMenuView {
                 break;
             case 'R':
                 // Return to Menu  
-                this.returnToMainMenu();
+                //this.returnToMainMenu();
                 break;
             default: 
                 System.out.println("Invalid selection");
@@ -106,7 +106,15 @@ public class HelpMenuView {
     }
 
     private void displayGameOverview() {
-        System.out.println("*** displayGameOverview function called ***");
+        String gameOverview = "\n|-------------------------------------------------|"
+                + "\n| The Large and Spacious Building is an RPG where |"
+                + "\n| the player has to journey through life making   |"
+                + "\n| personal choices that will lead him/her         |"
+                + "\n| across the dark and dreary wilderness, until    |"
+                + "\n| the player reaches the tree of life and         |"
+                + "\n| obtains eternal life.                           |"
+                + "\n|-------------------------------------------------|";
+        System.out.println(gameOverview);
     }
 
     private void displayMoveHelp() {
@@ -131,12 +139,6 @@ public class HelpMenuView {
 
     private void displayChallenges() {
         System.out.println("*** displayChallenges function called ***");
-    }
-
-    private void returnToMainMenu() {
-        //Create a new Main Menu View
-        MainMenuView mainMenu = new MainMenuView();
-        mainMenu.displayMenu();
     }
 
     
