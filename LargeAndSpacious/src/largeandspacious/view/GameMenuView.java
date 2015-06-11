@@ -120,7 +120,9 @@ public class GameMenuView {
     }
 
     private void displayMap() {
-        System.out.println("*** displayMap function called ***");
+        //Create a new map Menu View
+        MapMenuView mapMenu = new MapMenuView();
+        mapMenu.displayMenu();
     }
 
     private void displayPlayerItems() {
@@ -128,7 +130,9 @@ public class GameMenuView {
     }
 
     private void listChallenges() {
-        System.out.println("*** listChallenges function called ***");
+        //Create a new map Menu View
+        ChallengesView challenges = new ChallengesView();
+        challenges.displayMenu();
     }
 
     private void selectResource() {
