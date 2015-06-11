@@ -6,6 +6,7 @@
 package largeandspacious.view;
 
 import java.util.Scanner;
+import largeandspacious.model.Location;
 
 /**
  *
@@ -17,6 +18,7 @@ public class GameMenuView {
             + "\n|------------------------------------------|"
             + "\n|  Game Menu                               |"
             + "\n|------------------------------------------|"
+            + "\n| S - Select a resource to use             |"
             + "\n| M - Move to a map location (Move Menu)   |"
             + "\n| D - Display Map                          |"
             + "\n| I - List player items                    |"
@@ -66,6 +68,10 @@ public class GameMenuView {
 
     private void doAction(char selection) {
         switch (selection) {
+            case 'S':
+                //Select a resource, if desired
+                this.selectResource();
+                break;
             case 'M': 
                 //Move to a map location (Move Menu)
                 this.displayMoveMenu();
@@ -102,8 +108,15 @@ public class GameMenuView {
         System.out.println("*** displayHelpMenu function called ***");
     }
 
-    private void displayMoveMenu() {
-        System.out.println("*** displayMoveMenu function called ***");
+    private void displayMoveMenu()
+    {
+        Location newLocation = new Location();
+        
+        MoveMenuView moveMenu = new MoveMenuView();
+        moveMenu.rollDice();
+        newLocation = moveMenu.selectLocation();
+        
+        //Add code to process move
     }
 
     private void displayMap() {
@@ -116,6 +129,12 @@ public class GameMenuView {
 
     private void listChallenges() {
         System.out.println("*** listChallenges function called ***");
+    }
+
+    private void selectResource() {
+                //Create SelectResourceView object
+        SelectResourceView selectResource = new SelectResourceView();
+        selectResource.displayMenu();
     }
     
 }
