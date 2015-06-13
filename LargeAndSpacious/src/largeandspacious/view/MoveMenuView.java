@@ -17,15 +17,18 @@ public class MoveMenuView
 
         private final String XMENU = "\n"
         + "\n|------------------------------------------|"
-        + "\n| Enter X location                       |"
+        + "\n| Enter X location                         |"
         + "\n| R - Return to Previous Menu              |"                
         + "\n|------------------------------------------|";
 
         private final String YMENU = "\n"
         + "\n|------------------------------------------|"
-        + "\n| Enter Y location                       |"
+        + "\n| Enter Y location                         |"
         + "\n| R - Return to Previous Menu              |"                
         + "\n|------------------------------------------|";
+        
+        private int xCoord;
+        private int yCoord;
         
         
     Location selectLocation()
@@ -75,8 +78,9 @@ public class MoveMenuView
             //Prompt for the player's selection
             if(coord == 'X')
                 System.out.println("Enter X location below:");
-            if(coord == 'Y')
+            if(coord == 'Y') {
                 System.out.println("Enter Y location below:");
+            }
             
             //Get the name from the keyboard and trim off spaces
             playersInput = keyboard.nextLine();
@@ -88,6 +92,7 @@ public class MoveMenuView
                 System.out.println("Invalid menu selection - the selection must not be blank");
                 continue;
             }
+            
             break;
         }
         return playersInput;
@@ -95,8 +100,13 @@ public class MoveMenuView
     
     private boolean validateX(char selection)
     {
-        if((selection>='1'&&selection<='7') || selection=='R')
+        if (selection>='1' && selection<='7') {
+            xCoord = Character.getNumericValue(selection);
             return true;
+        }
+        else if (selection == 'R') {
+            return true;
+        }
         else
         {
             System.out.println(selection + " is an invalid X coordinate\nPlease enter a valid coordinate");
@@ -106,8 +116,14 @@ public class MoveMenuView
     
     private boolean validateY(char selection)
     {
-        if((selection>='1'&&selection<='5') || selection=='R')
+        if (selection>='1' && selection<='5') {
+            yCoord = Character.getNumericValue(selection);
+            System.out.println(Location(xCoord,yCoord));
             return true;
+        }
+        else if (selection=='R') {
+            return true;
+        }
         else
         {
             System.out.println(selection + " is an invalid Y coordinate\nPlease enter a valid coordinate");
@@ -155,5 +171,47 @@ public class MoveMenuView
             break;
         }
         return playersInput;
-    }        
+    } 
+        private String Location(int x, int y) {
+
+            // build the beginning of the map since it will always be the same
+            String temp = "\n"
+            + "\n   |---------------------------|"
+            + "\n   | 1 | 2 | 3 | 4 | 5 | 6 | 7 |"
+            + "\n---|---------------------------|";
+            // if we don't have valid coordinates, return the invalid coordinates string.
+            if (x > 5 || y > 7) {
+                return "Invalid x and y coordinates";
+            }     
+            else {
+                // Get x coordinate
+                for (int j = 1; j <6; j++) {
+                    if (x == j) {
+                        // if they match put an X in the right coordinate on the map
+                        // Get y coordinate
+                        temp = temp + "\n " + j + " | "; 
+                        for (int i = 1; i < 8; i++) {
+                            
+                            if (y == i) {
+                                temp = temp + "X | ";
+                            }
+                            else {
+                                temp = temp + "  | ";
+                            }    
+                        }
+                        
+                        temp = temp + "\n---|---------------------------|";
+                    }
+                    else {
+                        temp = temp + "\n " + j + " |   |   |   |   |   |   |   |";
+                        temp = temp + "\n---|---------------------------|";
+                    }
+
+            }
+                temp = temp + "\n   | E - Exit Map              |"
+            + "\n---|---------------------------|";
+                            
+        }
+            return temp;
+        }
 }

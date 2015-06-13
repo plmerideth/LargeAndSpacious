@@ -8,6 +8,7 @@ package largeandspacious.view;
 import java.util.Scanner;
 import static largeandspacious.LargeAndSpacious.getPlayer;
 import largeandspacious.control.GameControl;
+import largeandspacious.control.ProgramControl;
 
 /**
  *
@@ -123,7 +124,9 @@ public class MainMenuView {
     }
 
     private void displayPlayersScores() {
-        System.out.println("*** displayPlayersScores function called ***");
+        
+        
+        System.out.println(ProgramControl.getPlayerScore(getPlayer()));
     }
     
 }

@@ -167,6 +167,9 @@ public class CombinationControlTest {
         questionValue = 2.0;
         CombinationControl instance4 = new CombinationControl();
         expResult = -9999;
+        result = instance.getCombinationResult(challengeResult, questionResult, 
+                questItemInvest, challItemInvest, challengeValue, questionValue);
+        assertEquals(expResult, result, 0.0);
         
         System.out.println("Test Case #5");
         challengeResult = 5.0;

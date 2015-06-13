@@ -65,6 +65,7 @@ public class MapMenuView {
             }
             break;
         }
+        //System.out.println(Location(1,2));
         return playersInput;
     }
 
@@ -78,6 +79,8 @@ public class MapMenuView {
             
         }
     }
+    
+
 
     
 }

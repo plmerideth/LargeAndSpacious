@@ -27,5 +27,16 @@ public class ProgramControl
         
         return player;
     }
+    public static Player getPlayerScore(Player player)
+    {
+        if (player.getBestScore() < 65.5) {
+        player.setBestScore(65.5);
+        }
+        return player;
+        
+        //LargeAndSpacious.setPlayer(player);
+        
+        //return player;
+    }
     
 }
