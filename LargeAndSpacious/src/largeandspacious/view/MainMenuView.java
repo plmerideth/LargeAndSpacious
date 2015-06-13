@@ -125,8 +125,7 @@ public class MainMenuView {
 
     private void displayPlayersScores() {
         
-        
-        System.out.println(ProgramControl.getPlayerScore(getPlayer()));
+        System.out.println("*** displayPlayersScores function called ***");
     }
     
 }

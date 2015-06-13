@@ -3,6 +3,7 @@ package largeandspacious.view;
 
 import java.util.Scanner;
 import largeandspacious.model.Location;
+import largeandspacious.model.Player;
 
 /**
  *
@@ -208,10 +209,9 @@ public class MoveMenuView
                     }
 
             }
-                temp = temp + "\n   | E - Exit Map              |"
-            + "\n---|---------------------------|";
                             
         }
             return temp;
         }
+        
 }
