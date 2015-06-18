@@ -96,7 +96,7 @@ public class GameMenuView extends View {
         //Create a new map Menu View
         
         //MapMenuView mapMenu = new MapMenuView();
-        //mapMenu.displayMenu();
+        //mapMenu.display();
         System.out.println("*** displayPlayerItems function called ***");
     }
 
@@ -107,7 +107,7 @@ public class GameMenuView extends View {
     private void listChallenges() {
         //Create a new map Menu View
         //ChallengesView challenges = new ChallengesView();
-        //challenges.displayMenu();
+        //challenges.display();
         System.out.println("*** listChallenges function called ***");
     }
 

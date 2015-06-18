@@ -106,7 +106,7 @@ public class MainMenuView {
         
         //GameMenuView gameMenu = new GameMenuView();
         //Display the Game Menu
-        //gameMenu.displayMenu();
+        //gameMenu.display();
         System.out.println("*** loadExistingGame function called ***");
     }
 
