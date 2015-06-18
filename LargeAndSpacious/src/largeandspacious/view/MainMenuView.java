@@ -8,7 +8,7 @@ package largeandspacious.view;
 import java.util.Scanner;
 import static largeandspacious.LargeAndSpacious.getPlayer;
 import largeandspacious.control.GameControl;
-import largeandspacious.control.ProgramControl;
+//import largeandspacious.control.ProgramControl;
 
 /**
  *
@@ -98,14 +98,16 @@ public class MainMenuView {
         }
     }
 
-    private void startNewGame() {
+    public void startNewGame() {
        
         //Create a new Game
         GameControl.createNewGame(getPlayer());
         //Create a new Game Menu View
-        GameMenuView gameMenu = new GameMenuView();
+        
+        //GameMenuView gameMenu = new GameMenuView();
         //Display the Game Menu
-        gameMenu.displayMenu();
+        //gameMenu.displayMenu();
+        System.out.println("*** loadExistingGame function called ***");
     }
 
     private void loadExistingGame() {
