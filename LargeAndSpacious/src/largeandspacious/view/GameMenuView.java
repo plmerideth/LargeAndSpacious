@@ -12,9 +12,10 @@ import largeandspacious.model.Location;
  *
  * @author julzlee
  */
-public class GameMenuView {
+public class GameMenuView extends View {
     
-    private final String MENU = "\n"
+    public GameMenuView(String promptMessage) {
+    super("\n"
             + "\n|------------------------------------------|"
             + "\n|  Game Menu                               |"
             + "\n|------------------------------------------|"
@@ -25,49 +26,19 @@ public class GameMenuView {
             + "\n| C - List challenges                      |"
             + "\n| R - Return to Menu                       |"
             + "\n| H - Help                                 |"
-            + "\n|------------------------------------------|";
+            + "\n|------------------------------------------|");
 
+    }      
+
+
+    @Override
+    public boolean doAction(Object obj) {
+        String value = (String) obj;
     
-    public void displayMenu() {
-        char selection = ' ';
-        do {
-            System.out.println(MENU); // display the game menu
-            
-            String input = this.getInput();  // get the user's selection
-            selection = input.charAt(0);  // get first character of string
-            
-            this.doAction(selection); // do action based on selection
-        } while (selection != 'R'); // the selection is not "Return to Main Menu"
-        System.out.println("\n*** GameMenuView displayMenu stub function called ***");
-    }
-
-    private String getInput() {
-        boolean valid = false;
-        String playersInput = null;
-        Scanner keyboard = new Scanner(System.in);
+        value = value.toUpperCase(); //convert to all upper case
+        char choice = value.charAt(0); // get first character entered
         
-        while( !valid )
-        {
-            //Prompt for the player's selection
-            System.out.println("Enter the menu selection below:");
-            
-            //Get the name from the keyboard and trim off spaces
-            playersInput = keyboard.nextLine();
-            playersInput = playersInput.trim();
-            playersInput = playersInput.toUpperCase();
-            
-            if( playersInput.length() < 1 )
-            {
-                System.out.println("Invalid menu selection - the selection must not be blank");
-                continue;
-            }
-            break;
-        }
-        return playersInput;
-    }
-
-    private void doAction(char selection) {
-        switch (selection) {
+        switch (choice) {
             case 'S':
                 //Select a resource, if desired
                 this.selectResource();
@@ -99,8 +70,10 @@ public class GameMenuView {
                 System.out.println("Invalid selection");
                 break;
         }
+        return false;
     }
 
+    
     private void displayHelpMenu() {
         //Create a new help Menu View
         HelpMenuView helpMenu = new HelpMenuView();
@@ -119,10 +92,12 @@ public class GameMenuView {
         //Add code to process move
     }
 
-    private void displayMap() {
+    public void displayMap() {
         //Create a new map Menu View
-        MapMenuView mapMenu = new MapMenuView();
-        mapMenu.displayMenu();
+        
+        //MapMenuView mapMenu = new MapMenuView();
+        //mapMenu.displayMenu();
+        System.out.println("*** displayPlayerItems function called ***");
     }
 
     private void displayPlayerItems() {
@@ -131,8 +106,9 @@ public class GameMenuView {
 
     private void listChallenges() {
         //Create a new map Menu View
-        ChallengesView challenges = new ChallengesView();
-        challenges.displayMenu();
+        //ChallengesView challenges = new ChallengesView();
+        //challenges.displayMenu();
+        System.out.println("*** listChallenges function called ***");
     }
 
     private void selectResource() {

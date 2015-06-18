@@ -5,15 +5,16 @@
  */
 package largeandspacious.view;
 
-import java.util.Scanner;
+//import java.util.Scanner;
 
 /**
  *
  * @author julzlee
  */
-public class MapMenuView {
+public class MapMenuView extends View {
     
-    private final String MENU = "\n"
+    public MapMenuView(String promptMessage) {
+        super("\n"
             + "\n   |---------------------------|"
             + "\n   | 1 | 2 | 3 | 4 | 5 | 6 | 7 |"
             + "\n---|---------------------------|"
@@ -28,49 +29,17 @@ public class MapMenuView {
             + "\n 5 |   |   |   |   |   |   |   |"
             + "\n---|---------------------------|"
             + "\n   | E - Exit Map              |"
-            + "\n---|---------------------------|";
+            + "\n---|---------------------------|");
+    }
+
+    @Override
+public boolean doAction(Object obj) {
     
-     public void displayMenu() {
-        char selection = ' ';
-        do {
-            System.out.println(MENU); // display the game menu
-            
-            String input = this.getInput();  // get the user's selection
-            selection = input.charAt(0);  // get first character of string
-            
-            this.doAction(selection); // do action based on selection
-        } while (selection != 'E'); // the selection is not "Return to Main Menu"
-        System.out.println("\n*** GameMenuView displayMenu stub function called ***");
-    }
-
-    private String getInput() {
-        boolean valid = false;
-        String playersInput = null;
-        Scanner keyboard = new Scanner(System.in);
-        
-        while( !valid )
-        {
-            //Prompt for the player's selection
-            System.out.println("Enter the menu selection below:");
-            
-            //Get the name from the keyboard and trim off spaces
-            playersInput = keyboard.nextLine();
-            playersInput = playersInput.trim();
-            playersInput = playersInput.toUpperCase();
-            
-            if( playersInput.length() < 1 )
-            {
-                System.out.println("Invalid menu selection - the selection must not be blank");
-                continue;
-            }
-            break;
-        }
-        //System.out.println(Location(1,2));
-        return playersInput;
-    }
-
-    private void doAction(char selection) {
-        switch (selection) {
+    String value = (String) obj;
+    
+    value = value.toUpperCase(); //convert to all upper case
+    char choice = value.charAt(0); // get first character entered
+        switch (choice) {
             case 'E':
                 break;
             default:
@@ -78,6 +47,7 @@ public class MapMenuView {
                 break;
             
         }
+        return false;
     }
     
 

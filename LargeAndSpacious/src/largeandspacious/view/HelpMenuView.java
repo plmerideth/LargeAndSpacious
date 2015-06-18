@@ -224,8 +224,8 @@ public class HelpMenuView {
 
     private void displayChallenges() {
         //Create a new help Menu View
-        ChallengesView challenges = new ChallengesView();
-        challenges.displayMenu();
+        //ChallengesView challenges = new ChallengesView();
+        //challenges.displayMenu();
         System.out.println("*** displayChallenges function called ***");
     }
 
