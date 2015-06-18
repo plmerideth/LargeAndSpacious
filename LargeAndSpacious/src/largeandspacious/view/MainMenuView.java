@@ -79,7 +79,7 @@ public class MainMenuView extends View
         
         GameMenuView gameMenu = new GameMenuView();
         //Display the Game Menu
-        //gameMenu.display();
+        gameMenu.display();
         System.out.println("*** loadExistingGame function called ***");
     }
 
