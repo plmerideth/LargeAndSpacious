@@ -14,9 +14,11 @@ import largeandspacious.control.ProgramControl;
  *
  * @author julzlee
  */
-public class MainMenuView {
-    
-    private final String MENU = "\n"
+public class MainMenuView extends View
+{
+    public MainMenuView()
+    {
+        super("\n"
             + "\n|------------------------------------------|"
             + "\n|  Main Menu                               |"
             + "\n|------------------------------------------|"
@@ -26,9 +28,49 @@ public class MainMenuView {
             + "\n| S - Save game                            |"
             + "\n| L - Load game                            |"
             + "\n| E - Exit game                            |"
-            + "\n|------------------------------------------|";
-
-    public void displayMenu() {
+            + "\n|------------------------------------------|");
+    }
+    
+    @Override
+    public boolean doAction(Object obj)
+    {
+        String value = (String) obj;
+        value = value.toUpperCase();
+        char choice = value.charAt(0);
+        
+        switch (choice) {
+            case 'G': 
+                //Start a new game
+                this.startNewGame();
+                break;
+            case 'H': 
+                //Display the help menu
+                this.displayHelpMenu();
+                break;
+            case 'P': 
+                //Display players and high scores
+                this.displayPlayersScores();
+                break;
+            case 'S': 
+                //Save the current game
+                this.saveGame();
+                break;
+            case 'L': 
+                //Load a saved game
+                this.loadExistingGame();
+                break;
+            case 'E':
+                //Exit the game
+                break;
+            default: 
+                System.out.println("Invalid selection");
+                break;
+        }
+        return true;
+    }
+    
+    /*
+    public void display() {
         char selection = ' ';
         do {
             System.out.println(MENU); // display the main menu
@@ -65,41 +107,10 @@ public class MainMenuView {
         }
         return playersInput;
     }
-
-    private void doAction(char selection) {
-        //BEGIN
-        switch (selection) {
-            case 'G': 
-                //Start a new game
-                this.startNewGame();
-                break;
-            case 'H': 
-                //Display the help menu
-                this.displayHelpMenu();
-                break;
-            case 'P': 
-                //Display players and high scores
-                this.displayPlayersScores();
-                break;
-            case 'S': 
-                //Save the current game
-                this.saveGame();
-                break;
-            case 'L': 
-                //Load a saved game
-                this.loadExistingGame();
-                break;
-            case 'E':
-                //Exit the game
-                break;
-            default: 
-                System.out.println("Invalid selection");
-                break;
-        }
-    }
-
-    private void startNewGame() {
-       
+    */
+    
+    private void startNewGame()
+    {   
         //Create a new Game
         GameControl.createNewGame(getPlayer());
         //Create a new Game Menu View
@@ -127,5 +138,4 @@ public class MainMenuView {
         
         System.out.println("*** displayPlayersScores function called ***");
     }
-    
 }
