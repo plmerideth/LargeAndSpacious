@@ -14,9 +14,11 @@ import largeandspacious.control.GameControl;
  *
  * @author julzlee
  */
-public class MainMenuView {
-    
-    private final String MENU = "\n"
+public class MainMenuView extends View
+{
+    public MainMenuView()
+    {
+        super("\n"
             + "\n|------------------------------------------|"
             + "\n|  Main Menu                               |"
             + "\n|------------------------------------------|"
@@ -26,52 +28,21 @@ public class MainMenuView {
             + "\n| S - Save game                            |"
             + "\n| L - Load game                            |"
             + "\n| E - Exit game                            |"
-            + "\n|------------------------------------------|";
-
-    public void displayMenu() {
-        char selection = ' ';
-        do {
-            System.out.println(MENU); // display the main menu
-            
-            String input = this.getInput();  // get the user's selection
-            selection = input.charAt(0);  // get first character of string
-            
-            this.doAction(selection); // do action based on selection
-        } while (selection != 'E'); // the selection is not "Exit"
-        System.out.println("\n*** MainMenuView displayMenu stub function called ***");
+            + "\n|------------------------------------------|");
     }
-
-    private String getInput() {
-        boolean valid = false;
-        String playersInput = null;
-        Scanner keyboard = new Scanner(System.in);
+    
+    @Override
+    public boolean doAction(Object obj)
+    {
+        String value = (String) obj;
+        value = value.toUpperCase();
+        char choice = value.charAt(0);
+        boolean done = false;
         
-        while( !valid )
-        {
-            //Prompt for the player's selection
-            System.out.println("Enter the menu selection below:");
-            
-            //Get the name from the keyboard and trim off spaces
-            playersInput = keyboard.nextLine();
-            playersInput = playersInput.trim();
-            playersInput = playersInput.toUpperCase();
-            
-            if( playersInput.length() < 1 )
-            {
-                System.out.println("Invalid menu selection - the selection must not be blank");
-                continue;
-            }
-            break;
-        }
-        return playersInput;
-    }
-
-    private void doAction(char selection) {
-        //BEGIN
-        switch (selection) {
+        switch (choice) {
             case 'G': 
                 //Start a new game
-                this.startNewGame();
+                this.startNewGame();                
                 break;
             case 'H': 
                 //Display the help menu
@@ -91,20 +62,22 @@ public class MainMenuView {
                 break;
             case 'E':
                 //Exit the game
+                done = true;
                 break;
             default: 
                 System.out.println("Invalid selection");
                 break;
         }
+        return done;
     }
-
-    public void startNewGame() {
-       
+    
+    private void startNewGame()
+    {   
         //Create a new Game
         GameControl.createNewGame(getPlayer());
         //Create a new Game Menu View
         
-        //GameMenuView gameMenu = new GameMenuView();
+        GameMenuView gameMenu = new GameMenuView();
         //Display the Game Menu
         //gameMenu.display();
         System.out.println("*** loadExistingGame function called ***");
@@ -121,7 +94,7 @@ public class MainMenuView {
     private void displayHelpMenu() {
         //Create a new help Menu View
         HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.displayMenu();
+        helpMenu.display();
         System.out.println("*** displayHelpMenu function called ***");
     }
 
@@ -129,5 +102,4 @@ public class MainMenuView {
         
         System.out.println("*** displayPlayersScores function called ***");
     }
-    
 }

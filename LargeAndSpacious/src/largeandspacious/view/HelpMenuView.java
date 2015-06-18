@@ -11,9 +11,11 @@ import java.util.Scanner;
  *
  * @author julzlee
  */
-public class HelpMenuView {
-    
-    private final String HMENU = "\n"
+public class HelpMenuView extends View
+{   
+    public HelpMenuView()
+    {
+        super("\n"
             + "\n|------------------------------------------|"
             + "\n|  Help Menu                               |"
             + "\n|------------------------------------------|"
@@ -25,7 +27,8 @@ public class HelpMenuView {
             + "\n| L - Lists Items                          |"
             + "\n| C - Lists Challenges                     |"
             + "\n| R - Return to Menu                       |"
-            + "\n|------------------------------------------|";
+            + "\n|------------------------------------------|");
+    }
     
     private final String OVERVIEW = "\n"
             + "\n|-------------------------------------------------|"
@@ -120,47 +123,16 @@ public class HelpMenuView {
             + "\n|     you win the resource points.                |"
             + "\n|-------------------------------------------------|" ;
     
-    
-    public void displayMenu() {
-        char selection = ' ';
-        do {
-            System.out.println(HMENU); // display the help menu
-            
-            String input = this.getInput();  // get the user's selection
-            selection = input.charAt(0);  // get first character of string
-            
-            this.doAction(selection); // do action based on selection
-        } while (selection != 'R'); // the selection is not "Return to Menu"
-        System.out.println("\n*** HelpMenuView displayMenu stub function called ***");
-    }
-
-    private String getInput() {
-        boolean valid = false;
-        String playersInput = null;
-        Scanner keyboard = new Scanner(System.in);
-        
-        while( !valid )
+   @Override
+    public boolean doAction(Object obj)
+    {
+        String value = (String) obj;
+        value = value.toUpperCase();
+        char choice = value.charAt(0);
+        boolean done = false;
+                
+        switch (choice)
         {
-            //Prompt for the player's selection
-            System.out.println("Enter the menu selection below:");
-            
-            //Get the name from the keyboard and trim off spaces
-            playersInput = keyboard.nextLine();
-            playersInput = playersInput.trim();
-            playersInput = playersInput.toUpperCase();
-            
-            if( playersInput.length() < 1 )
-            {
-                System.out.println("Invalid menu selection - the selection must not be blank");
-                continue;
-            }
-            break;
-        }
-        return playersInput;
-    }
-
-    private void doAction(char selection) {
-        switch (selection) {
             case 'O': 
                 //Overview of the Game
                 this.displayGameOverview();
@@ -190,12 +162,14 @@ public class HelpMenuView {
                 this.displayChallenges();
                 break;
             case 'R':
-                // Return to Menu  
+                // Return to Menu
+                done = true;
                 break;
             default: 
                 System.out.println("Invalid selection");
                 break;
         }
+        return done;
     }
 
     private void displayGameOverview() {

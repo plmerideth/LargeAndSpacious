@@ -21,15 +21,15 @@ public abstract class View implements ViewInterface {
     
     @Override
     public void display() {
-        char selection = ' ';
+        boolean done = false;
+        
         do {
             System.out.println(this.promptMessage); // display the menu
             
             String input = this.getInput();  // get the user's selection
-            selection = input.charAt(0);  // get first character of string
             
-            this.doAction(selection); // do action based on selection
-        } while (selection != 'E'); // the selection is not "Return to Menu"
+            done = this.doAction(input); // do action based on selection
+        } while (!done); // the selection is not "Return to Menu"
         System.out.println("\n*** GameMenuView displayMenu stub function called ***");
     }
     

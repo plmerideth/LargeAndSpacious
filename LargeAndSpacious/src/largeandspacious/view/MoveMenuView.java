@@ -11,26 +11,25 @@ import largeandspacious.model.Player;
  */
 public class MoveMenuView
 {
-        private final String ROLLDICE = "\n"
+    private final String ROLLDICE = "\n"
         + "\n|------------------------------------------|"
         + "\n|  Press R to roll dice!                   |"
         + "\n|------------------------------------------|";
-
-        private final String XMENU = "\n"
+    
+    private final String XMENU = "\n"
         + "\n|------------------------------------------|"
         + "\n| Enter X location                         |"
         + "\n| R - Return to Previous Menu              |"                
         + "\n|------------------------------------------|";
-
-        private final String YMENU = "\n"
+                
+    private final String YMENU = "\n"
         + "\n|------------------------------------------|"
         + "\n| Enter Y location                         |"
         + "\n| R - Return to Previous Menu              |"                
         + "\n|------------------------------------------|";
-        
-        private int xCoord;
-        private int yCoord;
-        
+             
+    private int xCoord;
+    private int yCoord;
         
     Location selectLocation()
     {

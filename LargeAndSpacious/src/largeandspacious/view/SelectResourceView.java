@@ -6,66 +6,34 @@ import java.util.Scanner;
  *
  * @author Paul Merideth
  */
-public class SelectResourceView
+public class SelectResourceView extends View
 {
-    private final String MENU = "\n"
-        + "\n|------------------------------------------|"
-        + "\n|  Select Resource Menu                    |"
-        + "\n|------------------------------------------|"
-        + "\n| O - Play for Obedience                   |"
-        + "\n| T - Play for Testimony                   |"
-        + "\n| -----------------------------------------|"
-        + "\n|   Use an Attribute                       |"
-        + "\n| I - Rod of Iron                          |"
-        + "\n| S - Straight and Narrow Path             |"
-        + "\n| W - Man in White Rob                     |"
-        + "\n| R - Return to Game Menu                       |"
-        + "\n|------------------------------------------|";
-
-    void displayMenu()
+    public SelectResourceView()
     {
-        char selection = ' ';
-        do
-        {
-            System.out.println(MENU); // display the SelectResource menu
-            
-            String input = this.getInput();  // get the user's selection
-            selection = input.charAt(0);  // get first character of string
-            
-            this.doAction(selection); // do action based on selection
-        }while (selection != 'R'); // the selection is not "Return to Menu"
-        System.out.println("\n*** HelpMenuView displayMenu stub function called ***");
+        super("\n"
+            + "\n|------------------------------------------|"
+            + "\n|  Select Resource Menu                    |"
+            + "\n|------------------------------------------|"
+            + "\n| O - Play for Obedience                   |"
+            + "\n| T - Play for Testimony                   |"
+            + "\n| -----------------------------------------|"
+            + "\n|   Use an Attribute                       |"
+            + "\n| I - Rod of Iron                          |"
+            + "\n| S - Straight and Narrow Path             |"
+            + "\n| W - Man in White Rob                     |"
+            + "\n| R - Return to Game Menu                  |"
+            + "\n|------------------------------------------|");
     }
 
-    private String getInput()
+    @Override
+    public boolean doAction(Object obj)
     {
-        boolean valid = false;
-        String playersInput = null;
-        Scanner keyboard = new Scanner(System.in);
-        
-        while( !valid )
-        {
-            //Prompt for the player's selection
-            System.out.println("Enter the menu selection below:");
-            
-            //Get the name from the keyboard and trim off spaces
-            playersInput = keyboard.nextLine();
-            playersInput = playersInput.trim();
-            playersInput = playersInput.toUpperCase();
-            
-            if( playersInput.length() < 1 )
-            {
-                System.out.println("Invalid menu selection - the selection must not be blank");
-                continue;
-            }
-            break;
-        }
-        return playersInput;
-    }
-
-    private void doAction(char selection)
-    {
-        switch (selection)
+        String value = (String) obj;
+        value = value.toUpperCase();
+        char choice = value.charAt(0);
+        boolean done = false;
+                        
+        switch(choice)
         {
             case 'O': 
                 //Play for obedience
@@ -87,10 +55,15 @@ public class SelectResourceView
                 //Use Man in White Robe
                 this.useManInWhiteRobe();
                 break;
+            case 'R':
+                //Return to game menu
+                done = true;
+                break;
             default: 
                 System.out.println("Invalid selection");
                 break;
         }
+        return done;
     }
 
     private void selectObedience()
