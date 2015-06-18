@@ -198,8 +198,8 @@ public class HelpMenuView extends View
 
     private void displayChallenges() {
         //Create a new help Menu View
-        ChallengesView challenges = new ChallengesView();
-        challenges.display();
+        //ChallengesView challenges = new ChallengesView();
+        //challenges.displayMenu();
         System.out.println("*** displayChallenges function called ***");
     }
 

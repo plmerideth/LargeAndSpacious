@@ -36,18 +36,15 @@ public boolean doAction(Object obj) {
     
     value = value.toUpperCase(); //convert to all upper case
     char choice = value.charAt(0); // get first character entered
-    boolean done = false;
-    
         switch (choice) {
             case 'E':
-                done = true;
                 break;
             default:
                 System.out.println("Invalid selection");
                 break;
             
         }
-        return done;
+        return false;
     }
     
 }
