@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class ChallengesView extends View {
 
-    public ChallengesView(String promptMessage) {
+    public ChallengesView() {
         super("\n"
             + "\n|-------------------------------------------------------|"
             + "\n|  Challenges                                        |"

@@ -13,7 +13,7 @@ package largeandspacious.view;
  */
 public class MapMenuView extends View {
     
-    public MapMenuView(String promptMessage) {
+    public MapMenuView() {
         super("\n"
             + "\n   |---------------------------|"
             + "\n   | 1 | 2 | 3 | 4 | 5 | 6 | 7 |"
@@ -32,22 +32,23 @@ public class MapMenuView extends View {
             + "\n---|---------------------------|");
     }
 
-    @Override
+@Override
 public boolean doAction(Object obj) {
     
     String value = (String) obj;
+    boolean done = false;
     
     value = value.toUpperCase(); //convert to all upper case
     char choice = value.charAt(0); // get first character entered
         switch (choice) {
             case 'E':
+                done = true;
                 break;
             default:
                 System.out.println("Invalid selection");
-                break;
-            
+                break;            
         }
-        return false;
+        return done;
     }
     
 

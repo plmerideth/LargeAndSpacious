@@ -5,7 +5,7 @@
  */
 package largeandspacious.view;
 
-import java.util.Scanner;
+// import java.util.Scanner;
 import largeandspacious.model.Location;
 
 /**
@@ -14,8 +14,8 @@ import largeandspacious.model.Location;
  */
 public class GameMenuView extends View {
     
-    public GameMenuView(String promptMessage) {
-    super("\n"
+    public GameMenuView() {
+        super("\n"
             + "\n|------------------------------------------|"
             + "\n|  Game Menu                               |"
             + "\n|------------------------------------------|"
@@ -24,17 +24,16 @@ public class GameMenuView extends View {
             + "\n| D - Display Map                          |"
             + "\n| I - List player items                    |"
             + "\n| C - List challenges                      |"
-            + "\n| R - Return to Menu                       |"
+            + "\n| R - Return to Main Menu                  |"
             + "\n| H - Help                                 |"
             + "\n|------------------------------------------|");
-
     }      
-
 
     @Override
     public boolean doAction(Object obj) {
         String value = (String) obj;
-    
+        boolean done = false;
+        
         value = value.toUpperCase(); //convert to all upper case
         char choice = value.charAt(0); // get first character entered
         
@@ -59,25 +58,25 @@ public class GameMenuView extends View {
                 // List challenges
                 this.listChallenges();
                 break;
-            case 'R': 
+            case 'R':
                 //Return to Menu
+                done = true;
                 break;
             case 'H':
                 //Help menu
                 this.displayHelpMenu();
                 break;
             default: 
-                System.out.println("Invalid selection");
+                System.out.println("Invalid selection");                
                 break;
         }
-        return false;
+        return done;
     }
 
-    
     private void displayHelpMenu() {
         //Create a new help Menu View
         HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.displayMenu();
+        helpMenu.display();
         System.out.println("*** displayHelpMenu function called ***");
     }
 
@@ -95,8 +94,8 @@ public class GameMenuView extends View {
     public void displayMap() {
         //Create a new map Menu View
         
-        //MapMenuView mapMenu = new MapMenuView();
-        //mapMenu.displayMenu();
+        MapMenuView mapMenu = new MapMenuView();
+        mapMenu.display();
         System.out.println("*** displayPlayerItems function called ***");
     }
 
@@ -106,15 +105,14 @@ public class GameMenuView extends View {
 
     private void listChallenges() {
         //Create a new map Menu View
-        //ChallengesView challenges = new ChallengesView();
-        //challenges.displayMenu();
+        ChallengesView challenges = new ChallengesView();
+        challenges.display();
         System.out.println("*** listChallenges function called ***");
     }
 
     private void selectResource() {
-                //Create SelectResourceView object
+        //Create SelectResourceView object
         SelectResourceView selectResource = new SelectResourceView();
-        selectResource.displayMenu();
+        selectResource.display();
     }
-    
 }
