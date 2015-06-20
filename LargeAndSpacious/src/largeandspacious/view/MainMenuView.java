@@ -99,7 +99,9 @@ public class MainMenuView extends View
     }
 
     private void displayPlayersScores() {
-        
+        //Create a Players Score View
+        PlayersScoreView scores = new PlayersScoreView();
+        scores.display();
         System.out.println("*** displayPlayersScores function called ***");
     }
 }

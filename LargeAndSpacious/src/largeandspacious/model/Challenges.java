@@ -47,7 +47,8 @@ public class Challenges implements Serializable {
 
     @Override
     public String toString() {
-        return "Challenges{" + "challengeID=" + challengeID + ", challengeValue=" + challengeValue + ", description=" + description + '}';
+        return "Challenges{" + "challengeID=" + challengeID + ", challengeValue=" 
+                + challengeValue + ", description=" + description + '}';
     }
 
     @Override

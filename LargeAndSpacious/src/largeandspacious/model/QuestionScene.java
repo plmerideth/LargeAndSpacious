@@ -57,7 +57,9 @@ public class QuestionScene implements Serializable {
 
     @Override
     public String toString() {
-        return "QuestionScene{" + "sceneTypeID=" + sceneTypeID + ", questionID=" + questionID + ", itemID=" + itemID + ", description=" + description + '}';
+        return "QuestionScene{" + "sceneTypeID=" + sceneTypeID + ", questionID=" 
+                + questionID + ", itemID=" + itemID + ", description=" 
+                + description + '}';
     }
 
     @Override

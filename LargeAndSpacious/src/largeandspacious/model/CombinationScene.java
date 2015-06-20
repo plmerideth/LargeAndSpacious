@@ -65,7 +65,9 @@ public class CombinationScene implements Serializable {
 
     @Override
     public String toString() {
-        return "CombinationScene{" + "sceneTypeID=" + sceneTypeID + ", questionID=" + questionID + ", challengeID=" + challengeID + ", itemID=" + itemID + ", description=" + description + '}';
+        return "CombinationScene{" + "sceneTypeID=" + sceneTypeID 
+                + ", questionID=" + questionID + ", challengeID=" + challengeID 
+                + ", itemID=" + itemID + ", description=" + description + '}';
     }
 
     @Override
