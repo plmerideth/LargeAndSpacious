@@ -27,7 +27,7 @@ public class MainMenuView extends View
             + "\n| P - Show players and high scores         |"
             + "\n| S - Save game                            |"
             + "\n| L - Load game                            |"
-            + "\n| E - Exit game                            |"
+            + "\n| X - Exit game                            |"
             + "\n|------------------------------------------|");
     }
     
@@ -60,7 +60,7 @@ public class MainMenuView extends View
                 //Load a saved game
                 this.loadExistingGame();
                 break;
-            case 'E':
+            case 'X':
                 //Exit the game
                 done = true;
                 break;

@@ -23,10 +23,10 @@ public class HelpMenuView extends View
             + "\n| M - How to move                          |"
             + "\n| Q - Explains the quest                   |"
             + "\n| G - Explains the map                     |"
-            + "\n| I - Explains how to use items            |"
-            + "\n| L - Lists Items                          |"
+            + "\n| U - Explains how to use items            |"
+            + "\n| I - Lists Items                          |"
             + "\n| C - Lists Challenges                     |"
-            + "\n| R - Return to Menu                       |"
+            + "\n| X - Return to Menu                       |"
             + "\n|------------------------------------------|");
     }
     
@@ -149,11 +149,11 @@ public class HelpMenuView extends View
                 // Explains the map
                 this.displayMapHelp();
                 break;
-            case 'I': 
+            case 'U': 
                 // Explains how to use items 
                 this.displayItemHelp();
                 break;
-            case 'L':
+            case 'I':
                 //Lists Items
                 this.displayItemList();
                 break;
@@ -161,7 +161,7 @@ public class HelpMenuView extends View
                 // Lists Challenges
                 this.displayChallenges();
                 break;
-            case 'R':
+            case 'X':
                 // Return to Menu
                 done = true;
                 break;

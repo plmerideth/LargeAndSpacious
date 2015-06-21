@@ -26,7 +26,7 @@ public class PlayersScoreView extends View {
             + "\n Michelle - " + (int)(Math.random()*25) + 5 
             + "\n Jeff - " + (int)(Math.random()*25) + 5 
             + "\n------------------------------------------"
-            + "\n E - Exit menu                            "
+            + "\n X - Exit menu                            "
             + "\n------------------------------------------");
     }
     
@@ -40,7 +40,7 @@ public boolean doAction(Object obj) {
     boolean done = false;
     
         switch (choice) {
-            case 'E':
+            case 'X':
                 done = true;
                 break;
             default:

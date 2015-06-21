@@ -24,7 +24,7 @@ public class ChallengesView extends View {
             + "\n| Lost & Forbidden Path (Obedience & Testimony damage)  |"
             + "\n| Mocking & Pointing (Obedience damage)                 |"
             + "\n|-------------------------------------------------------|"
-            + "\n| E - Exit menu                                         |"
+            + "\n| X - Return to Game Menu                                         |"
             + "\n|-------------------------------------------------------|");
     }
     
@@ -39,7 +39,7 @@ public boolean doAction(Object obj) {
     boolean done = false;
     
         switch (choice) {
-            case 'E':
+            case 'X':
                 done = true;
                 break;
             default:

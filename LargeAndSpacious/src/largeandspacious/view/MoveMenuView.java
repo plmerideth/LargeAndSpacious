@@ -19,13 +19,13 @@ public class MoveMenuView
     private final String XMENU = "\n"
         + "\n|------------------------------------------|"
         + "\n| Enter X location                         |"
-        + "\n| R - Return to Previous Menu              |"                
+        + "\n| X - Return to Previous Menu              |"                
         + "\n|------------------------------------------|";
                 
     private final String YMENU = "\n"
         + "\n|------------------------------------------|"
         + "\n| Enter Y location                         |"
-        + "\n| R - Return to Previous Menu              |"                
+        + "\n| X - Return to Previous Menu              |"                
         + "\n|------------------------------------------|";
              
     private int xCoord;
@@ -43,7 +43,7 @@ public class MoveMenuView
             String input = this.getInput('X');  // get the user's selection
             selection = input.charAt(0);  // get first character of string
         }while (!this.validateX(selection)); // Continue until a valid x coordinate
-        if(selection != 'R')
+        if(selection != 'X')
         {
             System.out.println("Player entered " + selection + " for X coordinate");
             newLocation.setRow(Character.getNumericValue(selection));
@@ -57,7 +57,7 @@ public class MoveMenuView
                 String input = this.getInput('Y');  // get the user's selection
                 selection = input.charAt(0);  // get first character of string
             }while (!this.validateY(selection)); // Continue until a valid x coordinate
-            if(selection != 'R')
+            if(selection != 'X')
             {
                 System.out.println("Player entered " + selection + " for Y coordinate");
                 System.out.println("Valid location coordinates entered");
@@ -104,7 +104,7 @@ public class MoveMenuView
             xCoord = Character.getNumericValue(selection);
             return true;
         }
-        else if (selection == 'R') {
+        else if (selection == 'X') {
             return true;
         }
         else
@@ -121,7 +121,7 @@ public class MoveMenuView
             System.out.println(Location(xCoord,yCoord));
             return true;
         }
-        else if (selection=='R') {
+        else if (selection=='X') {
             return true;
         }
         else
@@ -141,6 +141,8 @@ public class MoveMenuView
             
             String input = this.getDiceInput();  // get the user's selection
             selection = input.charAt(0);  // get first character of string
+            if(selection != 'R')
+                System.out.println("\nInvalid entry.  Please try again");
         }while (selection != 'R'); // the selection must be 'R' to roll dice
         System.out.println("\n*** rollDice() function called ***");
         

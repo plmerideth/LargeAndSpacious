@@ -24,7 +24,8 @@ public class GameMenuView extends View {
             + "\n| D - Display Map                          |"
             + "\n| I - List player items                    |"
             + "\n| C - List challenges                      |"
-            + "\n| R - Return to Main Menu                  |"
+            + "\n| A - List attributes                      |"                
+            + "\n| X - Return to Main Menu                  |"
             + "\n| H - Help                                 |"
             + "\n|------------------------------------------|");
     }      
@@ -58,7 +59,11 @@ public class GameMenuView extends View {
                 // List challenges
                 this.listChallenges();
                 break;
-            case 'R':
+            case 'A':
+                //List Attributes
+                this.listAttributes();
+                break;
+            case 'X':
                 //Return to Menu
                 done = true;
                 break;
@@ -107,12 +112,17 @@ public class GameMenuView extends View {
         //Create a new map Menu View
         ChallengesView challenges = new ChallengesView();
         challenges.display();
-        System.out.println("*** listChallenges function called ***");
     }
 
     private void selectResource() {
         //Create SelectResourceView object
         SelectResourceView selectResource = new SelectResourceView();
         selectResource.display();
+    }
+
+    private void listAttributes()
+    {
+        AttributeView attributes = new AttributeView();
+        attributes.display();
     }
 }

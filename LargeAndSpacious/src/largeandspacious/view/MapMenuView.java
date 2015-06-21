@@ -28,7 +28,7 @@ public class MapMenuView extends View {
             + "\n---|---------------------------|"
             + "\n 5 |   |   |   |   |   |   |   |"
             + "\n---|---------------------------|"
-            + "\n   | E - Exit Map              |"
+            + "\n   | X - Exit Map              |"
             + "\n---|---------------------------|");
     }
 
@@ -41,7 +41,7 @@ public boolean doAction(Object obj) {
     value = value.toUpperCase(); //convert to all upper case
     char choice = value.charAt(0); // get first character entered
         switch (choice) {
-            case 'E':
+            case 'X':
                 done = true;
                 break;
             default:

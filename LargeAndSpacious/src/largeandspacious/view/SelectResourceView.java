@@ -21,7 +21,7 @@ public class SelectResourceView extends View
             + "\n| I - Rod of Iron                          |"
             + "\n| S - Straight and Narrow Path             |"
             + "\n| W - Man in White Rob                     |"
-            + "\n| R - Return to Game Menu                  |"
+            + "\n| X - Return to Game Menu                  |"
             + "\n|------------------------------------------|");
     }
 
@@ -55,7 +55,7 @@ public class SelectResourceView extends View
                 //Use Man in White Robe
                 this.useManInWhiteRobe();
                 break;
-            case 'R':
+            case 'X':
                 //Return to game menu
                 done = true;
                 break;
