@@ -11,23 +11,51 @@ import java.io.Serializable;
  */
 
 public class Game implements Serializable {
-    private int gameID;
+    
+    private Map map;
+    private Item[] item;
     private double totalTime;
     private double remainingTime;
+    private Player player;
+    private String[] actors;
 
     public Game() {
     }
-    
-    
-    
-    public int getGameID() {
-        return gameID;
+
+    public Map getMap() {
+        return map;
     }
 
-    public void setGameID(int gameID) {
-        this.gameID = gameID;
+    public Item[] getItem() {
+        return item;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public String[] getActors() {
+        return actors;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public void setItem(Item[] item) {
+        this.item = item;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public void setActors(String[] actors) {
+        this.actors = actors;
+    }
+    
+
+    
     public double getTotalTime() {
         return totalTime;
     }
@@ -47,14 +75,13 @@ public class Game implements Serializable {
 
     @Override
     public String toString() {
-        return "Game{" + "gameID=" + gameID + ", totalTime=" + totalTime 
+        return "Game{" + ", totalTime=" + totalTime 
                 + ", remainingTime=" + remainingTime + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 29 * hash + this.gameID;
         hash = 29 * hash + (int) (Double.doubleToLongBits(this.totalTime) ^ (Double.doubleToLongBits(this.totalTime) >>> 32));
         hash = 29 * hash + (int) (Double.doubleToLongBits(this.remainingTime) ^ (Double.doubleToLongBits(this.remainingTime) >>> 32));
         return hash;
@@ -69,9 +96,7 @@ public class Game implements Serializable {
             return false;
         }
         final Game other = (Game) obj;
-        if (this.gameID != other.gameID) {
-            return false;
-        }
+        
         if (Double.doubleToLongBits(this.totalTime) != Double.doubleToLongBits(other.totalTime)) {
             return false;
         }

@@ -6,17 +6,17 @@ just a test of github
  */
 package largeandspacious;
 
-import largeandspacious.model.Actor;
-import largeandspacious.model.ChallengeScene;
-import largeandspacious.model.Challenges;
-import largeandspacious.model.CombinationScene;
+//import largeandspacious.model.Actor;
+//import largeandspacious.model.ChallengeScene;
+//import largeandspacious.model.Challenges;
+//import largeandspacious.model.CombinationScene;
 import largeandspacious.model.Game;
 import largeandspacious.model.Player;
-import largeandspacious.model.Map;
-import largeandspacious.model.QuestionScene;
-import largeandspacious.model.Questions;
-import largeandspacious.model.Item;
-import largeandspacious.model.Location;
+//import largeandspacious.model.Map;
+//import largeandspacious.model.QuestionScene;
+//import largeandspacious.model.Questions;
+//import largeandspacious.model.Item;
+//import largeandspacious.model.Location;
 import largeandspacious.view.StartProgramView;
 
 /**
