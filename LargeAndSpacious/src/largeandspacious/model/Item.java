@@ -19,6 +19,8 @@ public class Item implements Serializable {
     private String description;
     private double value;
     private double itemCount;
+    private int quantityInStock;
+    private int requiredAmount;
 
     public Item() {
     }
@@ -63,6 +65,14 @@ public class Item implements Serializable {
     public void setItemCount(double itemCount) {
         this.itemCount = itemCount;
     }
+    
+     public void setQuantityInStock(int quantityInStock) {
+        this.quantityInStock = quantityInStock;
+    }
+
+    public void setRequiredAmount(int requiredAmount) {
+        this.requiredAmount = requiredAmount;
+    }
 
     @Override
     public String toString() {
@@ -106,6 +116,8 @@ public class Item implements Serializable {
         }
         return true;
     }
+
+   
     
     
 }

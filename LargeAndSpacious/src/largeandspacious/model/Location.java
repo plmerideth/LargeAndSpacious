@@ -6,6 +6,7 @@
 package largeandspacious.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,7 +16,13 @@ public class Location implements Serializable {
     //Class instance variables
     private int row;
     private int col;
-    private int sceneTypeId;
+    private boolean visited;
+
+   
+    private ChallengeScene challengeScene;
+    private QuestionScene questionScene;
+    private CombinationScene combinationScene;
+    private ArrayList<Actor> actors;
 
     public Location() {
     }
@@ -38,17 +45,14 @@ public class Location implements Serializable {
         this.col = col;
     }
 
-    public int getSceneTypeId() {
-        return sceneTypeId;
+    public void setVisited(boolean visited) {
+        this.visited = visited;
     }
 
-    public void setSceneTypeId(int sceneTypeId) {
-        this.sceneTypeId = sceneTypeId;
-    }
-
+    
     @Override
     public String toString() {
-        return "Location{" + "row=" + row + ", col=" + col + ", sceneTypeId=" + sceneTypeId + '}';
+        return "Location{" + "row=" + row + ", col=" + col  + "}";
     }
 
     @Override
@@ -56,7 +60,6 @@ public class Location implements Serializable {
         int hash = 7;
         hash = 83 * hash + this.row;
         hash = 83 * hash + this.col;
-        hash = 83 * hash + this.sceneTypeId;
         return hash;
     }
 
@@ -73,9 +76,6 @@ public class Location implements Serializable {
             return false;
         }
         if (this.col != other.col) {
-            return false;
-        }
-        if (this.sceneTypeId != other.sceneTypeId) {
             return false;
         }
         return true;
