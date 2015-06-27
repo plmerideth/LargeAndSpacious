@@ -2,6 +2,8 @@ package largeandspacious.view;
 
 import java.util.Scanner;
 import largeandspacious.control.ProgramControl;
+import largeandspacious.model.Game;
+import largeandspacious.model.Item;
 import largeandspacious.model.Player;
 
 /**
@@ -12,7 +14,7 @@ public class StartProgramView
 {
     public void startProgram()
     {
-        //BEGIN
+            //BEGIN
             //Display banner screen
             this.displayBanner();   
             

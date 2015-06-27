@@ -17,7 +17,9 @@ public class Game implements Serializable {
     private double totalTime;
     private double remainingTime;
     private Player player;
-    private String[] actors;
+    private Item[] inventory;
+    private Actor[] actors;
+    
 
     public Game() {
     }
@@ -33,8 +35,8 @@ public class Game implements Serializable {
     public Player getPlayer() {
         return player;
     }
-
-    public String[] getActors() {
+    
+    public Actor[] getActors() {
         return actors;
     }
 
@@ -50,7 +52,12 @@ public class Game implements Serializable {
         this.player = player;
     }
 
-    public void setActors(String[] actors) {
+    public void setInventory(Item[] inventory)
+    {
+        this.inventory = inventory;
+    }
+        
+    public void setActors(Actor[] actors) {
         this.actors = actors;
     }
     
@@ -104,6 +111,11 @@ public class Game implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public Item[] getInventory()
+    {
+        return inventory;
     }
     
 

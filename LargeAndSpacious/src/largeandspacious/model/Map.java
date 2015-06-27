@@ -49,6 +49,10 @@ public class Map implements Serializable {
         }
     }
     
+    public Location[][] getLocations()
+    {
+        return locations;
+    }
     
     public int getRow() {
         return noOfRows;

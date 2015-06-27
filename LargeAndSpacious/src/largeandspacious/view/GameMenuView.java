@@ -6,6 +6,8 @@
 package largeandspacious.view;
 
 // import java.util.Scanner;
+import largeandspacious.control.GameControl;
+import largeandspacious.model.Item;
 import largeandspacious.model.Location;
 
 /**
@@ -104,8 +106,22 @@ public class GameMenuView extends View {
         System.out.println("*** displayPlayerItems function called ***");
     }
 
-    private void displayPlayerItems() {
-        System.out.println("*** displayPlayerItems function called ***");
+    private void displayPlayerItems()
+    {
+        String Desc;
+        
+        Item[] inventory = GameControl.getSortedInventoryList();
+        System.out.println("\nList of Inventory Items");
+        System.out.println("DESCRIPTION" + "\t\t\t" +
+                           "VALUE" + "\t\t" +
+                           "ITEM COUNT");
+                
+        for(Item inventoryItem : inventory)
+        {            
+            System.out.println(inventoryItem.getDescription() + "\t\t\t\t" + 
+                               inventoryItem.getValue() + "\t\t" +
+                               inventoryItem.getItemCount());
+        }
     }
 
     private void listChallenges() {

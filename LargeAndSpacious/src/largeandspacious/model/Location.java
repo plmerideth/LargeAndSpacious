@@ -7,6 +7,8 @@ package largeandspacious.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import largeandspacious.control.Scene;
+import largeandspacious.control.Scene.SceneType;
 
 /**
  *
@@ -16,6 +18,7 @@ public class Location implements Serializable {
     //Class instance variables
     private int row;
     private int col;
+    private Scene sceneType;
     private boolean visited;
 
    
@@ -26,8 +29,6 @@ public class Location implements Serializable {
 
     public Location() {
     }
-
-    
     
     public int getRow() {
         return row;
@@ -49,6 +50,10 @@ public class Location implements Serializable {
         this.visited = visited;
     }
 
+    public void setScene(Scene index)
+    {
+        sceneType = index;
+    }
     
     @Override
     public String toString() {

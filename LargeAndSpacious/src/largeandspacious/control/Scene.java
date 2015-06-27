@@ -5,12 +5,19 @@
  */
 package largeandspacious.control;
 
+import largeandspacious.model.Location;
+import largeandspacious.model.Map;
+
 
 /**
  *
  * @author julzlee
  */
-public class Scene {
+public class Scene
+{
+    private String description;
+    private boolean blocked;
+  
     
     public static Scene[] createSceneList() {
         // created an array(list) of inventory items
@@ -19,57 +26,54 @@ public class Scene {
         Scene start = new Scene();
         start.setDescription("Start of Game");
         start.setBlocked(false);
-        start.setSceneType(0);
         scene[SceneType.start.ordinal()] = start;
         
         Scene building = new Scene();
         building.setDescription("Large and Spacious Building");
         building.setBlocked(false);
-        building.setSceneType(0);
         scene[SceneType.building.ordinal()] = building;
         
         Scene mists = new Scene();
         mists.setDescription("Miss of Darkness");
         mists.setBlocked(false);
-        mists.setSceneType(0);
         scene[SceneType.mists.ordinal()] = mists;
         
         Scene finger = new Scene();
         finger.setDescription("Finger of Scorn");
         finger.setBlocked(false);
-        finger.setSceneType(0);
         scene[SceneType.finger.ordinal()] = finger;
         
         Scene path = new Scene();
         path.setDescription("Straight & Narrow Path");
         path.setBlocked(false);
-        path.setSceneType(0);
         scene[SceneType.path.ordinal()] = path;
         
         Scene tree = new Scene();
         tree.setDescription("Tree of Life");
         tree.setBlocked(false);
-        tree.setSceneType(0);
         scene[SceneType.tree.ordinal()] = tree;
         
         Scene river = new Scene();
         river.setDescription("River of Water");
         river.setBlocked(false);
-        river.setSceneType(0);
         scene[SceneType.river.ordinal()] = river;
         
         Scene finish = new Scene();
         finish.setDescription("Finish Game");
         finish.setBlocked(false);
-        finish.setSceneType(0);
         scene[SceneType.finish.ordinal()] = finish;
         
         return scene;
     }
-    private String description;
-    private boolean blocked;
-    private int sceneType;
-
+    
+    private static void assignScenesToLocation(Map map, Scene[] scenes)
+    {
+        Location[][] locations = map.getLocations();
+        
+        //Fill out locations
+       //locations[0][0].setScene(scenes[SceneType.start.ordinal()]);
+    }
+    
     public void setDescription(String description) {
         this.description = description;
     }
@@ -78,9 +82,9 @@ public class Scene {
         this.blocked = blocked;
     }
 
-    public void setSceneType(int sceneType) {
-        this.sceneType = sceneType;
-    }
+    //public void setSceneType(int sceneType) {
+      //  this.sceneType = sceneType;
+    //}
     
     public enum SceneType {
         start,
