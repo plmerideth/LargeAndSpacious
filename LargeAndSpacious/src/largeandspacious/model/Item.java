@@ -19,8 +19,8 @@ public class Item implements Serializable {
     private String description;
     private double value;
     private double itemCount;
-    private int quantityInStock;
-    private int requiredAmount;
+    private double quantityInStock;
+    private double requiredAmount;
 
     public Item() {
     }
@@ -66,19 +66,19 @@ public class Item implements Serializable {
         this.itemCount = itemCount;
     }
     
-     public void setQuantityInStock(int quantityInStock) {
+     public void setQuantityInStock(double quantityInStock) {
         this.quantityInStock = quantityInStock;
     }
 
-    public void setRequiredAmount(int requiredAmount) {
+    public void setRequiredAmount(double requiredAmount) {
         this.requiredAmount = requiredAmount;
     }
 
-    public int getQuantityInStock() {
+    public double getQuantityInStock() {
         return quantityInStock;
     }
 
-    public int getRequiredAmount() {
+    public double getRequiredAmount() {
         return requiredAmount;
     }
     

@@ -8,7 +8,7 @@ package largeandspacious.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import largeandspacious.control.Scene;
-import largeandspacious.control.Scene.SceneType;
+//import largeandspacious.control.Scene.SceneType;
 
 /**
  *

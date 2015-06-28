@@ -5,8 +5,8 @@
  */
 package largeandspacious.control;
 
+import largeandspacious.LargeAndSpacious;
 import largeandspacious.model.Item;
-import largeandspacious.control.Constants;
 
 /**
  *
@@ -14,5 +14,19 @@ import largeandspacious.control.Constants;
  */
 public class InventoryControl
 {
-    
+    public static String calculateAverageHealth() {
+        //get the items in the inventory
+        Item[] items = LargeAndSpacious.getCurrentGame().getInventory();
+        
+        double total = 0.0;
+        String avgHealth;
+        //get the number of items in stock
+        for (Item item : items) {
+            total = total + item.getQuantityInStock();
+        }
+        double average = total / items.length;
+        //return the average number of items in stock
+        avgHealth = "\n Your average health is " + average;
+        return avgHealth; 
+    }
 }

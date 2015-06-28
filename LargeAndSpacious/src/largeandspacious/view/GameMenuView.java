@@ -7,6 +7,7 @@ package largeandspacious.view;
 
 // import java.util.Scanner;
 import largeandspacious.control.GameControl;
+import largeandspacious.control.InventoryControl;
 import largeandspacious.model.Item;
 import largeandspacious.model.Location;
 
@@ -123,7 +124,6 @@ public class GameMenuView extends View {
                                inventoryItem.getItemCount());
         }
         
-        
     }
 
     private void listChallenges() {
@@ -133,6 +133,8 @@ public class GameMenuView extends View {
     }
 
     private void selectResource() {
+        //show the average health of the player
+        System.out.println(InventoryControl.calculateAverageHealth());
         //Create SelectResourceView object
         SelectResourceView selectResource = new SelectResourceView();
         selectResource.display();

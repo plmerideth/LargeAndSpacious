@@ -33,7 +33,7 @@ public class GameControl
         game.setMap(map);
         
         //move actors to starting position on the map
-        MapControl.moveActorsToStartingLocation(map);
+        MapControl.moveActorsToStartingLocation(map);    
     }
     
     public static Item[] createInventoryList()
@@ -156,18 +156,4 @@ public class GameControl
         man
     }
     
-    /*public int calculateAverageHealth() {
-        
-        requiredAmount[] items = requiredAmount.values();
-        
-        int total = 0.0;
-        for (requiredAmount item : items) {
-            total = total + items.getRequiredAmount();
-            //System.out.println( items[item].name());
-        }
-        //double average = total / items.length;
-        //System.out.println("\n Average health is: " + average); 
-        return 0.0;
-       
-    }*/
 }

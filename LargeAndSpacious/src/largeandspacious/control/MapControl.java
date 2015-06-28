@@ -32,7 +32,7 @@ public class MapControl {
         
         //assign the different scenes to location in the map
         GameControl.assignScenesToLocations(map, scenes);
-        
+               
         return map;
     }
 
