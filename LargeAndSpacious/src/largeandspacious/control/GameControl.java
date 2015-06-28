@@ -31,6 +31,9 @@ public class GameControl
         
         Map map = MapControl.createMap();
         game.setMap(map);
+        
+        //move actors to starting position on the map
+        MapControl.moveActorsToStartingLocation(map);
     }
     
     public static Item[] createInventoryList()
@@ -39,25 +42,25 @@ public class GameControl
         Item[] inventory = new Item[Constants.NUMBER_OF_INVENTORY_ITEMS];
         
         Item fruit = new Item();
-        fruit.setDescription("fruit");
-        fruit.setQuantityInStock(0);
+        fruit.setDescription("fruit                 ");
+        fruit.setQuantityInStock(5);
         fruit.setRequiredAmount(0);
         inventory[inventoryItem.fruit.ordinal()] = fruit;
         
         Item obedience = new Item();
-        obedience.setDescription("obedience");
-        obedience.setQuantityInStock(0);
+        obedience.setDescription("obedience             ");
+        obedience.setQuantityInStock(5);
         obedience.setRequiredAmount(0);
         inventory[inventoryItem.obedience.ordinal()] = obedience;
         
         Item testimony = new Item();
-        testimony.setDescription("testimony");
-        testimony.setQuantityInStock(0);
+        testimony.setDescription("testimony             ");
+        testimony.setQuantityInStock(5);
         testimony.setRequiredAmount(0);
         inventory[inventoryItem.testimony.ordinal()] = testimony;
         
         Item ironRod = new Item();
-        ironRod.setDescription("Rod of Iron");
+        ironRod.setDescription("Rod of Iron           ");
         ironRod.setQuantityInStock(0);
         ironRod.setRequiredAmount(0);
         inventory[inventoryItem.ironRod.ordinal()] = ironRod;
@@ -69,7 +72,7 @@ public class GameControl
         inventory[inventoryItem.path.ordinal()] = path;
         
         Item man = new Item();
-        man.setDescription("Man in White Robe");
+        man.setDescription("Man in White Robe     ");
         man.setQuantityInStock(0);
         man.setRequiredAmount(0);
         inventory[inventoryItem.man.ordinal()] = man;
@@ -140,6 +143,8 @@ public class GameControl
         */
         return inventoryList;
     }
+    
+    
 
     public enum inventoryItem
     {
@@ -150,4 +155,19 @@ public class GameControl
         path,
         man
     }
+    
+    /*public int calculateAverageHealth() {
+        
+        requiredAmount[] items = requiredAmount.values();
+        
+        int total = 0.0;
+        for (requiredAmount item : items) {
+            total = total + items.getRequiredAmount();
+            //System.out.println( items[item].name());
+        }
+        //double average = total / items.length;
+        //System.out.println("\n Average health is: " + average); 
+        return 0.0;
+       
+    }*/
 }

@@ -74,6 +74,15 @@ public class Item implements Serializable {
         this.requiredAmount = requiredAmount;
     }
 
+    public int getQuantityInStock() {
+        return quantityInStock;
+    }
+
+    public int getRequiredAmount() {
+        return requiredAmount;
+    }
+    
+
     @Override
     public String toString() {
         return "Item{" + "itemID=" + itemID + ", name=" + name + ", description=" + description + ", value=" + value + ", itemCount=" + itemCount + '}';

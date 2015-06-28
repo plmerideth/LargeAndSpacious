@@ -82,10 +82,7 @@ public class Scene
         this.blocked = blocked;
     }
 
-    //public void setSceneType(int sceneType) {
-      //  this.sceneType = sceneType;
-    //}
-    
+       
     public enum SceneType {
         start,
         building,

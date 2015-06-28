@@ -112,7 +112,7 @@ public class GameMenuView extends View {
         
         Item[] inventory = GameControl.getSortedInventoryList();
         System.out.println("\nList of Inventory Items");
-        System.out.println("DESCRIPTION" + "\t\t\t" +
+        System.out.println("DESCRIPTION             " + "\t\t\t" +
                            "VALUE" + "\t\t" +
                            "ITEM COUNT");
                 
@@ -122,6 +122,8 @@ public class GameMenuView extends View {
                                inventoryItem.getValue() + "\t\t" +
                                inventoryItem.getItemCount());
         }
+        
+        
     }
 
     private void listChallenges() {
