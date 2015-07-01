@@ -44,18 +44,21 @@ public class GameControl
         Item fruit = new Item();
         fruit.setDescription("fruit                 ");
         fruit.setQuantityInStock(5);
+        fruit.setValue(2);
         fruit.setRequiredAmount(0);
         inventory[inventoryItem.fruit.ordinal()] = fruit;
         
         Item obedience = new Item();
         obedience.setDescription("obedience             ");
         obedience.setQuantityInStock(5);
+        obedience.setValue(3);
         obedience.setRequiredAmount(0);
         inventory[inventoryItem.obedience.ordinal()] = obedience;
         
         Item testimony = new Item();
         testimony.setDescription("testimony             ");
         testimony.setQuantityInStock(5);
+        testimony.setValue(4);
         testimony.setRequiredAmount(0);
         inventory[inventoryItem.testimony.ordinal()] = testimony;
         

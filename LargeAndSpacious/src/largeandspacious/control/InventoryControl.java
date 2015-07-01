@@ -29,4 +29,64 @@ public class InventoryControl
         avgHealth = "\n Your average health is " + average;
         return avgHealth; 
     }
+    
+    public static String showItemLevels()
+    {
+        String itemLevels = "\nRESOURCE LEVELS";
+        double value;
+        
+        //get the items in the inventory
+        Item[] items = LargeAndSpacious.getCurrentGame().getInventory();
+        Item[] inventoryList = items.clone();      
+        Item temp;
+        
+        /* Use insertion sort to list in order */
+        for (int i=1; i<inventoryList.length; i++) {
+            for(int j=i ; j>0 ; j--){
+                if(inventoryList[j].getDescription().compareToIgnoreCase(inventoryList[j-1].getDescription()) < 0)
+                {
+                    temp = inventoryList[j];
+                    inventoryList[j] = inventoryList[j-1];
+                    inventoryList[j-1] = temp;
+                }
+            }
+        }
+                
+        for (Item item: inventoryList)
+        {
+            switch(item.getDescription())
+            {
+                case "fruit                 ":
+                    value = item.getQuantityInStock();
+                    itemLevels += "\nYour Fruit level is " + value;
+                break;
+                case "testimony             ":
+                    value = item.getQuantityInStock();
+                    itemLevels += "\nYour Testimony level is " + value;
+                break;
+                case "obedience             ":
+                    value = item.getQuantityInStock();
+                    itemLevels += "\nYour Obedience level is " + value;
+                break;
+                case "Rod of Iron           ":
+                    value = item.getQuantityInStock();
+                    itemLevels += "\nYour Rod of Iron level is " + value;
+                break;
+                case "Straight & Narrow Path":
+                    value = item.getQuantityInStock();
+                    itemLevels += "\nYour Straight & Narrow Path level is " + value;
+                break;
+                case "Man in White Robe     ":
+                    value = item.getQuantityInStock();
+                    itemLevels += "\nYour Your Man in White Robe leve is " + value;
+                break;                
+                /*  Printout for debug purposes
+                default:
+                    System.out.println("\nDesc = " + item.getDescription());
+                break;
+                */
+            }
+        }
+        return itemLevels;
+    }
 }

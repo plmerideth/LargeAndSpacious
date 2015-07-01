@@ -135,6 +135,9 @@ public class GameMenuView extends View {
     private void selectResource() {
         //show the average health of the player
         System.out.println(InventoryControl.calculateAverageHealth());
+        //Show the Obedience, Testimony, and Fruit Levels
+        System.out.println(InventoryControl.showItemLevels());
+        
         //Create SelectResourceView object
         SelectResourceView selectResource = new SelectResourceView();
         selectResource.display();
