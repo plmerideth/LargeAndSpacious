@@ -78,7 +78,7 @@ public class InventoryControl
                 break;
                 case "Man in White Robe     ":
                     value = item.getQuantityInStock();
-                    itemLevels += "\nYour Your Man in White Robe leve is " + value;
+                    itemLevels += "\nYour Your Man in White Robe level is " + value;
                 break;                
                 /*  Printout for debug purposes
                 default:

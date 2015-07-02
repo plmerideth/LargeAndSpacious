@@ -11,7 +11,6 @@ import largeandspacious.LargeAndSpacious;
 import largeandspacious.control.Scene.SceneType;
 import largeandspacious.model.Actor;
 import largeandspacious.model.Game;
-import largeandspacious.model.Location;
 import largeandspacious.model.Map;
 
 /**
@@ -21,23 +20,30 @@ import largeandspacious.model.Map;
 public class MapControl {
 
    
-    static void moveActorsToStartingLocation(Map map) {
+    static void moveActorsToStartingLocation(Map map) 
+            throws MapControlException {
         // for every actor
         Actor[] actors = Actor.values();
         
         for (Actor actor : actors) {
             Point coordinates = actor.getCoordinates();
-            
+            MapControl.moveActorToLocation(actor, coordinates);
         }
     }
     
-    public static int moveActorToLocation(Actor actor, Point cooridinates) 
+    public static void moveActorToLocation(Actor actor, Point coordinates) 
             throws MapControlException {
         Map map = LargeAndSpacious.getCurrentGame().getMap();
-        //int newRow = Location.x-1;
-        //int newColumn = Location.y-1;
-        return 1;
+        int newRow = coordinates.x-1;
+        int newColumn = coordinates.y-1;
         
+        if (newRow < 0 || newRow >= map.getRow() || 
+            newColumn < 0 || newColumn >= map.getColumn()) {
+            throw new MapControlException("Can not move actor to location "
+                + coordinates.x + ", " + coordinates.y
+                + " because that location is outside "
+                + "the bounds of the map.");
+        }
     }
 
     public static Map createMap() {
@@ -69,9 +75,6 @@ public class MapControl {
                 + "seen a vision.");
         //startingScene.setMapSymbol(" ST ");
         startingScene.setBlocked(false);
-        //startingScene.setTravelTime(240);
-        //ImageIcon startingSceneImage = MapControl.getImage(startingScene,"")
-        //startingScene.setIcon(startingSceneImage);
         scenes[SceneType.start.ordinal()] = startingScene;
         
         Scene buildingScene = new Scene();
@@ -81,9 +84,6 @@ public class MapControl {
                 + "seen a vision.");
         //startingScene.setMapSymbol(" ST ");
         buildingScene.setBlocked(false);
-        //startingScene.setTravelTime(240);
-        //ImageIcon startingSceneImage = MapControl.getImage(startingScene,"")
-        //startingScene.setIcon(startingSceneImage);
         scenes[SceneType.building.ordinal()] = buildingScene;
         
         Scene mistsScene = new Scene();
@@ -93,9 +93,6 @@ public class MapControl {
                 + "seen a vision.");
         //startingScene.setMapSymbol(" ST ");
         mistsScene.setBlocked(false);
-        //startingScene.setTravelTime(240);
-        //ImageIcon startingSceneImage = MapControl.getImage(startingScene,"")
-        //startingScene.setIcon(startingSceneImage);
         scenes[SceneType.mists.ordinal()] = mistsScene;
 
         Scene fingerScene = new Scene();
@@ -105,9 +102,6 @@ public class MapControl {
                 + "seen a vision.");
         //startingScene.setMapSymbol(" ST ");
         fingerScene.setBlocked(false);
-        //startingScene.setTravelTime(240);
-        //ImageIcon startingSceneImage = MapControl.getImage(startingScene,"")
-        //startingScene.setIcon(startingSceneImage);
         scenes[SceneType.finger.ordinal()] = fingerScene;
         
         Scene pathScene = new Scene();
@@ -117,9 +111,6 @@ public class MapControl {
                 + "seen a vision.");
         //startingScene.setMapSymbol(" ST ");
         pathScene.setBlocked(false);
-        //startingScene.setTravelTime(240);
-        //ImageIcon startingSceneImage = MapControl.getImage(startingScene,"")
-        //startingScene.setIcon(startingSceneImage);
         scenes[SceneType.path.ordinal()] = pathScene;        
         
         Scene treeScene = new Scene();
@@ -129,9 +120,6 @@ public class MapControl {
                 + "seen a vision.");
         //startingScene.setMapSymbol(" ST ");
         treeScene.setBlocked(false);
-        //startingScene.setTravelTime(240);
-        //ImageIcon startingSceneImage = MapControl.getImage(startingScene,"")
-        //startingScene.setIcon(startingSceneImage);
         scenes[SceneType.tree.ordinal()] = treeScene;        
         
         Scene riverScene = new Scene();
@@ -141,9 +129,6 @@ public class MapControl {
                 + "seen a vision.");
         //startingScene.setMapSymbol(" ST ");
         riverScene.setBlocked(false);
-        //startingScene.setTravelTime(240);
-        //ImageIcon startingSceneImage = MapControl.getImage(startingScene,"")
-        //startingScene.setIcon(startingSceneImage);
         scenes[SceneType.river.ordinal()] = riverScene;        
         
         Scene finishScene = new Scene();
@@ -153,9 +138,6 @@ public class MapControl {
                 + "came forth and fell down and partook of the fruit of the tree.");
         //finishScene.setMapSymbol(" FN ");
         finishScene.setBlocked(false);
-        //finishScene.setTravelTime(Double.POSITIVE_INFINITY);
-        //ImageIcon finishSceneImage = MapControl.getImage(finishScene, "");
-        //finishScene.setIcon(finishSceneImage);
         scenes[SceneType.finish.ordinal()] = finishScene;
         return scenes;
     }
@@ -163,6 +145,11 @@ public class MapControl {
     private static class MapControlException extends Exception {
 
         public MapControlException() {
+        }
+
+        private MapControlException(String string) {
+            throw new UnsupportedOperationException("Not supported yet."); 
+            //To change body of generated methods, choose Tools | Templates.
         }
     }
     
