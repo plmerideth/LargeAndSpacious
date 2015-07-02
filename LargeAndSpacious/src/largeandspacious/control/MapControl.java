@@ -5,10 +5,13 @@
  */
 package largeandspacious.control;
 
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import largeandspacious.LargeAndSpacious;
 import largeandspacious.control.Scene.SceneType;
+import largeandspacious.model.Actor;
 import largeandspacious.model.Game;
+import largeandspacious.model.Location;
 import largeandspacious.model.Map;
 
 /**
@@ -19,7 +22,22 @@ public class MapControl {
 
    
     static void moveActorsToStartingLocation(Map map) {
-        System.out.println("\n*** moveActorsToStartingLocation stub function called ***");
+        // for every actor
+        Actor[] actors = Actor.values();
+        
+        for (Actor actor : actors) {
+            Point coordinates = actor.getCoordinates();
+            
+        }
+    }
+    
+    public static int moveActorToLocation(Actor actor, Point cooridinates) 
+            throws MapControlException {
+        Map map = LargeAndSpacious.getCurrentGame().getMap();
+        //int newRow = Location.x-1;
+        //int newColumn = Location.y-1;
+        return 1;
+        
     }
 
     public static Map createMap() {
