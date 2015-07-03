@@ -33,8 +33,13 @@ public class GameControl
         Map map = MapControl.createMap();
         game.setMap(map);
         
-        //move actors to starting position on the map
-        MapControl.moveActorsToStartingLocation(map);    
+        //try {
+            //move actors to starting position on the map
+            //MapControl.moveActorsToStartingLocation(map);   
+        //}
+        //catch (MapControlException mce) {
+            //throw new MapControlException("Invalid location on map.");
+        //}
     }
     
     public static Item[] createInventoryList()
