@@ -54,7 +54,7 @@ public class Map implements Serializable {
         return locations;
     }
     
-    public int getRow() {
+    public int getNoOfRows() {
         return noOfRows;
     }
 
@@ -62,7 +62,7 @@ public class Map implements Serializable {
         this.noOfRows = noOfRows;
     }
 
-    public int getColumn() {
+    public int getNoOfColumns() {
         return noOfColumns;
     }
 

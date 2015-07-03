@@ -7,11 +7,13 @@ package largeandspacious.control;
 
 import java.awt.Point;
 import java.awt.image.BufferedImage;
+import static java.lang.Math.abs;
 import largeandspacious.LargeAndSpacious;
 import largeandspacious.control.Scene.SceneType;
 import largeandspacious.model.Actor;
 import largeandspacious.model.Game;
 import largeandspacious.model.Map;
+import largeandspacious.model.Player;
 
 /**
  *
@@ -20,30 +22,49 @@ import largeandspacious.model.Map;
 public class MapControl {
 
    
-    static void moveActorsToStartingLocation(Map map) 
+    public static void moveActorsToStartingLocation(Map map) 
             throws MapControlException {
         // for every actor
         Actor[] actors = Actor.values();
         
         for (Actor actor : actors) {
             Point coordinates = actor.getCoordinates();
-            MapControl.moveActorToLocation(actor, coordinates);
+            System.out.println("Actor = " + actor);
+            MapControl.moveActorToLocation(actor, coordinates, 0);
         }
     }
     
-    public static void moveActorToLocation(Actor actor, Point coordinates) 
+    public static void moveActorToLocation(Actor actor, Point coordinates, int diceRoll) 
             throws MapControlException {
         Map map = LargeAndSpacious.getCurrentGame().getMap();
+        Player player = LargeAndSpacious.getCurrentGame().getPlayer();
+        
         int newRow = coordinates.x-1;
         int newColumn = coordinates.y-1;
+        Point currentCoordinates = player.getCurrentLocation();
         
-        if (newRow < 0 || newRow >= map.getRow() || 
-            newColumn < 0 || newColumn >= map.getColumn()) {
+        System.out.println("Current Location: " + currentCoordinates);
+        
+        if (newRow < 0 || newRow >= map.getNoOfRows() || 
+            newColumn < 0 || newColumn >= map.getNoOfColumns()){
             throw new MapControlException("Can not move actor to location "
                 + coordinates.x + ", " + coordinates.y
                 + " because that location is outside "
                 + "the bounds of the map.");
         }
+        
+        double moveCount = abs(currentCoordinates.getX()-coordinates.getX())+(abs(currentCoordinates.getY()-coordinates.getY()));
+        
+        if( diceRoll!=0 && moveCount > diceRoll)
+        {
+            throw new MapControlException("\nCan not move actor to location ("
+                + coordinates.x + ", " + coordinates.y
+                + ") because that location requires " + moveCount + " moves, which exceeds your roll of " + diceRoll + " !");
+                
+        }
+ 
+        player.setCurentLocation(coordinates);
+        System.out.println("New Location: " + coordinates);        
     }
 
     public static Map createMap() {
@@ -142,14 +163,25 @@ public class MapControl {
         return scenes;
     }
 
-    private static class MapControlException extends Exception {
+    public static class MapControlException extends Exception {
 
         public MapControlException() {
         }
 
-        private MapControlException(String string) {
-            throw new UnsupportedOperationException("Not supported yet."); 
-            //To change body of generated methods, choose Tools | Templates.
+        public MapControlException(String string) {
+            super(string);
+        }
+
+        public MapControlException(String string, Throwable thrwbl) {
+            super(string, thrwbl);
+        }
+
+        public MapControlException(Throwable thrwbl) {
+            super(thrwbl);
+        }
+
+        public MapControlException(String string, Throwable thrwbl, boolean bln, boolean bln1) {
+            super(string, thrwbl, bln, bln1);
         }
     }
     

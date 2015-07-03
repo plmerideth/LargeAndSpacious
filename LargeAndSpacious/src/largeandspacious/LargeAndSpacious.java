@@ -37,7 +37,15 @@ public class LargeAndSpacious
     {
         //Create StartProgramView and start the program
         StartProgramView startProgramView = new StartProgramView();
-        startProgramView.startProgram();
+        
+        try{
+            startProgramView.startProgram();
+        }
+        catch (Throwable te) {
+            System.out.println(te.getMessage());
+            te.printStackTrace();
+            startProgramView.startProgram();
+        }
         
     }
    

@@ -5,9 +5,11 @@
  */
 package largeandspacious.view;
 
-import java.util.Scanner;
+import largeandspacious.LargeAndSpacious;
 import static largeandspacious.LargeAndSpacious.getPlayer;
 import largeandspacious.control.GameControl;
+import largeandspacious.control.MapControl;
+import largeandspacious.control.MapControl.MapControlException;
 //import largeandspacious.control.ProgramControl;
 
 /**
@@ -42,7 +44,14 @@ public class MainMenuView extends View
         switch (choice) {
             case 'G': 
                 //Start a new game
-                this.startNewGame();                
+                try
+                {
+                    this.startNewGame();                
+                } catch( MapControlException me)
+                {
+                    System.out.println(me.getMessage());
+                }
+                
                 break;
             case 'H': 
                 //Display the help menu
@@ -71,10 +80,10 @@ public class MainMenuView extends View
         return done;
     }
     
-    private void startNewGame()
+    private void startNewGame() throws MapControl.MapControlException
     {   
         //Create a new Game
-        GameControl.createNewGame(getPlayer());
+        GameControl.createNewGame(LargeAndSpacious.getPlayer());
         //Create a new Game Menu View
         
         GameMenuView gameMenu = new GameMenuView();

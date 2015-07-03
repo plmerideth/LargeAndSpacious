@@ -7,6 +7,7 @@ package largeandspacious.control;
 
 import largeandspacious.LargeAndSpacious;
 import largeandspacious.control.Scene.SceneType;
+import largeandspacious.model.Actor;
 import largeandspacious.model.Game;
 import largeandspacious.model.Item;
 import largeandspacious.model.Location;
@@ -19,8 +20,8 @@ import largeandspacious.model.Player;
  */
 public class GameControl
 {
-    public static void createNewGame(Player player)
-    {
+    public static void createNewGame(Player player) throws MapControl.MapControlException
+    {      
         Game game = new Game();
         
         LargeAndSpacious.setCurrentGame(game);
@@ -83,7 +84,7 @@ public class GameControl
         return inventory;
     } 
 
-    static void assignScenesToLocations(Map map, Scene[] scenes)
+    public static void assignScenesToLocations(Map map, Scene[] scenes)
     {
         Location[][] locations = map.getLocations();
         

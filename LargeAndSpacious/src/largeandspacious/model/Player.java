@@ -5,6 +5,7 @@
  */
 package largeandspacious.model;
 
+import java.awt.Point;
 import java.io.Serializable;
 
 /**
@@ -15,6 +16,8 @@ public class Player implements Serializable
 {
     private String name;
     private double bestScore;
+    private Actor actor;
+    private Point currentLocation = new Point();
 
     public Player() {
     }  
@@ -35,6 +38,16 @@ public class Player implements Serializable
         this.bestScore = bestScore;
     }
 
+    public void setCurentLocation(Point newLocation)
+    {
+        currentLocation = newLocation;
+    }
+    
+    public Point getCurrentLocation()
+    {
+        return currentLocation;
+    }
+    
     @Override
     public String toString() {
         return "Player{" + "name=" + name + ", bestScore=" + bestScore + '}';

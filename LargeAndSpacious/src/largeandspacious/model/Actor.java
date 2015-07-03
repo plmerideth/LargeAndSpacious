@@ -42,5 +42,4 @@ public enum Actor implements Serializable {
     public Point getCoordinates() {
         return coordinates;
     }
-       
 }

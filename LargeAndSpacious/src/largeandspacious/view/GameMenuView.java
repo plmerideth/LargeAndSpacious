@@ -6,8 +6,11 @@
 package largeandspacious.view;
 
 // import java.util.Scanner;
+import java.awt.Point;
 import largeandspacious.control.GameControl;
 import largeandspacious.control.InventoryControl;
+import largeandspacious.control.MapControl;
+import largeandspacious.model.Actor;
 import largeandspacious.model.Item;
 import largeandspacious.model.Location;
 
@@ -90,12 +93,25 @@ public class GameMenuView extends View {
 
     private void displayMoveMenu()
     {
+        Point coordinates = new Point();
+        int diceRoll;
+        Actor actor = Actor.Lehi;
+        
         Location newLocation = new Location();
         
         MoveMenuView moveMenu = new MoveMenuView();
-        moveMenu.rollDice();
+        diceRoll = moveMenu.rollDice();
         newLocation = moveMenu.selectLocation();
         
+        coordinates.x = newLocation.getRow();
+        coordinates.y = newLocation.getCol();
+        
+        try{
+            MapControl.moveActorToLocation(actor, coordinates, diceRoll);
+        }catch ( MapControl.MapControlException me)
+        {
+            System.out.println(me.getMessage());
+        }
         //Add code to process move
     }
 

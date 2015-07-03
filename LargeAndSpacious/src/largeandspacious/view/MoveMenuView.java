@@ -1,6 +1,7 @@
 
 package largeandspacious.view;
 
+import static java.lang.Integer.parseInt;
 import java.util.Scanner;
 import largeandspacious.model.Location;
 import largeandspacious.model.Player;
@@ -35,38 +36,67 @@ public class MoveMenuView
     {
         Location newLocation = new Location();
         //Get X coordinate
-        char selection = ' ';
-        do
+        //char selection = ' ';
+        int number = -1;
+        String input = "";
+        
+        while(number < 0)
         {
-            System.out.println(XMENU); // display the SelectResource menu
+            System.out.println(XMENU); // display the SelectResource menu            
             
-            String input = this.getInput('X');  // get the user's selection
-            selection = input.charAt(0);  // get first character of string
-        }while (!this.validateX(selection)); // Continue until a valid x coordinate
-        if(selection != 'X')
+            input = this.getInput('X');  // get the user's selection
+            
+            if(input.equals("X"))
+                break;      
+           
+            try{
+                number = parseInt(input);
+            } catch( NumberFormatException nf){
+                System.out.println("\nYou must enter a valid number." +
+                        "Try again or enter X to exit");
+            }
+                
+            if(!validateX(number))
+                number = -1;            
+        }
+
+        if( !input.equals("X"))
         {
-            System.out.println("Player entered " + selection + " for X coordinate");
-            newLocation.setRow(Character.getNumericValue(selection));
+            System.out.println("Player entered " + number + " for X coordinate");
+            newLocation.setRow(number);
         
             //Get Y coordinate
-            selection = ' ';
-            do
+            number = -1;
+            while(number < 0)
             {
-                System.out.println(YMENU); // display the SelectResource menu
+                System.out.println(YMENU); // display the SelectResource menu            
 
-                String input = this.getInput('Y');  // get the user's selection
-                selection = input.charAt(0);  // get first character of string
-            }while (!this.validateY(selection)); // Continue until a valid x coordinate
-            if(selection != 'X')
-            {
-                System.out.println("Player entered " + selection + " for Y coordinate");
-                System.out.println("Valid location coordinates entered");
-                newLocation.setCol(Character.getNumericValue(selection));
+                input = this.getInput('Y');  // get the user's selection
+
+                if(input.equals("X"))
+                    break;      
+
+                try{
+                    number = parseInt(input);
+                }catch( NumberFormatException nf)
+                {
+                    System.out.println("\nYou must enter a valid number." +
+                        "Try again or enter X to exit");                
+                }
+                if(!validateY(number))
+                    number = -1;            
             }
+            
+            if(!input.equals("X"))
+            {
+                System.out.println("Player entered " + number + " for Y coordinate");
+                System.out.println("Valid map coordinates entered");
+                newLocation.setCol(number);                
+            }            
         }
         return newLocation;
     }
-    
+        
     private String getInput(char coord)
     {
         boolean valid = false;
@@ -98,35 +128,29 @@ public class MoveMenuView
         return playersInput;
     }
     
-    private boolean validateX(char selection)
+    private boolean validateX(int number)
     {
-        if (selection>='1' && selection<='7') {
-            xCoord = Character.getNumericValue(selection);
-            return true;
-        }
-        else if (selection == 'X') {
+        if (number>=1 && number<=10) {
+            xCoord = number;
             return true;
         }
         else
         {
-            System.out.println(selection + " is an invalid X coordinate\nPlease enter a valid coordinate");
+            System.out.println("Invalid X coordinate\nPlease enter a valid coordinate");
             return false;
         }
     }
     
-    private boolean validateY(char selection)
+    private boolean validateY(int number)
     {
-        if (selection>='1' && selection<='5') {
-            yCoord = Character.getNumericValue(selection);
+        if (number>=1 && number<=10) {
+            yCoord = number;
             System.out.println(Location(xCoord,yCoord));
-            return true;
-        }
-        else if (selection=='X') {
             return true;
         }
         else
         {
-            System.out.println(selection + " is an invalid Y coordinate\nPlease enter a valid coordinate");
+            System.out.println("Invalid Y coordinate\nPlease enter a valid coordinate");
             return false;
         }
     }    
@@ -182,10 +206,12 @@ public class MoveMenuView
             + "\n   | 1 | 2 | 3 | 4 | 5 | 6 | 7 |"
             + "\n---|---------------------------|";
             // if we don't have valid coordinates, return the invalid coordinates string.
+            /*
             if (x > 5 || y > 7) {
                 return "Invalid x and y coordinates";
             }     
             else {
+            */       
                 // Get x coordinate
                 for (int j = 1; j <6; j++) {
                     if (x == j) {
@@ -207,10 +233,7 @@ public class MoveMenuView
                     else {
                         temp = temp + "\n " + j + " |   |   |   |   |   |   |   |";
                         temp = temp + "\n---|---------------------------|";
-                    }
-
-            }
-                            
+                    }                            
         }
             return temp;
         }

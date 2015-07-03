@@ -46,6 +46,7 @@ public abstract class View implements ViewInterface {
             
             //Get the name from the keyboard and trim off spaces
             playersInput = keyboard.nextLine();
+
             playersInput = playersInput.trim();
             playersInput = playersInput.toUpperCase();
             
