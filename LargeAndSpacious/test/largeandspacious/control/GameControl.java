@@ -30,7 +30,7 @@ public class GameControl implements Serializable {
         Map map = MapControl.createMap();
         game.setMap(map);
         
-        MapControl.moveActorsToStartingLocation(map);
+        //MapControl.moveActorsToStartingLocation(map);
         
         
     }
