@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package largeandspacious.control;
-import largeandspacious.exceptions.MapControlException;
+import largeandspacious.exceptions.ChallengeControlException;
 
 /**
  *
@@ -13,17 +13,25 @@ import largeandspacious.exceptions.MapControlException;
 public class ChallengeControl {
     public double getChallengeResult(double playerObedience, double rollOne, 
             double challengeObedience, double rollTwo, double inventory) 
-            throws MapControlException {
+            throws ChallengeControlException {
         double result;
-        if ((playerObedience > inventory) || (challengeObedience < 0)) {
+        if (playerObedience > inventory) {
+                throw new ChallengeControlException("You have "
+                + inventory + " points. You have asked to use  "
+                + playerObedience + " points, which exceeds your inventory level.");
+        }
+        
+        if (challengeObedience < 0) {
             /* the player has assigned more inventory than they have
             or the challenge obedience points are less than zero*/
-                return -9999;
+                throw new ChallengeControlException("The challenge "
+                + "obedience points are less than zero, which is not allowed.");
             }
 	if ((rollOne > 5) || (rollOne < 0) || (rollTwo > 5) || (rollTwo < 0)) {
             /* the first roll should not be greater than 5 or less than 0
             or the 2nd roll should be greater than 5 or less than 0*/
-		return -9999;
+		throw new ChallengeControlException("The roll of the dice "
+                + "should not be greater than 5 or less than 0.");
         }
         result = ((playerObedience * rollOne) - challengeObedience); 
         result = result - ((challengeObedience * rollTwo) - playerObedience);
