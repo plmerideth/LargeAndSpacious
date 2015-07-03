@@ -22,6 +22,8 @@ public class GameControl
 {
     public static void createNewGame(Player player) throws MapControl.MapControlException
     {      
+        Actor actor = Actor.Lehi;
+        
         Game game = new Game();
         
         LargeAndSpacious.setCurrentGame(game);
@@ -33,13 +35,8 @@ public class GameControl
         Map map = MapControl.createMap();
         game.setMap(map);
         
-        //try {
-            //move actors to starting position on the map
-            //MapControl.moveActorsToStartingLocation(map);   
-        //}
-        //catch (MapControlException mce) {
-            //throw new MapControlException("Invalid location on map.");
-        //}
+        MapControl.moveActorsToStartingLocation(map);
+        
     }
     
     public static Item[] createInventoryList()
