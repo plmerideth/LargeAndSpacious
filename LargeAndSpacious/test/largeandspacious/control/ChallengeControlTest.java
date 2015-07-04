@@ -21,7 +21,7 @@ public class ChallengeControlTest {
      * Test of getChallengeResult method, of class ChallengeControl.
      */
     @Test
-    public void testGetChallengeResult() {
+    public void testGetChallengeResult() throws MapControl.MapControlException {
         System.out.println("getChallengeResult");
         /* Test Case #1 */
         System.out.println("\tTest case #1");
