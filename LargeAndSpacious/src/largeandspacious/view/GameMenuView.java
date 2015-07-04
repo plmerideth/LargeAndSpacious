@@ -7,6 +7,9 @@ package largeandspacious.view;
 
 // import java.util.Scanner;
 import java.awt.Point;
+import static java.lang.Double.parseDouble;
+import java.util.Scanner;
+import largeandspacious.control.ChallengeControl;
 import largeandspacious.control.GameControl;
 import largeandspacious.control.InventoryControl;
 import largeandspacious.control.MapControl;
@@ -96,6 +99,8 @@ public class GameMenuView extends View {
         Point coordinates = new Point();
         int diceRoll;
         Actor actor = Actor.Lehi;
+        double challengeResult = 0;
+        String returnValue;
         
         Location newLocation = new Location();
         
@@ -113,6 +118,41 @@ public class GameMenuView extends View {
             System.out.println(me.getMessage());
         }
         //Add code to process move
+        try {
+            challengeResult = ChallengeControl.getChallengeResult(getObediencePlayed(),moveMenu.rollDice(),
+                    4,0, 5);
+        } catch ( MapControl.MapControlException me)
+        {
+                System.out.println(me.getMessage());
+        }
+        returnValue = "You have gained " + challengeResult + " obedience points!";
+        System.out.println(returnValue);
+        
+    }
+    private double getObediencePlayed()
+    {
+        boolean valid = false;
+        double playersObedience = 0;
+        Scanner keyboard = new Scanner(System.in);
+        
+        while( !valid )
+        {
+            //Prompt for the player's name
+            System.out.println("You have landed on a challenge! Your challenge "
+        + "is the mists of darkness. You cannot see where you are going. "
+        + "Enter the number of obedience points you wish to use below:");
+            
+            //Get the points from the keyboard 
+            playersObedience = parseDouble(keyboard.nextLine());
+            
+            if( playersObedience == 0 )
+            {
+                System.out.println("Invalid - obedience points must be greater than 0.");
+                continue;
+            }
+            break;
+        }
+        return playersObedience;
     }
 
     public void displayMap() {
@@ -164,4 +204,5 @@ public class GameMenuView extends View {
         AttributeView attributes = new AttributeView();
         attributes.display();
     }
+    
 }
