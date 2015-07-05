@@ -142,8 +142,14 @@ public class GameMenuView extends View {
         + "is the mists of darkness. You cannot see where you are going. "
         + "Enter the number of obedience points you wish to use below:");
             
-            //Get the points from the keyboard 
-            playersObedience = parseDouble(keyboard.nextLine());
+            try{
+                //Get the points from the keyboard 
+                playersObedience = parseDouble(keyboard.nextLine());
+            } catch( NumberFormatException nf){
+                System.out.println("\nYou must enter a valid number." +
+                        "Try again or enter X to exit");
+            }
+            
             
             if( playersObedience == 0 )
             {
