@@ -138,15 +138,15 @@ public class GameMenuView extends View {
         while( !valid )
         {
             //Prompt for the player's name
-            System.out.println("You have landed on a challenge! Your challenge "
-        + "is the mists of darkness. You cannot see where you are going. "
-        + "Enter the number of obedience points you wish to use below:");
+            System.out.println("\n You have landed on a challenge! Your challenge "
+        + "\n is the mists of darkness. You cannot see where you are going. "
+        + "\n Enter the number of obedience points you wish to use below:");
             
             try{
                 //Get the points from the keyboard 
                 playersObedience = parseDouble(keyboard.nextLine());
             } catch( NumberFormatException nf){
-                System.out.println("\nYou must enter a valid number." +
+                System.out.println("\n You must enter a valid number." +
                         "Try again or enter X to exit");
             }
             
