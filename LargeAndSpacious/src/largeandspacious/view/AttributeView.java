@@ -48,7 +48,7 @@ public boolean doAction(Object obj) {
                 done = true;
                 break;
             default:
-                System.out.println("Invalid selection");
+                this.console.println("Invalid selection");
                 break;       
         }
         return done;

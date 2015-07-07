@@ -60,7 +60,7 @@ public class SelectResourceView extends View
                 done = true;
                 break;
             default: 
-                System.out.println("Invalid selection");
+                this.console.println("Invalid selection");
                 break;
         }
         return done;
@@ -68,26 +68,26 @@ public class SelectResourceView extends View
 
     private void selectObedience()
     {
-        System.out.println("*** selectObedience function called ***");        
+        this.console.println("*** selectObedience function called ***");        
     }
 
     private void selectTestimony()
     {
-        System.out.println("*** selectTestimony function called ***");                
+        this.console.println("*** selectTestimony function called ***");                
     }
 
     private void useRodOfIron()
     {
-        System.out.println("*** useRodOfIron function called ***");                        
+        this.console.println("*** useRodOfIron function called ***");                        
     }
 
     private void useStraightAndNarrow()
     {
-        System.out.println("*** useStraightAndNarrow function called ***");                
+        this.console.println("*** useStraightAndNarrow function called ***");                
     }
 
     private void useManInWhiteRobe()
     {
-        System.out.println("*** useManInWhiteRobe function called ***");                        
+        this.console.println("*** useManInWhiteRobe function called ***");                        
     }
 }

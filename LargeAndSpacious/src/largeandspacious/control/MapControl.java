@@ -7,6 +7,7 @@ package largeandspacious.control;
 
 import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.io.PrintWriter;
 import static java.lang.Math.abs;
 import largeandspacious.LargeAndSpacious;
 import largeandspacious.control.Scene.SceneType;
@@ -20,7 +21,7 @@ import largeandspacious.model.Player;
  * @author julzlee
  */
 public class MapControl {
-
+    protected final PrintWriter console = LargeAndSpacious.getOutFile();
    
     public static void moveActorsToStartingLocation(Map map) 
             throws MapControlException {

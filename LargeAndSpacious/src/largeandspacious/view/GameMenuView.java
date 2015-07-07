@@ -81,7 +81,7 @@ public class GameMenuView extends View {
                 this.displayHelpMenu();
                 break;
             default: 
-                System.out.println("Invalid selection");                
+                this.console.println("Invalid selection");                
                 break;
         }
         return done;
@@ -91,7 +91,7 @@ public class GameMenuView extends View {
         //Create a new help Menu View
         HelpMenuView helpMenu = new HelpMenuView();
         helpMenu.display();
-        System.out.println("*** displayHelpMenu function called ***");
+        this.console.println("*** displayHelpMenu function called ***");
     }
 
     private void displayMoveMenu()
@@ -115,7 +115,7 @@ public class GameMenuView extends View {
             MapControl.moveActorToLocation(actor, coordinates, diceRoll);
         }catch ( MapControl.MapControlException me)
         {
-            System.out.println(me.getMessage());
+            ErrorView.display(this.getClass().getName(), me.getMessage());
         }
         //Add code to process move
         try {
@@ -123,37 +123,41 @@ public class GameMenuView extends View {
                     4,0, 5);
         } catch ( MapControl.MapControlException me)
         {
-                System.out.println(me.getMessage());
+                ErrorView.display(this.getClass().getName(), me.getMessage());
         }
         returnValue = "You have gained " + challengeResult + " obedience points!";
-        System.out.println(returnValue);
+        this.console.println(returnValue);
         
     }
     private double getObediencePlayed()
     {
         boolean valid = false;
         double playersObedience = 0;
-        Scanner keyboard = new Scanner(System.in);
         
         while( !valid )
         {
             //Prompt for the player's name
-            System.out.println("\n You have landed on a challenge! Your challenge "
+            this.console.println("\n You have landed on a challenge! Your challenge "
         + "\n is the mists of darkness. You cannot see where you are going. "
         + "\n Enter the number of obedience points you wish to use below:");
             
-            try{
+            try
+            {
                 //Get the points from the keyboard 
-                playersObedience = parseDouble(keyboard.nextLine());
+                playersObedience = parseDouble(this.keyboard.readLine());
             } catch( NumberFormatException nf){
-                System.out.println("\n You must enter a valid number." +
+                ErrorView.display(this.getClass().getName(), "\n Hey Dude! You must enter a valid number." +
                         "Try again or enter X to exit");
+            }
+            catch(Exception e)
+            {
+                ErrorView.display(this.getClass().getName(), "Error reading input: " + e.getMessage());
             }
             
             
             if( playersObedience == 0 )
             {
-                System.out.println("Invalid - obedience points must be greater than 0.");
+                this.console.println("Invalid - obedience points must be greater than 0.");
                 continue;
             }
             break;
@@ -166,7 +170,7 @@ public class GameMenuView extends View {
         
         MapMenuView mapMenu = new MapMenuView();
         mapMenu.display();
-        System.out.println("*** displayPlayerItems function called ***");
+        this.console.println("*** displayPlayerItems function called ***");
     }
 
     private void displayPlayerItems()
@@ -174,14 +178,14 @@ public class GameMenuView extends View {
         String Desc;
         
         Item[] inventory = GameControl.getSortedInventoryList();
-        System.out.println("\nList of Inventory Items");
-        System.out.println("DESCRIPTION             " + "\t\t\t" +
+        this.console.println("\nList of Inventory Items");
+        this.console.println("DESCRIPTION             " + "\t\t\t" +
                            "VALUE" + "\t\t" +
                            "ITEM COUNT");
                 
         for(Item inventoryItem : inventory)
         {            
-            System.out.println(inventoryItem.getDescription() + "\t\t\t\t" + 
+            this.console.println(inventoryItem.getDescription() + "\t\t\t\t" + 
                                inventoryItem.getValue() + "\t\t" +
                                inventoryItem.getItemCount());
         }
@@ -196,9 +200,9 @@ public class GameMenuView extends View {
 
     private void selectResource() {
         //show the average health of the player
-        System.out.println(InventoryControl.calculateAverageHealth());
+        this.console.println(InventoryControl.calculateAverageHealth());
         //Show the Obedience, Testimony, and Fruit Levels
-        System.out.println(InventoryControl.showItemLevels());
+        this.console.println(InventoryControl.showItemLevels());
         
         //Create SelectResourceView object
         SelectResourceView selectResource = new SelectResourceView();

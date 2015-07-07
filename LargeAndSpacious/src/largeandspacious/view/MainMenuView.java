@@ -49,7 +49,7 @@ public class MainMenuView extends View
                     this.startNewGame();                
                 } catch( MapControlException me)
                 {
-                    System.out.println(me.getMessage());
+                    this.console.println(me.getMessage());
                 }
                 
                 break;
@@ -74,7 +74,7 @@ public class MainMenuView extends View
                 done = true;
                 break;
             default: 
-                System.out.println("Invalid selection");
+                this.console.println("Invalid selection");
                 break;
         }
         return done;
@@ -89,28 +89,28 @@ public class MainMenuView extends View
         GameMenuView gameMenu = new GameMenuView();
         //Display the Game Menu
         gameMenu.display();
-        System.out.println("*** loadExistingGame function called ***");
+        this.console.println("*** loadExistingGame function called ***");
     }
 
     private void loadExistingGame() {
-        System.out.println("*** loadExistingGame function called ***");
+        this.console.println("*** loadExistingGame function called ***");
     }
 
     private void saveGame() {
-        System.out.println("*** saveGame function called ***");
+        this.console.println("*** saveGame function called ***");
     }
 
     private void displayHelpMenu() {
         //Create a new help Menu View
         HelpMenuView helpMenu = new HelpMenuView();
         helpMenu.display();
-        System.out.println("*** displayHelpMenu function called ***");
+        this.console.println("*** displayHelpMenu function called ***");
     }
 
     private void displayPlayersScores() {
         //Create a Players Score View
         PlayersScoreView scores = new PlayersScoreView();
         scores.display();
-        System.out.println("*** displayPlayersScores function called ***");
+        this.console.println("*** displayPlayersScores function called ***");
     }
 }

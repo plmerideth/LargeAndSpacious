@@ -166,41 +166,41 @@ public class HelpMenuView extends View
                 done = true;
                 break;
             default: 
-                System.out.println("Invalid selection");
+                this.console.println("Invalid selection");
                 break;
         }
         return done;
     }
 
     private void displayGameOverview() {
-        System.out.println(OVERVIEW); // display the Overview menu
+        this.console.println(OVERVIEW); // display the Overview menu
     }
 
     private void displayMoveHelp() {
-        System.out.println(MOVEH); // display the move help menu
+        this.console.println(MOVEH); // display the move help menu
     }
 
     private void displayQuestHelp() {
-        System.out.println(QUEST); // display the quest help menu
+        this.console.println(QUEST); // display the quest help menu
     }
 
     private void displayMapHelp() {
-        System.out.println(MAPH); // display the map help menu
+        this.console.println(MAPH); // display the map help menu
     }
 
     private void displayItemHelp() {
-        System.out.println(ITEMH); // display the item help menu
+        this.console.println(ITEMH); // display the item help menu
     }
 
     private void displayItemList() {
-       System.out.println(ITEMLIST); // display the list of items & their use
+       this.console.println(ITEMLIST); // display the list of items & their use
     }
 
     private void displayChallenges() {
         //Create a new help Menu View
         ChallengesView challenges = new ChallengesView();
         challenges.display();
-        System.out.println("*** displayChallenges function called ***");
+        this.console.println("*** displayChallenges function called ***");
     }
 
     

@@ -1,8 +1,11 @@
 
 package largeandspacious.view;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import static java.lang.Integer.parseInt;
 import java.util.Scanner;
+import largeandspacious.LargeAndSpacious;
 import largeandspacious.model.Location;
 import largeandspacious.model.Player;
 
@@ -12,6 +15,9 @@ import largeandspacious.model.Player;
  */
 public class MoveMenuView
 {
+    protected final BufferedReader keyboard = LargeAndSpacious.getInFile();
+    protected final PrintWriter console = LargeAndSpacious.getOutFile();
+
     private final String ROLLDICE = "\n"
         + "\n|------------------------------------------|"
         + "\n|  Press R to roll dice!                   |"
@@ -42,7 +48,7 @@ public class MoveMenuView
         
         while(number < 0)
         {
-            System.out.println(XMENU); // display the SelectResource menu            
+            this.console.println(XMENU); // display the SelectResource menu            
             
             input = this.getInput('X');  // get the user's selection
             
@@ -52,7 +58,7 @@ public class MoveMenuView
             try{
                 number = parseInt(input);
             } catch( NumberFormatException nf){
-                System.out.println("\nYou must enter a valid number." +
+                this.console.println("\nYou must enter a valid number." +
                         "Try again or enter X to exit");
             }
                 
@@ -62,14 +68,14 @@ public class MoveMenuView
 
         if( !input.equals("X"))
         {
-            System.out.println("Player entered " + number + " for X coordinate");
+            this.console.println("Player entered " + number + " for X coordinate");
             newLocation.setRow(number);
         
             //Get Y coordinate
             number = -1;
             while(number < 0)
             {
-                System.out.println(YMENU); // display the SelectResource menu            
+                this.console.println(YMENU); // display the SelectResource menu            
 
                 input = this.getInput('Y');  // get the user's selection
 
@@ -80,7 +86,7 @@ public class MoveMenuView
                     number = parseInt(input);
                 }catch( NumberFormatException nf)
                 {
-                    System.out.println("\nYou must enter a valid number." +
+                    this.console.println("\nYou must enter a valid number." +
                         "Try again or enter X to exit");                
                 }
                 if(!validateY(number))
@@ -89,8 +95,8 @@ public class MoveMenuView
             
             if(!input.equals("X"))
             {
-                System.out.println("Player entered " + number + " for Y coordinate");
-                System.out.println("Valid map coordinates entered");
+                this.console.println("Player entered " + number + " for Y coordinate");
+                this.console.println("Valid map coordinates entered");
                 newLocation.setCol(number);                
             }            
         }
@@ -101,29 +107,35 @@ public class MoveMenuView
     {
         boolean valid = false;
         String playersInput = null;
-        Scanner keyboard = new Scanner(System.in);
         
-        while( !valid )
+        try
         {
-            //Prompt for the player's selection
-            if(coord == 'X')
-                System.out.println("Enter X location below:");
-            if(coord == 'Y') {
-                System.out.println("Enter Y location below:");
-            }
-            
-            //Get the name from the keyboard and trim off spaces
-            playersInput = keyboard.nextLine();
-            playersInput = playersInput.trim();
-            playersInput = playersInput.toUpperCase();
-            
-            if( playersInput.length() < 1 )
+            while( !valid )
             {
-                System.out.println("Invalid menu selection - the selection must not be blank");
-                continue;
+                //Prompt for the player's selection
+                if(coord == 'X')
+                    this.console.println("Enter X location below:");
+                if(coord == 'Y') {
+                    this.console.println("Enter Y location below:");
+                }
+
+                //Get the name from the keyboard and trim off spaces
+                playersInput = this.keyboard.readLine();
+                playersInput = playersInput.trim();
+                playersInput = playersInput.toUpperCase();
+
+                if( playersInput.length() < 1 )
+                {
+                    this.console.println("Invalid menu selection - the selection must not be blank");
+                    continue;
+                }
+
+                break;
             }
-            
-            break;
+        }
+        catch(Exception e)
+        {
+            this.console.println("Error reading input: " + e.getMessage());
         }
         return playersInput;
     }
@@ -136,7 +148,7 @@ public class MoveMenuView
         }
         else
         {
-            System.out.println("Invalid X coordinate\nPlease enter a valid coordinate");
+            this.console.println("Invalid X coordinate\nPlease enter a valid coordinate");
             return false;
         }
     }
@@ -145,12 +157,12 @@ public class MoveMenuView
     {
         if (number>=1 && number<=10) {
             yCoord = number;
-            System.out.println(Location(xCoord,yCoord));
+            this.console.println(Location(xCoord,yCoord));
             return true;
         }
         else
         {
-            System.out.println("Invalid Y coordinate\nPlease enter a valid coordinate");
+            this.console.println("Invalid Y coordinate\nPlease enter a valid coordinate");
             return false;
         }
     }    
@@ -161,18 +173,18 @@ public class MoveMenuView
         int diceValue = 0;
         do
         {
-            System.out.println(ROLLDICE); // display the SelectResource menu
+            this.console.println(ROLLDICE); // display the SelectResource menu
             
             String input = this.getDiceInput();  // get the user's selection
             selection = input.charAt(0);  // get first character of string
             if(selection != 'R')
-                System.out.println("\nInvalid entry.  Please try again");
+                this.console.println("\nInvalid entry.  Please try again");
         }while (selection != 'R'); // the selection must be 'R' to roll dice
-        System.out.println("\n*** rollDice() function called ***");
+        this.console.println("\n*** rollDice() function called ***");
         
         //Add code to roll dice and return diceValue here
         diceValue = (int)(Math.random()*6) + 1;
-        System.out.println("Player rolled a " + diceValue + "!");
+        this.console.println("Player rolled a " + diceValue + "!");
         return diceValue;
     }
 
@@ -180,21 +192,27 @@ public class MoveMenuView
     {
         boolean valid = false;
         String playersInput = null;
-        Scanner keyboard = new Scanner(System.in);
         
-        while( !valid )
-        {            
-            //Get the name from the keyboard and trim off spaces
-            playersInput = keyboard.nextLine();
-            playersInput = playersInput.trim();
-            playersInput = playersInput.toUpperCase();
-            
-            if( playersInput.length() < 1 )
-            {
-                System.out.println("Invalid Entry - the entry must not be blank");
-                continue;
+        try
+        {
+            while( !valid )
+            {            
+                //Get the name from the keyboard and trim off spaces
+                playersInput = this.keyboard.readLine();
+                playersInput = playersInput.trim();
+                playersInput = playersInput.toUpperCase();
+
+                if( playersInput.length() < 1 )
+                {
+                    this.console.println("Invalid Entry - the entry must not be blank");
+                    continue;
+                }
+                break;
             }
-            break;
+        }
+        catch(Exception e)
+        {
+            this.console.println("Error reading input: " + e.getMessage());
         }
         return playersInput;
     } 
