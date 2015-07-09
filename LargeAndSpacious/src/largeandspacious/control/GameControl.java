@@ -11,7 +11,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.HashSet;
 import largeandspacious.LargeAndSpacious;
 import largeandspacious.control.Scene.SceneType;
 import largeandspacious.exceptions.MapControlException;
@@ -26,7 +25,7 @@ import largeandspacious.model.Player;
  *
  * @author julzlee
  */
-public class GameControl
+public class GameControl 
 {
     public static void createNewGame(Player player) throws MapControlException
     {      
@@ -173,9 +172,9 @@ public class GameControl
         Game game = null;
         
         try(FileInputStream fips = new FileInputStream(filePath)) {
-            ObjectInputStream output = new ObjectInputStream(fips);
+            ObjectInputStream input = new ObjectInputStream(fips);
             
-            game = (Game) output.readObject(); //read the game object from file
+            game = (Game) input.readObject(); //read the game object from file
         } catch (FileNotFoundException fnfe) {
             throw new MapControlException(fnfe.getMessage());
         } catch (Exception e) {

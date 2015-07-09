@@ -5,6 +5,7 @@
  */
 package largeandspacious.control;
 
+import java.io.Serializable;
 import largeandspacious.model.Location;
 import largeandspacious.model.Map;
 
@@ -13,9 +14,9 @@ import largeandspacious.model.Map;
  *
  * @author julzlee
  */
-public class Scene
+public class Scene implements Serializable 
 {
-    private String description;
+    private String description ;
     private boolean blocked;
   
     
@@ -66,7 +67,7 @@ public class Scene
         return scene;
     }
     
-    private static void assignScenesToLocation(Map map, Scene[] scenes)
+    private static void assignScenesToLocation (Map map, Scene[] scenes) 
     {
         Location[][] locations = map.getLocations();
         
