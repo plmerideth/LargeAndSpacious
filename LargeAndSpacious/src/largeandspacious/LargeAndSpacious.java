@@ -11,8 +11,10 @@ package largeandspacious;
 //import largeandspacious.model.Challenges;
 //import largeandspacious.model.CombinationScene;
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import largeandspacious.model.Game;
 import largeandspacious.model.Player;
@@ -54,7 +56,6 @@ public class LargeAndSpacious
             //Create StartProgramView and start the program
             StartProgramView startProgramView = new StartProgramView();
             startProgramView.startProgram();
-            return;
         }
         catch(Exception e)
         {
@@ -80,7 +81,7 @@ public class LargeAndSpacious
             }
             catch(IOException ex)
             {
-                System.out.println("Error closing files");
+                ErrorView.display("LargeAndSpacious.main()", ex.getMessage());
                 return;
             }
         }

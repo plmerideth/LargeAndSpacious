@@ -5,8 +5,16 @@
  */
 package largeandspacious.control;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.HashSet;
 import largeandspacious.LargeAndSpacious;
 import largeandspacious.control.Scene.SceneType;
+import largeandspacious.exceptions.MapControlException;
 import largeandspacious.model.Actor;
 import largeandspacious.model.Game;
 import largeandspacious.model.Item;
@@ -20,7 +28,7 @@ import largeandspacious.model.Player;
  */
 public class GameControl
 {
-    public static void createNewGame(Player player) throws MapControl.MapControlException
+    public static void createNewGame(Player player) throws MapControlException
     {      
         Actor actor = Actor.Lehi;
         
@@ -148,6 +156,34 @@ public class GameControl
         }
         */
         return inventoryList;
+    }
+
+    public static void saveGame(Game game, String filePath) 
+            throws MapControlException {
+        try ( FileOutputStream fops = new FileOutputStream(filePath)) {
+            ObjectOutputStream output = new ObjectOutputStream(fops);
+            output.writeObject(game); //write the game object out to file
+        } catch (IOException e) {
+            throw new MapControlException(e.getMessage());
+        }
+    }
+
+    public static void getSavedGame(String filePath) throws MapControlException {
+        
+        Game game = null;
+        
+        try(FileInputStream fips = new FileInputStream(filePath)) {
+            ObjectInputStream output = new ObjectInputStream(fips);
+            
+            game = (Game) output.readObject(); //read the game object from file
+        } catch (FileNotFoundException fnfe) {
+            throw new MapControlException(fnfe.getMessage());
+        } catch (Exception e) {
+            throw new MapControlException(e.getMessage());
+        }
+        // close the output file
+        LargeAndSpacious.setCurrentGame(game); // save in LargeAndSpacious
+        
     }
     
     

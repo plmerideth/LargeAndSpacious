@@ -6,11 +6,8 @@
 package largeandspacious.view;
 
 import largeandspacious.LargeAndSpacious;
-import static largeandspacious.LargeAndSpacious.getPlayer;
 import largeandspacious.control.GameControl;
-import largeandspacious.control.MapControl;
-import largeandspacious.control.MapControl.MapControlException;
-//import largeandspacious.control.ProgramControl;
+import largeandspacious.exceptions.MapControlException;
 
 /**
  *
@@ -80,7 +77,7 @@ public class MainMenuView extends View
         return done;
     }
     
-    private void startNewGame() throws MapControl.MapControlException
+    private void startNewGame() throws MapControlException
     {   
         //Create a new Game
         GameControl.createNewGame(LargeAndSpacious.getPlayer());
@@ -93,11 +90,37 @@ public class MainMenuView extends View
     }
 
     private void loadExistingGame() {
-        this.console.println("*** loadExistingGame function called ***");
+        
+        //prompt for and get the name of the file the game was saved in
+        System.out.println("\\Enter the file path for the file where the game "
+        + "was saved.");
+        
+        String filePath = this.getInput();
+        
+        try {
+            // start a saved game
+            GameControl.getSavedGame(filePath);
+        } catch (Exception ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        }
+        
+        // display the game menu
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.display();
     }
 
     private void saveGame() {
-        this.console.println("*** saveGame function called ***");
+        this.console.println("\n\nEnter the file path for file where the game "
+                + "is to be saved:");
+        String filePath = this.getInput();
+        
+        try {
+            // save the game to the specified file
+            GameControl.saveGame(LargeAndSpacious.getCurrentGame(), filePath);
+        } catch (Exception ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        }
+        
     }
 
     private void displayHelpMenu() {
