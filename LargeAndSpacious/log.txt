@@ -1,0 +1,2 @@
+largeandspacious.view.GameMenuView -- 
+Can not move actor to location (2, 3) because that location requires 3.0 moves, which exceeds your roll of 1 !

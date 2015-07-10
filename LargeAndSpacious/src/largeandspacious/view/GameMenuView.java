@@ -142,7 +142,8 @@ public class GameMenuView extends View
             MapControl.moveActorToLocation(actor, coordinates, diceRoll);
         }catch ( MapControlException me)
         {
-            errorView.display(this.getClass().getName(), me.getMessage());
+            ErrorView.display(this.getClass().getName(), me.getMessage());
+            return;
         }
         //Add code to process move
         try {
@@ -150,7 +151,8 @@ public class GameMenuView extends View
                     4,0, 5);
         } catch ( MapControlException me)
         {
-                errorView.display(this.getClass().getName(), me.getMessage());
+                ErrorView.display(this.getClass().getName(), me.getMessage());
+                return;
         }
         returnValue = "You have gained " + challengeResult + " obedience points!";
         this.console.println(returnValue);
@@ -361,8 +363,8 @@ public class GameMenuView extends View
         
         this.console.println("\n\nThe Map Report was successfully created in "
                                 + mapFilePath);
-        this.console.println(reportOutput);                        
-        mapFile.println(reportOutput);        
+        this.console.println(reportOutput); //Print to console           
+        mapFile.println(reportOutput);  //Write to file.
     }
     
     private String getPath()
