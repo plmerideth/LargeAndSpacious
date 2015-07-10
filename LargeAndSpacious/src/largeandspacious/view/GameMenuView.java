@@ -381,7 +381,7 @@ public class GameMenuView extends View
 
                 if( playersInput.length() < 1 )
                 {
-                    this.console.println("Invalid menu selection - the selection must not be blank");
+                    this.console.println("Invalid entry, the selection must not be blank");
                     continue;
                 }
 
