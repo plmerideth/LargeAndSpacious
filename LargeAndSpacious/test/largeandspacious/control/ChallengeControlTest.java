@@ -5,6 +5,7 @@
  */
 package largeandspacious.control;
 
+import largeandspacious.exceptions.MapControlException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -21,7 +22,7 @@ public class ChallengeControlTest {
      * Test of getChallengeResult method, of class ChallengeControl.
      */
     @Test
-    public void testGetChallengeResult() throws MapControl.MapControlException {
+    public void testGetChallengeResult() throws MapControlException {
         System.out.println("getChallengeResult");
         /* Test Case #1 */
         System.out.println("\tTest case #1");

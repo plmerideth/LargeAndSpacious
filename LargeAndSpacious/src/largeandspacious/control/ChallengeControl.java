@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package largeandspacious.control;
-import largeandspacious.control.MapControl.MapControlException;
+import largeandspacious.exceptions.MapControlException;
 
 /**
  *

@@ -16,6 +16,7 @@ import largeandspacious.control.ChallengeControl;
 import largeandspacious.control.GameControl;
 import largeandspacious.control.InventoryControl;
 import largeandspacious.control.MapControl;
+import largeandspacious.exceptions.MapControlException;
 import largeandspacious.model.Actor;
 import largeandspacious.model.Game;
 import largeandspacious.model.Item;
@@ -139,7 +140,7 @@ public class GameMenuView extends View
         
         try{
             MapControl.moveActorToLocation(actor, coordinates, diceRoll);
-        }catch ( MapControl.MapControlException me)
+        }catch ( MapControlException me)
         {
             errorView.display(this.getClass().getName(), me.getMessage());
         }
@@ -147,7 +148,7 @@ public class GameMenuView extends View
         try {
             challengeResult = ChallengeControl.getChallengeResult(getObediencePlayed(),moveMenu.rollDice(),
                     4,0, 5);
-        } catch ( MapControl.MapControlException me)
+        } catch ( MapControlException me)
         {
                 errorView.display(this.getClass().getName(), me.getMessage());
         }
@@ -176,6 +177,7 @@ public class GameMenuView extends View
             {
                 errorView.display(this.getClass().getName(), "\n Hey Dude! You must enter a valid number." +
                         "Try again or enter X to exit");
+                break;
             }
             catch(Exception e)
             {

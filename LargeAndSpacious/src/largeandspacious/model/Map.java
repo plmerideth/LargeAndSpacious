@@ -7,6 +7,8 @@ package largeandspacious.model;
 
 import java.io.Serializable;
 import largeandspacious.model.Location;
+import java.io.PrintWriter; 
+import java.io.BufferedReader;
 
 /**
  *

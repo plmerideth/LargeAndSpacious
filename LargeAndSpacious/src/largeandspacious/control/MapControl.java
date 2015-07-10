@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import static java.lang.Math.abs;
 import largeandspacious.LargeAndSpacious;
 import largeandspacious.control.Scene.SceneType;
+import largeandspacious.exceptions.MapControlException;
 import largeandspacious.model.Actor;
 import largeandspacious.model.Game;
 import largeandspacious.model.Map;
@@ -30,6 +31,7 @@ public class MapControl {
         
         for (Actor actor : actors) {
             Point coordinates = actor.getCoordinates();
+            //cannot use this.console.println from a static function
             System.out.println("Actor = " + actor);
             MapControl.moveActorToLocation(actor, coordinates, 0);
         }
@@ -162,28 +164,5 @@ public class MapControl {
         finishScene.setBlocked(false);
         scenes[SceneType.finish.ordinal()] = finishScene;
         return scenes;
-    }
-
-    public static class MapControlException extends Exception {
-
-        public MapControlException() {
-        }
-
-        public MapControlException(String string) {
-            super(string);
-        }
-
-        public MapControlException(String string, Throwable thrwbl) {
-            super(string, thrwbl);
-        }
-
-        public MapControlException(Throwable thrwbl) {
-            super(thrwbl);
-        }
-
-        public MapControlException(String string, Throwable thrwbl, boolean bln, boolean bln1) {
-            super(string, thrwbl, bln, bln1);
-        }
-    }
-    
+    }    
 }
