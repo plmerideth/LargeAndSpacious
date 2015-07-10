@@ -103,45 +103,23 @@ public class GameControl implements Serializable
         int cols = map.getNoOfColumns();
         int randomIndex;
         
+        //Loop thru array, generate random number between 0 and NUMBER_OF_SCENES-1 to serve as index
         for(int i=0; i<rows; i++)
             for(int j=0; j<cols; j++)
             {
-                //Generate random number between 0 and NUMBER_OF_SCENES-1 to serve as index
                 randomIndex = (int)Math.floor(Math.random()*(Constants.NUMBER_OF_SCENES));
                 locations[i][j].setScene(scenes[randomIndex]);
             }
-
+        
+        //DEBUG:  Print all locations to console
+        /*
         for(int i=0; i<rows; i++)
             for(int j=0; j<cols; j++)
             {
                 String myDesc = "["+i+"]}"+"["+j+"]="+locations[i][j].getSceneType().getDescription()+"\n";
                 System.out.println(myDesc);
             }
-     
-        
-        /*
-        locations[0][0].setScene(scenes[SceneType.start.ordinal()]);
-        locations[0][1].setScene(scenes[SceneType.building.ordinal()]);
-        locations[0][2].setScene(scenes[SceneType.mists.ordinal()]);
-        locations[0][3].setScene(scenes[SceneType.finger.ordinal()]);        
-        locations[0][4].setScene(scenes[SceneType.path.ordinal()]);        
-        locations[0][5].setScene(scenes[SceneType.tree.ordinal()]);        
-        locations[0][6].setScene(scenes[SceneType.river.ordinal()]);
-        locations[0][7].setScene(scenes[SceneType.finish.ordinal()]);
-        locations[0][8].setScene(scenes[SceneType.tree.ordinal()]);
-        locations[0][9].setScene(scenes[SceneType.tree.ordinal()]);
-
-        locations[1][0].setScene(scenes[SceneType.start.ordinal()]);
-        locations[1][1].setScene(scenes[SceneType.building.ordinal()]);
-        locations[1][2].setScene(scenes[SceneType.mists.ordinal()]);
-        locations[1][3].setScene(scenes[SceneType.finger.ordinal()]);        
-        locations[1][4].setScene(scenes[SceneType.path.ordinal()]);        
-        locations[1][5].setScene(scenes[SceneType.tree.ordinal()]);        
-        locations[1][6].setScene(scenes[SceneType.river.ordinal()]);
-        locations[1][7].setScene(scenes[SceneType.finish.ordinal()]);
-        locations[1][8].setScene(scenes[SceneType.tree.ordinal()]);
-        locations[0][9].setScene(scenes[SceneType.tree.ordinal()]);
-        */
+        */        
     }
 
     public static Item[] getSortedInventoryList()

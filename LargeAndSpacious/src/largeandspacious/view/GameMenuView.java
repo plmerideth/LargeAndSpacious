@@ -7,10 +7,8 @@ package largeandspacious.view;
 
 // import java.util.Scanner;
 import java.awt.Point;
-import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.Double.parseDouble;
-import java.util.Scanner;
 import largeandspacious.LargeAndSpacious;
 import largeandspacious.control.ChallengeControl;
 import largeandspacious.control.GameControl;
@@ -18,7 +16,6 @@ import largeandspacious.control.InventoryControl;
 import largeandspacious.control.MapControl;
 import largeandspacious.exceptions.MapControlException;
 import largeandspacious.model.Actor;
-import largeandspacious.model.Game;
 import largeandspacious.model.Item;
 import largeandspacious.model.Location;
 import largeandspacious.model.Map;
@@ -177,13 +174,13 @@ public class GameMenuView extends View
             }
             catch( NumberFormatException nf)
             {
-                errorView.display(this.getClass().getName(), "\n Hey Dude! You must enter a valid number." +
+                ErrorView.display(this.getClass().getName(), "\n Hey Dude! You must enter a valid number." +
                         "Try again or enter X to exit");
                 break;
             }
             catch(Exception e)
             {
-                errorView.display(this.getClass().getName(), "Error reading input: " + e.getMessage());
+                ErrorView.display(this.getClass().getName(), "Error reading input: " + e.getMessage());
             }
             
             
@@ -270,7 +267,7 @@ public class GameMenuView extends View
                 }
                 catch( Exception e)
                 {
-                    errorView.display(this.getClass().getName(),
+                    ErrorView.display(this.getClass().getName(),
                           "File creation failed.\n"
                         + "Exception: "
                         + e.toString()
@@ -292,7 +289,7 @@ public class GameMenuView extends View
             }
             catch(Exception ex)
             {
-                errorView.display(this.getClass().getName(), "Exception: "
+                ErrorView.display(this.getClass().getName(), "Exception: "
                     + ex.toString()
                     + ex.getCause()
                     + ex.getMessage());
@@ -311,6 +308,7 @@ public class GameMenuView extends View
         char desc[] = new char[3];
         String reportOutput = "\n\nTHE LARGE AND SPACIOUS BUILDING MAP";
         
+        //Draw map and insert scene types in each location
         for(int row=0; row<rowCycles; row++)
         {
             if(row==0) //For first row, add newline plus extra space at beginning of number line
@@ -336,7 +334,7 @@ public class GameMenuView extends View
                 }
                 if((row&1)==1) //Odd numbered row, add lines
                 {
-                    if(col==0)
+                    if(col==0) //Add extra leading space for first col
                         reportOutput += "  ----";
                     else
                         reportOutput += "----";                   

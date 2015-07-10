@@ -1,2 +1,28 @@
-New test message.
-MapFile.txt file
+
+
+THE LARGE AND SPACIOUS BUILDING MAP
+
+    1   2   3   4   5  
+  --------------------
+ 1|FIN|FIN|FIN|STA|STA|
+  --------------------
+ 2|PAT|PAT|STA|MIS|STA|
+  --------------------
+ 3|MIS|MIS|FIN|MIS|MIS|
+  --------------------
+ 4|FIN|FIN|PAT|FIN|PAT|
+  --------------------
+ 5|RIV|BUI|TRE|BUI|RIV|
+  --------------------
+ 6|TRE|TRE|TRE|RIV|STA|
+  --------------------
+ 7|FIN|MIS|FIN|STA|TRE|
+
+STA = Starting
+BUI = Building
+MIS = Mists of Darkness
+FIN = Finger of Scorn
+PAT = Lost & Forbidden Path
+TRE = Tree of Life
+RIV = River of Water
+FIN = Finish

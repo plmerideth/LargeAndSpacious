@@ -32,7 +32,7 @@ public class MapControl {
         for (Actor actor : actors) {
             Point coordinates = actor.getCoordinates();
             //cannot use this.console.println from a static function
-            System.out.println("Actor = " + actor);
+            // System.out.println("Actor = " + actor);
             MapControl.moveActorToLocation(actor, coordinates, 0);
         }
     }
@@ -46,7 +46,7 @@ public class MapControl {
         int newColumn = coordinates.y-1;
         Point currentCoordinates = player.getCurrentLocation();
         
-        System.out.println("Current Location: " + currentCoordinates);
+        //System.out.println("Current Location: " + currentCoordinates);
         
         if (newRow < 0 || newRow >= map.getNoOfRows() || 
             newColumn < 0 || newColumn >= map.getNoOfColumns()){
@@ -67,7 +67,7 @@ public class MapControl {
         }
  
         player.setCurentLocation(coordinates);
-        System.out.println("New Location: " + coordinates);        
+        //System.out.println("New Location: " + coordinates);        
     }
 
     public static Map createMap() {
