@@ -182,7 +182,7 @@ public class MoveMenuView
         }while (selection != 'R'); // the selection must be 'R' to roll dice
         this.console.println("\n*** rollDice() function called ***");
         
-        //Add code to roll dice and return diceValue here
+        //Add code to roll dice (1-6) and return diceValue here
         diceValue = (int)(Math.random()*6) + 1;
         this.console.println("Player rolled a " + diceValue + "!");
         return diceValue;

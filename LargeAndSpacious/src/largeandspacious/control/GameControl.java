@@ -90,6 +90,27 @@ public class GameControl
     {
         Location[][] locations = map.getLocations();
         
+        int rows = map.getNoOfRows();
+        int cols = map.getNoOfColumns();
+        int randomIndex;
+        
+        for(int i=0; i<rows; i++)
+            for(int j=0; j<cols; j++)
+            {
+                //Generate random number between 0 and NUMBER_OF_SCENES-1 to serve as index
+                randomIndex = (int)Math.floor(Math.random()*(Constants.NUMBER_OF_SCENES));
+                locations[i][j].setScene(scenes[randomIndex]);
+            }
+
+        for(int i=0; i<rows; i++)
+            for(int j=0; j<cols; j++)
+            {
+                String myDesc = "["+i+"]}"+"["+j+"]="+locations[i][j].getSceneType().getDescription()+"\n";
+                System.out.println(myDesc);
+            }
+     
+        
+        /*
         locations[0][0].setScene(scenes[SceneType.start.ordinal()]);
         locations[0][1].setScene(scenes[SceneType.building.ordinal()]);
         locations[0][2].setScene(scenes[SceneType.mists.ordinal()]);
@@ -111,6 +132,7 @@ public class GameControl
         locations[1][7].setScene(scenes[SceneType.finish.ordinal()]);
         locations[1][8].setScene(scenes[SceneType.tree.ordinal()]);
         locations[0][9].setScene(scenes[SceneType.tree.ordinal()]);
+        */
     }
 
     public static Item[] getSortedInventoryList()

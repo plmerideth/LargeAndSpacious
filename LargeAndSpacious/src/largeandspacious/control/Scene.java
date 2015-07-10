@@ -78,6 +78,11 @@ public class Scene
         this.description = description;
     }
 
+    public String getDescription()
+    {
+        return this.description;
+    }
+    
     public void setBlocked(boolean blocked) {
         this.blocked = blocked;
     }
