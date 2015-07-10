@@ -92,7 +92,7 @@ public class MainMenuView extends View
     private void loadExistingGame() {
         
         //prompt for and get the name of the file the game was saved in
-        System.out.println("\\Enter the file path for the file where the game "
+        System.out.println("\nEnter the file path for the file where the game "
         + "was saved.");
         
         String filePath = this.getInput();
@@ -100,17 +100,18 @@ public class MainMenuView extends View
         try {
             // start a saved game
             GameControl.getSavedGame(filePath);
+               // display the game menu
+            GameMenuView gameMenu = new GameMenuView();
+            gameMenu.display();
         } catch (Exception ex) {
             ErrorView.display("MainMenuView", ex.getMessage());
         }
         
-        // display the game menu
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.display();
+     
     }
 
     private void saveGame() {
-        this.console.println("\n\nEnter the file path for file where the game "
+        this.console.println("\nEnter the file path for file where the game "
                 + "is to be saved:");
         String filePath = this.getInput();
         

@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import largeandspacious.LargeAndSpacious;
 import largeandspacious.control.Scene.SceneType;
 import largeandspacious.exceptions.MapControlException;
@@ -25,8 +26,9 @@ import largeandspacious.model.Player;
  *
  * @author julzlee
  */
-public class GameControl 
+public class GameControl implements Serializable
 {
+       
     public static void createNewGame(Player player) throws MapControlException
     {      
         Actor actor = Actor.Lehi;
@@ -167,7 +169,7 @@ public class GameControl
         }
     }
 
-    public static void getSavedGame(String filePath) throws MapControlException {
+    public static void getSavedGame(String filePath) throws MapControlException  {
         
         Game game = null;
         
