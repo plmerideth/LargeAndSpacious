@@ -42,4 +42,40 @@ public enum Actor implements Serializable {
     public Point getCoordinates() {
         return coordinates;
     }
+
+    public static Actor getLehi() {
+        return Lehi;
+    }
+
+    public static Actor getSariah() {
+        return Sariah;
+    }
+
+    public static Actor getNephi() {
+        return Nephi;
+    }
+
+    public static Actor getJacob() {
+        return Jacob;
+    }
+
+    public static Actor getSam() {
+        return Sam;
+    }
+
+    public static Actor getLaman() {
+        return Laman;
+    }
+
+    public static Actor getLemuel() {
+        return Lemuel;
+    }
+
+    public static Actor getZoram() {
+        return Zoram;
+    }
+
+   
+    
+    
 }

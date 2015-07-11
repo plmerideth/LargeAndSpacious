@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import largeandspacious.model.Actor;
 import largeandspacious.model.Game;
 import largeandspacious.model.Player;
 import largeandspacious.view.ErrorView;
@@ -34,7 +35,7 @@ public class LargeAndSpacious
 {
     private static Game currentGame = null;
     private static Player player = null;
-
+    private static Actor actor = null;
     private static PrintWriter outFile = null;
     private static BufferedReader inFile = null;
     private static PrintWriter logFile = null;
@@ -101,6 +102,14 @@ public class LargeAndSpacious
        public static void setPlayer(Player player) {
         LargeAndSpacious.player = player;
     }
+
+    public static Actor getActor() {
+        return actor;
+    }
+
+    public static void setActor(Actor actor) {
+        LargeAndSpacious.actor = actor;
+    }   
        
     public static PrintWriter getOutFile()
     {

@@ -60,7 +60,6 @@ public class Game implements Serializable {
     public void setActors(Actor[] actors) {
         this.actors = actors;
     }
-    
 
     
     public double getTotalTime() {

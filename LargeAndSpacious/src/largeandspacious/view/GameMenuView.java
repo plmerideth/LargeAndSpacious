@@ -9,6 +9,7 @@ package largeandspacious.view;
 import java.awt.Point;
 import static java.lang.Double.parseDouble;
 import java.util.Scanner;
+import largeandspacious.control.ActorControl;
 import largeandspacious.control.ChallengeControl;
 import largeandspacious.control.GameControl;
 import largeandspacious.control.InventoryControl;
@@ -35,6 +36,7 @@ public class GameMenuView extends View {
             + "\n| I - List player items                    |"
             + "\n| C - List challenges                      |"
             + "\n| A - List attributes                      |"                
+            + "\n| N - List Actor Names                     |"  
             + "\n| X - Return to Main Menu                  |"
             + "\n| H - Help                                 |"
             + "\n|------------------------------------------|");
@@ -72,6 +74,10 @@ public class GameMenuView extends View {
             case 'A':
                 //List Attributes
                 this.listAttributes();
+                break;
+            case 'N':
+                //List Attributes
+                this.listActorNames();
                 break;
             case 'X':
                 //Return to Menu
@@ -218,6 +224,11 @@ public class GameMenuView extends View {
     {
         AttributeView attributes = new AttributeView();
         attributes.display();
+    }
+
+    private void listActorNames() {
+        //Show the Obedience, Testimony, and Fruit Levels
+        this.console.println(ActorControl.showActors());
     }
     
 }
