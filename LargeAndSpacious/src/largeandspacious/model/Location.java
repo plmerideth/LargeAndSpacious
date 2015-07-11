@@ -20,7 +20,6 @@ public class Location implements Serializable {
     private int col;
     private Scene sceneType;
     private boolean visited;
-
    
     private ChallengeScene challengeScene;
     private QuestionScene questionScene;
@@ -55,11 +54,16 @@ public class Location implements Serializable {
         sceneType = index;
     }
     
+    public Scene getSceneType()
+    {
+        return sceneType;
+    }
+    
     @Override
     public String toString() {
         return "Location{" + "row=" + row + ", col=" + col  + "}";
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;

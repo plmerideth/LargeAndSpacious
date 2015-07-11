@@ -32,7 +32,7 @@ public class MapControl {
         for (Actor actor : actors) {
             Point coordinates = actor.getCoordinates();
             //cannot use this.console.println from a static function
-            System.out.println("Actor = " + actor);
+            // System.out.println("Actor = " + actor);
             MapControl.moveActorToLocation(actor, coordinates, 0);
         }
     }
@@ -46,7 +46,7 @@ public class MapControl {
         int newColumn = coordinates.y-1;
         Point currentCoordinates = player.getCurrentLocation();
         
-        System.out.println("Current Location: " + currentCoordinates);
+        //System.out.println("Current Location: " + currentCoordinates);
         
         if (newRow < 0 || newRow >= map.getNoOfRows() || 
             newColumn < 0 || newColumn >= map.getNoOfColumns()){
@@ -67,13 +67,13 @@ public class MapControl {
         }
  
         player.setCurentLocation(coordinates);
-        System.out.println("New Location: " + coordinates);        
+        //System.out.println("New Location: " + coordinates);        
     }
 
     public static Map createMap() {
         
         //create the map
-        Map map = new Map(10,10);
+        Map map = new Map(7, 5);
         
         //create a list of the different challenge scenes in the game
         Scene[] scenes = createScenes();
@@ -93,7 +93,7 @@ public class MapControl {
         Scene[] scenes = new Scene[SceneType.values().length];
         
         Scene startingScene = new Scene();
-        startingScene.setDescription("\n And it came to pass that while my "
+        startingScene.setDescription("STARTING: And it came to pass that while my "
                 + "father tarried in the wilderness he spake unto us, saying: "
                 + "Behold, I have dreamed a dream; or, in other words, I have "
                 + "seen a vision.");
@@ -102,7 +102,7 @@ public class MapControl {
         scenes[SceneType.start.ordinal()] = startingScene;
         
         Scene buildingScene = new Scene();
-        buildingScene.setDescription("\n BULDING: And it came to pass that while my "
+        buildingScene.setDescription("BUILDING: And it came to pass that while my "
                 + "father tarried in the wilderness he spake unto us, saying: "
                 + "Behold, I have dreamed a dream; or, in other words, I have "
                 + "seen a vision.");
@@ -111,7 +111,7 @@ public class MapControl {
         scenes[SceneType.building.ordinal()] = buildingScene;
         
         Scene mistsScene = new Scene();
-        mistsScene.setDescription("\n MISTS: And it came to pass that while my "
+        mistsScene.setDescription("MISTS: And it came to pass that while my "
                 + "father tarried in the wilderness he spake unto us, saying: "
                 + "Behold, I have dreamed a dream; or, in other words, I have "
                 + "seen a vision.");
@@ -120,7 +120,7 @@ public class MapControl {
         scenes[SceneType.mists.ordinal()] = mistsScene;
 
         Scene fingerScene = new Scene();
-        fingerScene.setDescription("\n FINGER: And it came to pass that while my "
+        fingerScene.setDescription("FINGER: And it came to pass that while my "
                 + "father tarried in the wilderness he spake unto us, saying: "
                 + "Behold, I have dreamed a dream; or, in other words, I have "
                 + "seen a vision.");
@@ -129,7 +129,7 @@ public class MapControl {
         scenes[SceneType.finger.ordinal()] = fingerScene;
         
         Scene pathScene = new Scene();
-        pathScene.setDescription("\n PATH: And it came to pass that while my "
+        pathScene.setDescription("PATH: And it came to pass that while my "
                 + "father tarried in the wilderness he spake unto us, saying: "
                 + "Behold, I have dreamed a dream; or, in other words, I have "
                 + "seen a vision.");
@@ -138,7 +138,7 @@ public class MapControl {
         scenes[SceneType.path.ordinal()] = pathScene;        
         
         Scene treeScene = new Scene();
-        treeScene.setDescription("\n TREE: And it came to pass that while my "
+        treeScene.setDescription("TREE: And it came to pass that while my "
                 + "father tarried in the wilderness he spake unto us, saying: "
                 + "Behold, I have dreamed a dream; or, in other words, I have "
                 + "seen a vision.");
@@ -147,7 +147,7 @@ public class MapControl {
         scenes[SceneType.tree.ordinal()] = treeScene;        
         
         Scene riverScene = new Scene();
-        riverScene.setDescription("\n RIVER: And it came to pass that while my "
+        riverScene.setDescription("RIVER: And it came to pass that while my "
                 + "father tarried in the wilderness he spake unto us, saying: "
                 + "Behold, I have dreamed a dream; or, in other words, I have "
                 + "seen a vision.");
@@ -156,7 +156,7 @@ public class MapControl {
         scenes[SceneType.river.ordinal()] = riverScene;        
         
         Scene finishScene = new Scene();
-        finishScene.setDescription("\n FINISH: They came and caught hold of the end of "
+        finishScene.setDescription("FINISH: They came and caught hold of the end of "
                 + "the rod of iron; and they did press their way forward, "
                 + "continually holding fast to the rod of iron, until they "
                 + "came forth and fell down and partook of the fruit of the tree.");

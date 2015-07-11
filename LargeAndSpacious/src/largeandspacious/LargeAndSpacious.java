@@ -39,12 +39,13 @@ public class LargeAndSpacious
     private static PrintWriter outFile = null;
     private static BufferedReader inFile = null;
     private static PrintWriter logFile = null;
+
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args)
-    {
+    {        
         try
         {
             LargeAndSpacious.inFile = new BufferedReader(new InputStreamReader(System.in));
@@ -60,7 +61,7 @@ public class LargeAndSpacious
         }
         catch(Exception e)
         {
-            ErrorView.display("LargeAndSpacious.main()", "Exception: " + e.toString() +
+            ErrorView.display( LargeAndSpacious.class.getSimpleName(), "Exception: " + e.toString() +
                                "\nCause: " + e.getCause() +
                                "\nMessage: " + e.getMessage());
         }

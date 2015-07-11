@@ -7,6 +7,7 @@ package largeandspacious.view;
 
 // import java.util.Scanner;
 import java.awt.Point;
+import java.io.PrintWriter;
 import static java.lang.Double.parseDouble;
 import java.util.Scanner;
 import largeandspacious.control.ActorControl;
@@ -18,12 +19,28 @@ import largeandspacious.exceptions.MapControlException;
 import largeandspacious.model.Actor;
 import largeandspacious.model.Item;
 import largeandspacious.model.Location;
+import largeandspacious.model.Map;
 
 /**
  *
  * @author julzlee
  */
-public class GameMenuView extends View {
+public class GameMenuView extends View
+{
+    ErrorView errorView = new ErrorView();
+    private static PrintWriter mapFile = null;
+    
+    
+    private final String FILE_PATH_MENU =
+            "\n|------------------------------------|"
+         +  "\n| Please enter below the full path   |"
+         +  "\n| and file name for the Map Contents |"
+         +  "\n| Contents Report                    |"
+         +  "\n|                                    |"
+         +  "\n| Or enter X to return to Game Menu  |"
+         +  "\n|------------------------------------|"
+         +  "\n  File path and name: ";
+
     
     public GameMenuView() {
         super("\n"
@@ -37,6 +54,8 @@ public class GameMenuView extends View {
             + "\n| C - List challenges                      |"
             + "\n| A - List attributes                      |"                
             + "\n| N - List Actor Names                     |"  
+            + "\n| A - List attributes                      |"
+            + "\n| Y - Create Map Report                    |"                
             + "\n| X - Return to Main Menu                  |"
             + "\n| H - Help                                 |"
             + "\n|------------------------------------------|");
@@ -87,6 +106,11 @@ public class GameMenuView extends View {
                 //Help menu
                 this.displayHelpMenu();
                 break;
+            case 'Y':
+                //Create map report
+                this.createMapReport();
+                break;
+                
             default: 
                 this.console.println("Invalid selection");                
                 break;
@@ -154,7 +178,9 @@ public class GameMenuView extends View {
             {
                 //Get the points from the keyboard 
                 playersObedience = parseDouble(this.keyboard.readLine());
-            } catch( NumberFormatException nf){
+            }
+            catch( NumberFormatException nf)
+            {
                 ErrorView.display(this.getClass().getName(), "\n Hey Dude! You must enter a valid number." +
                         "Try again or enter X to exit");
                 break;
@@ -162,7 +188,6 @@ public class GameMenuView extends View {
             catch(Exception e)
             {
                 ErrorView.display(this.getClass().getName(), "Error reading input: " + e.getMessage());
-                break;
             }
             
             
@@ -203,13 +228,15 @@ public class GameMenuView extends View {
         
     }
 
-    private void listChallenges() {
+    private void listChallenges()
+    {
         //Create a new map Menu View
         ChallengesView challenges = new ChallengesView();
         challenges.display();
     }
 
-    private void selectResource() {
+    private void selectResource()
+    {
         //show the average health of the player
         this.console.println(InventoryControl.calculateAverageHealth());
         //Show the Obedience, Testimony, and Fruit Levels
@@ -229,6 +256,158 @@ public class GameMenuView extends View {
     private void listActorNames() {
         //Show the Obedience, Testimony, and Fruit Levels
         this.console.println(ActorControl.showActors());
+    private void createMapReport()
+    {            
+        int path = -1;
+        String input = "";
+        
+        try
+        {        
+            while(path < 0)
+            {
+                this.console.println(FILE_PATH_MENU);
+                String mapFilePath = this.getPath();  // get the user's selection
+                
+                if( mapFilePath.equals("X"))
+                    break;
+                
+                try
+                {
+                    mapFile = new PrintWriter(mapFilePath);            
+                }
+                catch( Exception e)
+                {
+                    ErrorView.display(this.getClass().getName(),
+                          "File creation failed.\n"
+                        + "Exception: "
+                        + e.toString()
+                        + e.getCause()
+                        + e.getMessage());
+                    
+                    return;
+                }
+                
+                this.printReport(mapFile, mapFilePath);
+                
+                break;
+            }                        
+        }
+        finally
+        {
+            try
+            {
+                if(mapFile != null)
+                    mapFile.close();
+            }
+            catch(Exception ex)
+            {
+                ErrorView.display(this.getClass().getName(), "Exception: "
+                    + ex.toString()
+                    + ex.getCause()
+                    + ex.getMessage());
+            }
+        }
+    }
+
+    private void printReport(PrintWriter mapFile, String mapFilePath)
+    {        
+        Map map = LargeAndSpacious.getCurrentGame().getMap();
+        Location[][] locations = map.getLocations();
+        int NoOfRows = map.getNoOfRows();
+        int NoOfCols = map.getNoOfColumns();
+        int rowNumber = 0;
+        int rowCycles = (NoOfRows*2)+1;
+        char desc[] = new char[3];
+        String reportOutput = "\n\nTHE LARGE AND SPACIOUS BUILDING MAP";
+        
+        //Draw map and insert scene types in each location
+        for(int row=0; row<rowCycles; row++)
+        {
+            if(row==0) //For first row, add newline plus extra space at beginning of number line
+                reportOutput+="\n\n   ";
+            else //After 1st row, just add a new line
+                reportOutput +="\n";
+            
+            if(row>0 && (row&1)==0)//Increment row counter if row number is even and past row 0
+                rowNumber++;
+            
+            for(int col=0; col<NoOfCols; col++)
+            {
+                if(row==0) //First row, print row numbers
+                {
+                    reportOutput += " "+(col+1)+"  ";
+                }
+                if(col==0 && row>=1 && (row&1)==0) //Print Col numbers on even rows
+                {
+                    if(rowNumber<=9)
+                        reportOutput += " " + rowNumber + "|"; //Add extra leading space for single digit numbers
+                    else
+                        reportOutput += rowNumber + "|";
+                }
+                if((row&1)==1) //Odd numbered row, add lines
+                {
+                    if(col==0) //Add extra leading space for first col
+                        reportOutput += "  ----";
+                    else
+                        reportOutput += "----";                   
+                }
+                else if(row!=0)
+                {
+                    String tempStr = locations[rowNumber-1][col].getSceneType().getDescription();
+                    tempStr.getChars(0, 3, desc,0);
+                    tempStr = String.valueOf(desc);
+                    
+                    reportOutput += tempStr + "|";
+                }
+            }
+        }
+        
+        reportOutput += "\n\nSTA = Starting"
+                + "\nBUI = Building"
+                + "\nMIS = Mists of Darkness"
+                + "\nFIN = Finger of Scorn"
+                + "\nPAT = Lost & Forbidden Path"
+                + "\nTRE = Tree of Life"
+                + "\nRIV = River of Water"
+                + "\nFIN = Finish";
+        
+        this.console.println("\n\nThe Map Report was successfully created in "
+                                + mapFilePath);
+        this.console.println(reportOutput); //Print to console           
+        mapFile.println(reportOutput);  //Write to file.
     }
     
+    private String getPath()
+    {
+        boolean valid = false;
+        String playersInput = null;
+        
+        try
+        {
+            while( !valid )
+            {
+                //Get the name from the keyboard and trim off spaces
+                playersInput = this.keyboard.readLine();
+                playersInput = playersInput.trim();
+                //playersInput = playersInput.toUpperCase();
+
+                if( playersInput.length() < 1 )
+                {
+                    this.console.println("Invalid entry, the selection must not be blank");
+                    continue;
+                }
+
+                break;
+            }
+        }
+        catch(Exception e)
+        {
+            this.console.println("Error reading input: " + e.getMessage());
+        }
+        return playersInput;
+    }            
+
+
+
+
 }

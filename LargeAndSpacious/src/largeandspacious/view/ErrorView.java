@@ -17,6 +17,7 @@ public class ErrorView
     private static final PrintWriter errorFile = LargeAndSpacious.getOutFile();
     private static final PrintWriter logFile = LargeAndSpacious.getLogFile();
     
+    //static function display() belongs to class, not an object
     public static void display(String className, String errorMessage)
     {
         errorFile.println(
