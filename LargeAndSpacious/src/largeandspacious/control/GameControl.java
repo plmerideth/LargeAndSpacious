@@ -13,7 +13,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import largeandspacious.LargeAndSpacious;
-import largeandspacious.control.Scene.SceneType;
 import largeandspacious.exceptions.MapControlException;
 import largeandspacious.model.Actor;
 import largeandspacious.model.Game;

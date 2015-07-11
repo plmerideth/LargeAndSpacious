@@ -5,6 +5,10 @@
  */
 package largeandspacious.control;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.EnumSet;
+import java.util.List;
 import largeandspacious.LargeAndSpacious;
 import largeandspacious.model.Actor;
 
@@ -19,22 +23,14 @@ public class ActorControl {
         String description = null;
         
         //get the actors
-        Actor[] actors = LargeAndSpacious.getCurrentGame().getActors();
-           
+        List<Actor> actors = new ArrayList<>(EnumSet.allOf(Actor.class));
+        description = "    LIST OF ACTORS";
+        // go through each of the actors, get the name and description   
         for (Actor actor: actors)
         {
-            switch(actor.name()) {
-                case "Lehi":
-                        description = description + "\n" + actor.name() + ": " + actor.getDescription();
-                case "Sariah":
-                case "Nephi":
-                case "Jacob":
-                case "Sam":
-                case "Laman":
-                case "Lemuel":
-                case "Zoram": 
+            description = description + "\n" + actor.name() + ":\t\t" + actor.getDescription();   
         }
-    }
+    
         return description;                   
 }
     

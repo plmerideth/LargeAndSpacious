@@ -7,9 +7,18 @@ package largeandspacious.view;
 
 // import java.util.Scanner;
 import java.awt.Point;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import static java.lang.Double.parseDouble;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import largeandspacious.LargeAndSpacious;
 import largeandspacious.control.ActorControl;
 import largeandspacious.control.ChallengeControl;
 import largeandspacious.control.GameControl;
@@ -29,6 +38,7 @@ public class GameMenuView extends View
 {
     ErrorView errorView = new ErrorView();
     private static PrintWriter mapFile = null;
+    private static PrintWriter actorFile = null;
     
     
     private final String FILE_PATH_MENU =
@@ -56,6 +66,7 @@ public class GameMenuView extends View
             + "\n| N - List Actor Names                     |"  
             + "\n| A - List attributes                      |"
             + "\n| Y - Create Map Report                    |"                
+            + "\n| R - Create Actor Report                    |" 
             + "\n| X - Return to Main Menu                  |"
             + "\n| H - Help                                 |"
             + "\n|------------------------------------------|");
@@ -95,7 +106,7 @@ public class GameMenuView extends View
                 this.listAttributes();
                 break;
             case 'N':
-                //List Attributes
+                //List Actors Names
                 this.listActorNames();
                 break;
             case 'X':
@@ -110,7 +121,16 @@ public class GameMenuView extends View
                 //Create map report
                 this.createMapReport();
                 break;
-                
+            case 'R':
+        {
+            try {
+                // create the actor report
+                this.createActorReport();
+            } catch (MapControlException ex) {
+                Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+                break;
             default: 
                 this.console.println("Invalid selection");                
                 break;
@@ -256,6 +276,8 @@ public class GameMenuView extends View
     private void listActorNames() {
         //Show the Obedience, Testimony, and Fruit Levels
         this.console.println(ActorControl.showActors());
+    }
+    
     private void createMapReport()
     {            
         int path = -1;
@@ -406,6 +428,31 @@ public class GameMenuView extends View
         }
         return playersInput;
     }            
+
+    private void createActorReport() throws MapControlException {
+        
+        String description = null;
+        
+        this.console.println("\nEnter the file path for file where the game "
+                + "is to be saved:");
+        
+        String filePath = this.getInput();
+        try (FileWriter writer = new FileWriter(filePath)) {
+            
+             //get the actors
+        List<Actor> actors = new ArrayList<>(EnumSet.allOf(Actor.class));
+        writer.write("    LIST OF ACTORS\r\n");
+        // go through each of the actors, get the name and description   
+        for (Actor actor: actors)
+        {
+            writer.write(actor.name() + ":\t\t" + actor.getDescription()+ "\r\n") ;     
+        }
+        writer.close();
+        } catch (IOException e) {
+    throw new MapControlException(e.getMessage());
+        }
+
+    }
 
 
 
