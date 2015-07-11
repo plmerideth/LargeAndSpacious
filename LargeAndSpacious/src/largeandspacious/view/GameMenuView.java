@@ -272,7 +272,9 @@ public class GameMenuView extends View
                         + "Exception: "
                         + e.toString()
                         + e.getCause()
-                        + e.getMessage());                            
+                        + e.getMessage());
+                    
+                    return;
                 }
                 
                 this.printReport(mapFile, mapFilePath);
