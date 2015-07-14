@@ -142,7 +142,7 @@ public class GameMenuView extends View
         //Create a new help Menu View
         HelpMenuView helpMenu = new HelpMenuView();
         helpMenu.display();
-        this.console.println("*** displayHelpMenu function called ***");
+        
     }
 
     private void displayMoveMenu()
@@ -178,7 +178,18 @@ public class GameMenuView extends View
                 ErrorView.display(this.getClass().getName(), me.getMessage());
                 return;
         }
+        
         returnValue = "You have gained " + challengeResult + " obedience points!";
+        // calculate the high score from the last challenge
+        // get the current score
+        double currentScore = LargeAndSpacious.getPlayer().getBestScore();
+        // get the new score - current score plus the challenge result
+        double newScore = currentScore + challengeResult ;
+        // if the new score is higher than the current score, we have a new high score.
+        // set the best score appropriately.
+        if (currentScore + challengeResult > currentScore) {
+            LargeAndSpacious.getPlayer().setBestScore(newScore);
+        }
         this.console.println(returnValue);
         
     }
@@ -226,7 +237,7 @@ public class GameMenuView extends View
         
         MapMenuView mapMenu = new MapMenuView();
         mapMenu.display();
-        this.console.println("*** displayPlayerItems function called ***");
+        
     }
 
     private void displayPlayerItems()

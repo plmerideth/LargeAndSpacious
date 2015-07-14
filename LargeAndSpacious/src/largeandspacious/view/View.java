@@ -35,7 +35,6 @@ public abstract class View implements ViewInterface {
             
             done = this.doAction(input); // do action based on selection
         } while (!done); // the selection is not "Return to Menu"
-        this.console.println("\n*** GameMenuView displayMenu stub function called ***");
     }
     
     @Override

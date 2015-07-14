@@ -5,6 +5,8 @@
  */
 package largeandspacious.view;
 
+import largeandspacious.model.Player;
+
 /**
  *
  * @author julzlee
@@ -12,24 +14,27 @@ package largeandspacious.view;
 public class PlayersScoreView extends View {
     
     
-    public PlayersScoreView() {
+    public PlayersScoreView(Player player) {
         
-        //String highScores = "\n";
         
         super("\n"
             + "\n------------------------------------------"
             + "\n  Player High Scores                      "
             + "\n------------------------------------------"
-            + "\n Thomas - " + (int)(Math.random()*25) + 5 
-            + "\n Sarah - " + (int)(Math.random()*25) + 5 
-            + "\n Frank - " + (int)(Math.random()*25) + 5 
-            + "\n Michelle - " + (int)(Math.random()*25) + 5 
-            + "\n Jeff - " + (int)(Math.random()*25) + 5 
+            + "\n " + PlayersStats(player) + " "
             + "\n------------------------------------------"
             + "\n X - Exit menu                            "
             + "\n------------------------------------------");
     }
     
+    public static String PlayersStats(Player player) {
+        
+        String playerName = player.getName();
+        double playerScore = player.getBestScore();
+        return playerName + " - " + playerScore;
+    }
+    
+       
 @Override
 public boolean doAction(Object obj) {
     

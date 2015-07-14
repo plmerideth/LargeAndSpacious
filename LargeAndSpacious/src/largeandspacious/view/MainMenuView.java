@@ -86,7 +86,7 @@ public class MainMenuView extends View
         GameMenuView gameMenu = new GameMenuView();
         //Display the Game Menu
         gameMenu.display();
-        this.console.println("*** loadExistingGame function called ***");
+        
     }
 
     private void loadExistingGame() {
@@ -128,13 +128,14 @@ public class MainMenuView extends View
         //Create a new help Menu View
         HelpMenuView helpMenu = new HelpMenuView();
         helpMenu.display();
-        this.console.println("*** displayHelpMenu function called ***");
+        
     }
 
     private void displayPlayersScores() {
+        
         //Create a Players Score View
-        PlayersScoreView scores = new PlayersScoreView();
+        PlayersScoreView scores = new PlayersScoreView(LargeAndSpacious.getPlayer());
         scores.display();
-        this.console.println("*** displayPlayersScores function called ***");
+        
     }
 }

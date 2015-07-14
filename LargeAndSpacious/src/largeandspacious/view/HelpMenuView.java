@@ -200,7 +200,7 @@ public class HelpMenuView extends View
         //Create a new help Menu View
         ChallengesView challenges = new ChallengesView();
         challenges.display();
-        this.console.println("*** displayChallenges function called ***");
+        
     }
 
     
