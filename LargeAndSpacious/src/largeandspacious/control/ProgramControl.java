@@ -24,7 +24,9 @@ public class ProgramControl
         player.setName(playersName);
         
         LargeAndSpacious.setPlayer(player);
+        //createActor(player);
         
         return player;
     }   
+    
 }

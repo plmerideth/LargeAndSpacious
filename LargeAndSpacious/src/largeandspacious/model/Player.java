@@ -16,7 +16,8 @@ public class Player implements Serializable
 {
     private String name;
     private double bestScore;
-    private Actor actor;
+    private double currentScore;
+    private String actor;
     private Point currentLocation = new Point();
 
     public Player() {
@@ -47,6 +48,28 @@ public class Player implements Serializable
     {
         return currentLocation;
     }
+
+    public String getActor() {
+        return actor;
+    }
+
+    public void setActor(String actor) {
+        this.actor = actor;
+    }
+
+    public void setCurrentLocation(Point currentLocation) {
+        this.currentLocation = currentLocation;
+    }
+
+    public double getCurrentScore() {
+        return currentScore;
+    }
+
+    public void setCurrentScore(double currentScore) {
+        this.currentScore = currentScore;
+    }
+    
+    
     
     @Override
     public String toString() {

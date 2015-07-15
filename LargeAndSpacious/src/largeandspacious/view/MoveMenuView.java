@@ -4,7 +4,6 @@ package largeandspacious.view;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import static java.lang.Integer.parseInt;
-import java.util.Scanner;
 import largeandspacious.LargeAndSpacious;
 import largeandspacious.model.Location;
 import largeandspacious.model.Player;

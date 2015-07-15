@@ -17,7 +17,7 @@ import largeandspacious.model.Map;
  */
 public class GameControl implements Serializable {
     
-    public static void createNewGame(Player player) {
+    /*public static void createNewGame(Player player) {
         Game game = new Game(); //create mew game
         LargeAndSpacious.setCurrentGame(game); //save in LargeAndSpacious
         
@@ -33,11 +33,11 @@ public class GameControl implements Serializable {
         //MapControl.moveActorsToStartingLocation(map);
         
         
-    }
+    }*/
 
-    private static Item[] createInventoryList() {
+    /*private static Item[] createInventoryList() {
         System.out.println("\n*** createInventoryList stub function called ***");
         return null;
-    }
+    }*/
     
 }

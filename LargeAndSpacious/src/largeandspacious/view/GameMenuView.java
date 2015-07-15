@@ -185,6 +185,8 @@ public class GameMenuView extends View
         double currentScore = LargeAndSpacious.getPlayer().getBestScore();
         // get the new score - current score plus the challenge result
         double newScore = currentScore + challengeResult ;
+        //set the players current score
+        LargeAndSpacious.getPlayer().setCurrentScore(newScore);
         // if the new score is higher than the current score, we have a new high score.
         // set the best score appropriately.
         if (currentScore + challengeResult > currentScore) {

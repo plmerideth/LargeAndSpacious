@@ -2,9 +2,15 @@ package largeandspacious.view;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 import largeandspacious.LargeAndSpacious;
+import largeandspacious.control.ActorControl;
 import largeandspacious.control.ProgramControl;
+import largeandspacious.model.Actor;
 import largeandspacious.model.Game;
 import largeandspacious.model.Item;
 import largeandspacious.model.Player;
@@ -32,6 +38,9 @@ public class StartProgramView
             
             //Display a custom welcome message
             this.displayWelcomeMessage(player);
+            
+            //Get the Actor for the game
+            String actorName = this.getActor();
             
             //Display the main menu
             MainMenuView mainMenu = new MainMenuView();
@@ -90,6 +99,69 @@ public class StartProgramView
             this.console.println("Error reading input: " + e.getMessage());
         }
         return playersName;
+    }
+    
+    private String getActor()
+    {
+        boolean valid = false;
+        String actorName = null;
+        
+        try
+        {
+            while( !valid )
+            {
+                //Show the actors and prompt the user to type in an actor name
+                this.console.println(ActorControl.showActors());
+                this.console.println("Enter the character's name you want to be below:");
+
+                //Get the name from the keyboard and trim off spaces
+                actorName = this.keyboard.readLine();
+                actorName = actorName.trim();
+
+                if( actorName.length() < 1 )
+                {
+                    this.console.println("Invalid name - the name must not be blank");
+                    continue;
+                } else {
+                    //this.console.println("The name entered is " + actorName);
+                    switch (actorName.toUpperCase()) {
+                            case "LEHI":
+                                LargeAndSpacious.setActor(Actor.Lehi);
+                                break;
+                            case "SARIAH":
+                                LargeAndSpacious.setActor(Actor.Sariah);
+                                break;
+                            case "NEPHI":
+                                LargeAndSpacious.setActor(Actor.Nephi);
+                                break;
+                            case "JACOB":
+                                LargeAndSpacious.setActor(Actor.Jacob);
+                                break;
+                            case "SAM":
+                                LargeAndSpacious.setActor(Actor.Sam);
+                                break;
+                            case "LAMAN":
+                                LargeAndSpacious.setActor(Actor.Laman);
+                                break;
+                            case "LEMUEL":
+                                LargeAndSpacious.setActor(Actor.Lemuel);
+                                break;
+                            case "ZORAM":
+                                LargeAndSpacious.setActor(Actor.Zoram);
+                                break;
+                            default:
+                               this.console.println("Invalid name - please enter a name from the list"); 
+                    }
+
+                }
+                break;
+            }
+        }
+        catch(Exception e)
+        {
+            this.console.println("Error reading input: " + e.getMessage());
+        }
+        return actorName;
     }
 
     public void displayWelcomeMessage(Player player)
