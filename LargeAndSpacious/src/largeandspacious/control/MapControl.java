@@ -9,6 +9,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.PrintWriter;
 import static java.lang.Math.abs;
+import java.util.Random;
 import largeandspacious.LargeAndSpacious;
 import largeandspacious.control.Scene.SceneType;
 import largeandspacious.exceptions.MapControlException;
@@ -26,15 +27,14 @@ public class MapControl {
    
     public static void moveActorsToStartingLocation(Map map) 
             throws MapControlException {
-        // for every actor
-        Actor[] actors = Actor.values();
         
-        for (Actor actor : actors) {
-            Point coordinates = actor.getCoordinates();
+        Actor actor = LargeAndSpacious.getActor();
+        Point coordinates = actor.getCoordinates();
+        // move the player to the starting location
+        LargeAndSpacious.getPlayer().setCurrentLocation(coordinates);
             //cannot use this.console.println from a static function
             // System.out.println("Actor = " + actor);
-            MapControl.moveActorToLocation(actor, coordinates, 0);
-        }
+        MapControl.moveActorToLocation(actor, coordinates, 0);
     }
     
     public static void moveActorToLocation(Actor actor, Point coordinates, int diceRoll) 
@@ -60,20 +60,29 @@ public class MapControl {
         
         if( diceRoll!=0 && moveCount > diceRoll)
         {
-            throw new MapControlException("\nCan not move actor to location ("
+            throw new MapControlException("\nCan not move player to location ("
                 + coordinates.x + ", " + coordinates.y
                 + ") because that location requires " + moveCount + " moves, which exceeds your roll of " + diceRoll + " !");
                 
         }
  
-        player.setCurentLocation(coordinates);
+        player.setCurrentLocation(coordinates);
         //System.out.println("New Location: " + coordinates);        
     }
 
     public static Map createMap() {
         
+        // set up random numbers between 5 and 10 so we have a decent map
+        Random rand = new Random();
+        int min = 5;
+        int max = 10;
+        //set up a random map
+        int x = rand.nextInt((max - min) + 1) + min;
+        //System.out.println("x = " + x);
+        int y = rand.nextInt((max - min) + 1) + min;
+        //System.out.println("y = " + y);
         //create the map
-        Map map = new Map(7, 5);
+        Map map = new Map(x, y);
         
         //create a list of the different challenge scenes in the game
         Scene[] scenes = createScenes();

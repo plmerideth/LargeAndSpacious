@@ -150,13 +150,15 @@ public class GameMenuView extends View
         Point coordinates = new Point();
         int diceRoll;
         Actor actor = Actor.Lehi;
-        double challengeResult = 0;
+        double sceneResult = 0;
         String returnValue;
         
         Location newLocation = new Location();
         
         MoveMenuView moveMenu = new MoveMenuView();
+        // roll the dice to find out how many spaces the player can move
         diceRoll = moveMenu.rollDice();
+        // get the location the player has selected
         newLocation = moveMenu.selectLocation();
         
         coordinates.x = newLocation.getRow();
@@ -169,9 +171,11 @@ public class GameMenuView extends View
             ErrorView.display(this.getClass().getName(), me.getMessage());
             return;
         }
+        //tell the player what scene they have landed on
+        //this.console.println(newLocation.getScene().getDescription());
         //Add code to process move
         try {
-            challengeResult = ChallengeControl.getChallengeResult(getObediencePlayed(),moveMenu.rollDice(),
+            sceneResult = ChallengeControl.getChallengeResult(getObediencePlayed(),moveMenu.rollDice(),
                     4,0, 5);
         } catch ( MapControlException me)
         {
@@ -179,17 +183,17 @@ public class GameMenuView extends View
                 return;
         }
         
-        returnValue = "You have gained " + challengeResult + " obedience points!";
+        returnValue = "You have gained " + sceneResult + " obedience points!";
         // calculate the high score from the last challenge
         // get the current score
         double currentScore = LargeAndSpacious.getPlayer().getBestScore();
         // get the new score - current score plus the challenge result
-        double newScore = currentScore + challengeResult ;
+        double newScore = currentScore + sceneResult ;
         //set the players current score
         LargeAndSpacious.getPlayer().setCurrentScore(newScore);
         // if the new score is higher than the current score, we have a new high score.
         // set the best score appropriately.
-        if (currentScore + challengeResult > currentScore) {
+        if (currentScore + sceneResult > currentScore) {
             LargeAndSpacious.getPlayer().setBestScore(newScore);
         }
         this.console.println(returnValue);
@@ -202,7 +206,7 @@ public class GameMenuView extends View
         
         while( !valid )
         {
-            //Prompt for the player's name
+            //tell the player what scene they have landed on
             this.console.println("\n You have landed on a challenge! Your challenge "
         + "\n is the mists of darkness. You cannot see where you are going. "
         + "\n Enter the number of obedience points you wish to use below:");
@@ -388,7 +392,7 @@ public class GameMenuView extends View
                 }
                 else if(row!=0)
                 {
-                    String tempStr = locations[rowNumber-1][col].getSceneType().getDescription();
+                    String tempStr = locations[rowNumber-1][col].getScene().getDescription();
                     tempStr.getChars(0, 3, desc,0);
                     tempStr = String.valueOf(desc);
                     

@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import static java.lang.Integer.parseInt;
 import largeandspacious.LargeAndSpacious;
 import largeandspacious.model.Location;
+import largeandspacious.model.Map;
 import largeandspacious.model.Player;
 
 /**
@@ -37,7 +38,7 @@ public class MoveMenuView
     private int xCoord;
     private int yCoord;
         
-    Location selectLocation()
+    public Location selectLocation()
     {
         Location newLocation = new Location();
         //Get X coordinate
@@ -217,6 +218,8 @@ public class MoveMenuView
     } 
         private String Location(int x, int y) {
 
+            //int intRows = Map.getNoOfRows();
+            //int intColumns = Map.getNoOfColumns();
             // build the beginning of the map since it will always be the same
             String temp = "\n"
             + "\n   |---------------------------|"

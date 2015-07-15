@@ -18,7 +18,7 @@ public class Location implements Serializable {
     //Class instance variables
     private int row;
     private int col;
-    private Scene sceneType;
+    private Scene scene;
     private boolean visited;
    
     private ChallengeScene challengeScene;
@@ -51,12 +51,12 @@ public class Location implements Serializable {
 
     public void setScene(Scene index)
     {
-        sceneType = index;
+        scene = index;
     }
     
-    public Scene getSceneType()
+    public Scene getScene()
     {
-        return sceneType;
+        return scene;
     }
     
     @Override

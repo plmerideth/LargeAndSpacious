@@ -39,7 +39,7 @@ public class Player implements Serializable
         this.bestScore = bestScore;
     }
 
-    public void setCurentLocation(Point newLocation)
+    public void setCurrentLocation(Point newLocation)
     {
         currentLocation = newLocation;
     }
@@ -57,9 +57,9 @@ public class Player implements Serializable
         this.actor = actor;
     }
 
-    public void setCurrentLocation(Point currentLocation) {
+    /*public void setCurrentLocation(Point currentLocation) {
         this.currentLocation = currentLocation;
-    }
+    }*/
 
     public double getCurrentScore() {
         return currentScore;

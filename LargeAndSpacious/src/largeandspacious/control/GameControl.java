@@ -120,6 +120,19 @@ public class GameControl implements Serializable
             }
         */        
     }
+    
+    public static void getLocationScenes(Map map,int x, int y)
+    {
+        Location[][] locations = map.getLocations();
+        
+        //pass in the location to get the scene
+        locations[x][y].getScene();
+        
+        //DEBUG:  Print all locations to console
+        String myDesc = "["+x+"]}"+"["+y+"]="+locations[x][y].getScene().getDescription()+"\n";
+        System.out.println(myDesc);
+                            
+    }
 
     public static Item[] getSortedInventoryList()
     {
