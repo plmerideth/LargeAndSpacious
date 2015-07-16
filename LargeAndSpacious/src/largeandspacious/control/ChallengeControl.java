@@ -27,7 +27,9 @@ public class ChallengeControl {
                 throw new MapControlException("The challenge "
                 + "obedience points are less than zero, which is not allowed.");
             }
-	if ((rollOne > 5) || (rollOne < 0) || (rollTwo > 5) || (rollTwo < 0)) {
+        
+        //PLM:  Dice roll from 1-6.  Talk to Julie about this.
+	if ((rollOne > 6) || (rollOne < 0) || (rollTwo > 6) || (rollTwo < 0)) {
             /* the first roll should not be greater than 5 or less than 0
             or the 2nd roll should be greater than 5 or less than 0*/
 		throw new MapControlException("The roll of the dice "

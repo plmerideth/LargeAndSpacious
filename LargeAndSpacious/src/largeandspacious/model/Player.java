@@ -7,6 +7,7 @@ package largeandspacious.model;
 
 import java.awt.Point;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Player implements Serializable
     private double currentScore;
     private String actor;
     private Point currentLocation = new Point();
+    private ArrayList<Point> pastLocations = new ArrayList<Point>();
 
     public Player() {
     }  
@@ -49,6 +51,17 @@ public class Player implements Serializable
         return currentLocation;
     }
 
+    public void setPastLocation(Point pastLocation, Point newLocation)
+    {
+        if(pastLocation != newLocation)
+            this.pastLocations.add(pastLocation);
+    }
+    
+    public ArrayList<Point> getPastLocations()
+    {
+        return pastLocations;
+    }
+    
     public String getActor() {
         return actor;
     }
