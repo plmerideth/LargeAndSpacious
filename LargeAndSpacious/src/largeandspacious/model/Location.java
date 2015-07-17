@@ -19,7 +19,7 @@ public class Location implements Serializable {
     private int row;
     private int col;
     private Scene scene;
-    private boolean visited;
+    private boolean visited=false;
    
     private ChallengeScene challengeScene;
     private QuestionScene questionScene;
@@ -49,6 +49,11 @@ public class Location implements Serializable {
         this.visited = visited;
     }
 
+    public boolean getVisited()
+    {
+        return this.visited;
+    }
+    
     public void setScene(Scene index)
     {
         scene = index;

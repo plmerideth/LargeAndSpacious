@@ -1,6 +1,7 @@
 
 package largeandspacious.view;
 
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import static java.lang.Integer.parseInt;
@@ -23,14 +24,14 @@ public class MoveMenuView
         + "\n|  Press R to roll dice!                   |"
         + "\n|------------------------------------------|";
     
-    private final String XMENU = "\n"
-        + "\n|------------------------------------------|"
+    private final String XMENU = 
+          "\n|------------------------------------------|"
         + "\n| Enter X location                         |"
         + "\n| X - Return to Previous Menu              |"                
         + "\n|------------------------------------------|";
                 
-    private final String YMENU = "\n"
-        + "\n|------------------------------------------|"
+    private final String YMENU = 
+          "\n|------------------------------------------|"
         + "\n| Enter Y location                         |"
         + "\n| X - Return to Previous Menu              |"                
         + "\n|------------------------------------------|";
@@ -45,6 +46,14 @@ public class MoveMenuView
         //char selection = ' ';
         int number = -1;
         String input = "";
+        Player player = LargeAndSpacious.getCurrentGame().getPlayer();
+        Point currentCoordinates = player.getCurrentLocation();
+        
+        this.console.println("\nYour current location is: ("
+            + currentCoordinates.getX()+ ", " + currentCoordinates.getY()+ ")");
+        
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.displayMap();
         
         while(number < 0)
         {
@@ -53,7 +62,10 @@ public class MoveMenuView
             input = this.getInput('X');  // get the user's selection
             
             if(input.equals("X"))
-                break;      
+            {
+                newLocation.setRow(-1);
+                break;
+            }                
            
             try{
                 number = parseInt(input);
@@ -72,6 +84,9 @@ public class MoveMenuView
             newLocation.setRow(number);
         
             //Get Y coordinate
+            this.console.println("\nYour current location is: ("
+            + currentCoordinates.getX()+ ", " + currentCoordinates.getY()+ ")");
+                    
             number = -1;
             while(number < 0)
             {
@@ -80,7 +95,11 @@ public class MoveMenuView
                 input = this.getInput('Y');  // get the user's selection
 
                 if(input.equals("X"))
-                    break;      
+                {
+                    newLocation.setRow(-1);                   
+                    break;
+                }
+                          
 
                 try{
                     number = parseInt(input);
@@ -97,7 +116,7 @@ public class MoveMenuView
             {
                 this.console.println("Player entered " + number + " for Y coordinate");
                 this.console.println("Valid map coordinates entered");
-                newLocation.setCol(number);                
+                newLocation.setCol(number);
             }            
         }
         return newLocation;
@@ -157,7 +176,7 @@ public class MoveMenuView
     {
         if (number>=1 && number<=10) {
             yCoord = number;
-            this.console.println(Location(xCoord,yCoord));
+            //this.console.println(Location(xCoord,yCoord));
             return true;
         }
         else

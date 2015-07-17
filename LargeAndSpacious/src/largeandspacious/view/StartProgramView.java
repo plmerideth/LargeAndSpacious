@@ -150,9 +150,9 @@ public class StartProgramView
                                 LargeAndSpacious.setActor(Actor.Zoram);
                                 break;
                             default:
-                               this.console.println("Invalid name - please enter a name from the list"); 
+                               this.console.println("\n\nInvalid name - please enter a name from the list\n"); 
+                               continue;
                     }
-
                 }
                 break;
             }

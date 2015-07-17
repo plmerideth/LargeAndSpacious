@@ -15,6 +15,7 @@ import largeandspacious.control.Scene.SceneType;
 import largeandspacious.exceptions.MapControlException;
 import largeandspacious.model.Actor;
 import largeandspacious.model.Game;
+import largeandspacious.model.Location;
 import largeandspacious.model.Map;
 import largeandspacious.model.Player;
 
@@ -41,6 +42,7 @@ public class MapControl {
             throws MapControlException {
         Map map = LargeAndSpacious.getCurrentGame().getMap();
         Player player = LargeAndSpacious.getCurrentGame().getPlayer();
+        Location[][] locations = map.getLocations();
         
         int newRow = coordinates.x-1;
         int newColumn = coordinates.y-1;
@@ -56,6 +58,13 @@ public class MapControl {
                 + "the bounds of the map.");
         }
         
+        //Cannot move to a location you have already visited.
+        if(locations[(int)(coordinates.getX()-1)][(int)(coordinates.getY()-1)].getVisited())
+        {
+            throw new MapControlException("You can not move to that location because you have already visited " 
+                + coordinates.x + ", " + coordinates.y);
+        }
+        
         double moveCount = abs(currentCoordinates.getX()-coordinates.getX())+(abs(currentCoordinates.getY()-coordinates.getY()));
         
         if( diceRoll!=0 && moveCount > diceRoll)
@@ -66,7 +75,11 @@ public class MapControl {
                 
         }
  
+        player.setPastLocation(player.getCurrentLocation(), coordinates);
         player.setCurrentLocation(coordinates);
+        
+        //Set location coordinates as visited.
+        locations[(int)(coordinates.getX()-1)][(int)(coordinates.getY()-1)].setVisited(true);
         //System.out.println("New Location: " + coordinates);        
     }
 
@@ -83,6 +96,7 @@ public class MapControl {
         //System.out.println("y = " + y);
         //create the map
         Map map = new Map(x, y);
+        //Map map = new Map(10,10); //Temporary for testing.
         
         //create a list of the different challenge scenes in the game
         Scene[] scenes = createScenes();

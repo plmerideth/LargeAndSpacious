@@ -1,0 +1,4 @@
+largeandspacious.view.GameMenuView -- 
+Can not move player to location (8, 2) because that location requires 6.0 moves, which exceeds your roll of 4 !
+largeandspacious.view.GameMenuView -- 
+Can not move player to location (8, 1) because that location requires 5.0 moves, which exceeds your roll of 4 !

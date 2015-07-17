@@ -29,6 +29,7 @@ import largeandspacious.model.Actor;
 import largeandspacious.model.Item;
 import largeandspacious.model.Location;
 import largeandspacious.model.Map;
+import largeandspacious.model.Player;
 
 /**
  *
@@ -66,7 +67,7 @@ public class GameMenuView extends View
             + "\n| N - List Actor Names                     |"  
             + "\n| A - List attributes                      |"
             + "\n| Y - Create Map Report                    |"                
-            + "\n| R - Create Actor Report                    |" 
+            + "\n| R - Create Actor Report                  |" 
             + "\n| X - Return to Main Menu                  |"
             + "\n| H - Help                                 |"
             + "\n|------------------------------------------|");
@@ -158,23 +159,46 @@ public class GameMenuView extends View
         MoveMenuView moveMenu = new MoveMenuView();
         // roll the dice to find out how many spaces the player can move
         diceRoll = moveMenu.rollDice();
-        // get the location the player has selected
-        newLocation = moveMenu.selectLocation();
         
-        coordinates.x = newLocation.getRow();
-        coordinates.y = newLocation.getCol();
-        
-        try{
-            MapControl.moveActorToLocation(actor, coordinates, diceRoll);
-        }catch ( MapControlException me)
+        /* PLM(7-16-15):  I added this while() loop to player doesn't have to re-roll the dice when
+        * an invalid location is entered.  Previously, if the player entered an invalid
+        * set of coordinates or coordinates requiring more moves than allowed by the dice,
+        * the player had to re-roll the dice.  He should keep the same roll, but be
+        * required to enter valid coordinates.
+        */
+        while(true)
         {
-            ErrorView.display(this.getClass().getName(), me.getMessage());
-            return;
+            // get the location the player has selected
+            newLocation = moveMenu.selectLocation();
+            
+            if(newLocation.getRow()==-1)//This indicates 'X' entered by user
+                break;
+
+            coordinates.x = newLocation.getRow();
+            coordinates.y = newLocation.getCol();
+
+            try
+            {
+                MapControl.moveActorToLocation(actor, coordinates, diceRoll);
+            }catch ( MapControlException me)
+            {
+                ErrorView.display(this.getClass().getName(), me.getMessage());
+                continue;
+            }
+            displayMap();
+            break;
         }
+        
+        
         //tell the player what scene they have landed on
         //this.console.println(newLocation.getScene().getDescription());
         //Add code to process move
-        try {
+        
+        if(newLocation.getRow() != -1)
+        {
+        try
+        {
+            //PLM:  ChallengeObedience, rollTwo, inventory are hard coded (see ChallengeControl class.  Talk to Julie.
             sceneResult = ChallengeControl.getChallengeResult(getObediencePlayed(),moveMenu.rollDice(),
                     4,0, 5);
         } catch ( MapControlException me)
@@ -197,7 +221,7 @@ public class GameMenuView extends View
             LargeAndSpacious.getPlayer().setBestScore(newScore);
         }
         this.console.println(returnValue);
-        
+        }
     }
     private double getObediencePlayed()
     {
@@ -238,12 +262,125 @@ public class GameMenuView extends View
         return playersObedience;
     }
 
-    public void displayMap() {
+    public void displayMap()
+    {
         //Create a new map Menu View
-        
+        /*
         MapMenuView mapMenu = new MapMenuView();
         mapMenu.display();
+        */
+
+        Map map = LargeAndSpacious.getCurrentGame().getMap();
+        Player player = LargeAndSpacious.getCurrentGame().getPlayer();
+        Location[][] locations = map.getLocations();
+        int NoOfRows = map.getNoOfRows();
+        int NoOfCols = map.getNoOfColumns();
+        int rowNumber = 0;
+        int rowCycles = (NoOfRows*2)+1;
+        int moveNumber = 1;
+        Point currentLoc = new Point();
+        Point pastLoc = new Point();
+        char desc[] = new char[3];
+        Boolean visited; //Used to indicate a grid space has been visited.
+        String reportOutput = "\n\nTHE LARGE AND SPACIOUS BUILDING MAP";
+        ArrayList<Point> coordinates;
+        coordinates = player.getPastLocations();
+        Point currentCoordinates = player.getCurrentLocation();
         
+        
+        //Draw map and insert scene types in each location
+        for(int row=0; row<rowCycles; row++)
+        {
+            if(row==0) //For first row, add newline plus extra space at beginning of number line
+                reportOutput+="\n\n   ";
+            else //After 1st row, just add a new line
+                reportOutput +="\n";
+            
+            if(row>0 && (row&1)==0)//Increment row counter if row number is even and past row 0
+                rowNumber++;
+            
+            for(int col=0; col<NoOfCols; col++)
+            {
+                if(row==0) //First row, print row numbers
+                {
+                    reportOutput += " "+(col+1)+"  ";
+                }
+                if(col==0 && row>=1 && (row&1)==0) //Print Col numbers on even rows
+                {
+                    if(rowNumber<=9)
+                        reportOutput += " " + rowNumber + "|"; //Add extra leading space for single digit numbers
+                    else
+                        reportOutput += rowNumber + "|";
+                }
+                if((row&1)==1) //Odd numbered row, add lines
+                {
+                    if(col==0) //Add extra leading space for first col
+                        reportOutput += "  ----";
+                    else
+                        reportOutput += "----";                   
+                }
+                else if(row!=0)
+                {
+                    //int myTest = coordinates.size();
+                    visited = false;
+                    currentLoc.setLocation(rowNumber, col+1);
+                    
+                    //If current location of player equals current map location
+                    if( currentCoordinates.equals(currentLoc)) 
+                    {
+                        reportOutput += " X |";
+                        visited = true;
+                    }
+                    else
+                    {
+                        for (Point coordinate : coordinates)
+                        {
+                            pastLoc = coordinate;                        
+                            if( pastLoc.equals(currentLoc))
+                            {
+                                //Set moveNumber equal to index position of coordinates in coordinates ArrayList
+                                moveNumber = coordinates.indexOf(pastLoc)+1;
+                                if(moveNumber>9) //If moveNumber is one digit
+                                    reportOutput += " " + moveNumber + "|";
+                                else  //If moveNumber is two digits
+                                    reportOutput += " " + moveNumber + " |";
+                                moveNumber++;
+                                visited =true;
+                            }
+                        }
+                    }
+                    if(!visited)
+                        reportOutput += "   |";
+                    /*
+                    if((rowNumber-1)<coordinates.size())
+                    {
+                    currentLoc = coordinates.get(rowNumber-1);
+                    double myTest2 = currentLoc.getX();
+                    myTest2 = currentLoc.getY();
+                    if( (rowNumber-1)==currentLoc.getX() && col==currentLoc.getY())
+                    {
+                    //Print move number
+                    reportOutput += moveNumber + "|";
+                    moveNumber++;
+                    }
+                    }
+                     */
+                    /*
+                    currentLoc = coordinates.get(col);
+                    String temp = Double.toString(currentLoc.getX());
+                    temp += ", " + Double.toString(currentLoc.getY());
+                    this.console.println(temp);
+                     */
+                    /*
+                    String tempStr = locations[rowNumber-1][col].getScene().getDescription();
+                    tempStr.getChars(0, 3, desc,0);
+                    tempStr = String.valueOf(desc);
+                     */
+                    //reportOutput += tempStr + "|";
+                }
+            }
+        }
+        this.console.println(reportOutput); //Print to console                  
     }
 
     private void displayPlayerItems()
