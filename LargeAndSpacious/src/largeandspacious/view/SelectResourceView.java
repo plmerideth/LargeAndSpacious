@@ -68,7 +68,7 @@ public class SelectResourceView extends View
         return done;
     }
 
-    private double selectObedience()
+    public double selectObedience()
     {
         boolean valid = false;
         double playersObedience = 0;
@@ -105,7 +105,7 @@ public class SelectResourceView extends View
         return playersObedience;        
     }
 
-    private double selectTestimony()
+    public double selectTestimony()
     {
         boolean valid = false;
         double playersTestimony = 0;
