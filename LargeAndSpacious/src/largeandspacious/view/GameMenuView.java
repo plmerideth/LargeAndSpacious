@@ -149,7 +149,7 @@ public class GameMenuView extends View
     {
         Point coordinates = new Point();
         int diceRoll;
-        Actor actor = Actor.Lehi;
+        Actor actor = LargeAndSpacious.getActor();
         double sceneResult = 0;
         String returnValue;
         

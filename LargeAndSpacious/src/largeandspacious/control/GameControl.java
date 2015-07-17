@@ -30,7 +30,6 @@ public class GameControl implements Serializable
        
     public static void createNewGame(Player player) throws MapControlException
     {      
-        Actor actor = Actor.Lehi;
         
         Game game = new Game();
         
