@@ -151,30 +151,17 @@ public class SelectResourceView extends View
         while( !valid )
         {
             //tell the player what scene they have landed on
-            this.console.println("\nDo you want to use a rod of iron? Answer Y or N below:");
+            this.console.println("\nEnter the number of Rod of Iron points you wish to use below:");
             
             try
             {
-                response = this.keyboard.readLine();
                 //Get the points from the keyboard 
-                switch (response.toUpperCase()) {
-                    case "Y":
-                        rodOfIron = 1.0;
-                        break;
-                    case "N":
-                        rodOfIron = 0.0;
-                        break;
-                    case "X":
-                        break;
-                    default:
-                        this.console.println("Invalid selection - Please enter Y or N.");
-                        break;
-                }
+                rodOfIron = parseDouble(this.keyboard.readLine());
                 
             }
             catch( IllegalFormatException ife)
             {
-                ErrorView.display(this.getClass().getName(), "\nYou must enter Y or N." +
+                ErrorView.display(this.getClass().getName(), "\nYou must enter a valid number." +
                         "Try again or enter X to exit");
                 break;
             }
@@ -197,27 +184,12 @@ public class SelectResourceView extends View
         while( !valid )
         {
             //tell the player what scene they have landed on
-            this.console.println("\nDo you want to use the straight and narrow path? Answer Y or N below:");
+            this.console.println("\nEnter the number of Straight and Narrow points you wish to use below:");
             
             try
             {
                 //Get the points from the keyboard 
-                response = this.keyboard.readLine();
-                //Get the points from the keyboard 
-                switch (response.toUpperCase()) {
-                    case "Y":
-                        straightNarrow = 1.0;
-                        break;
-                    case "N":
-                        straightNarrow = 0.0;
-                        break;
-                    case "X":
-                        break;
-                    default:
-                        this.console.println("Invalid selection - Please enter Y or N.");
-                        break;
-                }
-                //straightNarrow = parseDouble(this.keyboard.readLine());
+                straightNarrow = parseDouble(this.keyboard.readLine());
             }
             catch( IllegalFormatException ife)
             {
@@ -244,31 +216,16 @@ public class SelectResourceView extends View
         while( !valid )
         {
             //tell the player what scene they have landed on
-            this.console.println("\nDo you want to use the man in white robe? Answer Y or N below:");
+            this.console.println("\nEnter the number of Man in White Robe points you wish to use below:");
             
             try
             {
                 //Get the points from the keyboard 
-                response = this.keyboard.readLine();
-                //Get the points from the keyboard 
-                switch (response.toUpperCase()) {
-                    case "Y":
-                        manInWhite = 1.0;
-                        break;
-                    case "N":
-                        manInWhite = 0.0;
-                        break;
-                    case "X":
-                        break;
-                    default:
-                        this.console.println("Invalid selection - Please enter Y or N.");
-                        break;
-                }
-                //manInWhite = parseDouble(this.keyboard.readLine());
+                manInWhite = parseDouble(this.keyboard.readLine());
             }
             catch( IllegalFormatException ife)
             {
-                ErrorView.display(this.getClass().getName(), "\nYou must enter Y or N." +
+                ErrorView.display(this.getClass().getName(), "\nYou must enter a valid number." +
                         "Try again or enter X to exit");
                 break;
             }
