@@ -152,9 +152,15 @@ public class GameMenuView extends View
         Point coordinates = new Point();
         int diceRoll;
         Actor actor = LargeAndSpacious.getActor();
+        Map map = LargeAndSpacious.getCurrentGame().getMap();
+        Player player = LargeAndSpacious.getCurrentGame().getPlayer();
+        Location[][] locations = map.getLocations();
+        
         double sceneResult = 0;
         int questionResult;
         String returnValue;
+        double currentRow = player.getCurrentLocation().getX();
+        double currentCol = player.getCurrentLocation().getY();
         
         Location newLocation = new Location();
         
@@ -198,14 +204,16 @@ public class GameMenuView extends View
         SelectResourceView selectResource = new SelectResourceView();
         //show the available resources
         this.displayPlayerItems();
+        
         Item[] inventory = LargeAndSpacious.getCurrentGame().getInventory();
         double playerObedience = selectResource.selectObedience();
         double playerTestimony = selectResource.selectTestimony();
         double playerRoll = moveMenu.rollDice();
         double destructionRoll = moveMenu.rollDice();
         //location array with the scene
-        //double destructObedPoints = locations[(int)currentRow][(int)currentCol].getScene().getObedienceDestruction();
-        //double destructTestPoints = locations[(int)currentRow][(int)currentCol].getScene().getTestimonyDestruction();
+        double destructObedPoints = locations[(int)currentRow][(int)currentCol].getScene().getObedienceDestruction();
+        double destructTestPoints = locations[(int)currentRow][(int)currentCol].getScene().getTestimonyDestruction();
+        
         double playerObedItems = inventory[inventoryItem.obedience.ordinal()].getValue();
         double playerTestItems = inventory[inventoryItem.testimony.ordinal()].getValue();
         

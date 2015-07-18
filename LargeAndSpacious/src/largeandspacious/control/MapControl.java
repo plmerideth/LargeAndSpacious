@@ -76,10 +76,11 @@ public class MapControl {
                 
         }
  
+        //Save player old current location to pastLocations ArrayList & player new current location
         player.setPastLocation(player.getCurrentLocation(), coordinates);
         player.setCurrentLocation(coordinates);
         
-        //Set location coordinates as visited.
+        //Set location coordinates status to visited.
         locations[(int)(coordinates.getX()-1)][(int)(coordinates.getY()-1)].setVisited(true);
         //System.out.println("New Location: " + coordinates);        
     }
