@@ -208,7 +208,7 @@ public class GameMenuView extends View
             double playerTestimony = selectResource.selectTestimony();
             double playerRoll = moveMenu.rollDice();
             double destructionRoll = moveMenu.rollDice();
-            //;ocation array with the scene
+            //location array with the scene
             double destructionPoints = 0;
             double playerInventory = 2;
         try
