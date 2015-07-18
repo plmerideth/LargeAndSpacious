@@ -204,6 +204,13 @@ public class GameMenuView extends View
             SelectResourceView selectResource = new SelectResourceView();
             //show the available resources
             this.displayPlayerItems();
+            double playerObedience = selectResource.selectObedience();
+            double playerTestimony = selectResource.selectTestimony();
+            double playerRoll = moveMenu.rollDice();
+            double destructionRoll = moveMenu.rollDice();
+            //;ocation array with the scene
+            double destructionPoints = 0;
+            double playerInventory = 2;
         try
         {
              
@@ -211,8 +218,8 @@ public class GameMenuView extends View
             //PLM:  ChallengeObedience, rollTwo, inventory are hard coded (see ChallengeControl class. 
             //JL: How do we know what the ChallengeObedience is worth? Is this built with the map when the scenes
             //are assigned?
-            sceneResult = ChallengeControl.getChallengeResult(selectResource.selectObedience(),moveMenu.rollDice(),
-                    4,moveMenu.rollDice(), 5);
+            sceneResult = ChallengeControl.getChallengeResult(playerObedience,playerRoll,
+                    destructionPoints,destructionRoll, playerInventory);
         } catch ( MapControlException me)
         {
                 ErrorView.display(this.getClass().getName(), me.getMessage());
