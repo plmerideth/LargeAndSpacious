@@ -21,9 +21,11 @@ public class Location implements Serializable {
     private Scene scene;
     private boolean visited=false;
    
-    private ChallengeScene challengeScene;
-    private QuestionScene questionScene;
-    private CombinationScene combinationScene;
+    //private ChallengeScene challengeScene;
+    //private QuestionScene questionScene;
+    //private CombinationScene combinationScene;
+    
+    private Questions question;
     private ArrayList<Actor> actors;
 
     public Location() {
@@ -62,6 +64,16 @@ public class Location implements Serializable {
     public Scene getScene()
     {
         return scene;
+    }
+    
+    public void setQuestions(Questions question)
+    {
+        this.question = question;
+    }
+    
+    public Questions getQuestions()
+    {
+        return this.question;
     }
     
     @Override

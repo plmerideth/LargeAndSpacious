@@ -18,8 +18,10 @@ public class Scene implements Serializable
 {
     private String description ;
     private boolean blocked;
+    private int testimonyDestruction;
+    private int obedienceDestruction;
   
-    
+  /*  
     public static Scene[] createSceneList() {
         // created an array(list) of inventory items
         Scene[] scene = new Scene[Constants.NUMBER_OF_SCENES];
@@ -27,8 +29,8 @@ public class Scene implements Serializable
         Scene start = new Scene();
         start.setDescription("Start of Game");
         start.setBlocked(false);
-        scene[SceneType.start.ordinal()] = start;
-        
+        scene[SceneType.start.ordinal()] = start;        
+                
         Scene building = new Scene();
         building.setDescription("Large and Spacious Building");
         building.setBlocked(false);
@@ -59,10 +61,12 @@ public class Scene implements Serializable
         river.setBlocked(false);
         scene[SceneType.river.ordinal()] = river;
         
+      
         Scene finish = new Scene();
         finish.setDescription("Finish Game");
         finish.setBlocked(false);
         scene[SceneType.finish.ordinal()] = finish;
+ 
         
         return scene;
     }
@@ -74,6 +78,7 @@ public class Scene implements Serializable
         //Fill out locations
        //locations[0][0].setScene(scenes[SceneType.start.ordinal()]);
     }
+    */
     
     public void setDescription(String description) {
         this.description = description;
@@ -88,16 +93,34 @@ public class Scene implements Serializable
         this.blocked = blocked;
     }
 
-       
-    public enum SceneType {
-        start,
+    public void setTestimonyDestruction(int value)
+    {
+        this.testimonyDestruction = value;
+    }
+    
+    public int getTestimonyDestructin()
+    {
+        return testimonyDestruction;
+    }
+    
+    public void setObedienceDestruction(int value)
+    {
+        this.obedienceDestruction = value;
+    }
+    
+    public int getObedienceDestructin()
+    {
+        return obedienceDestruction;
+    }
+    
+    
+    public enum SceneType {        
         building,
         mists,
         finger,
         path,
         tree,
-        river,
-        finish
+        river        
     }
     
 }

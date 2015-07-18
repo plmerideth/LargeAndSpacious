@@ -56,6 +56,11 @@ public class Game implements Serializable {
     {
         this.inventory = inventory;
     }
+    
+    public Item[] getInventory()
+    {
+        return inventory;
+    }
         
     public void setActors(Actor[] actors) {
         this.actors = actors;
@@ -111,11 +116,5 @@ public class Game implements Serializable {
         }
         return true;
     }
-
-    public Item[] getInventory()
-    {
-        return inventory;
-    }
-    
 
 }

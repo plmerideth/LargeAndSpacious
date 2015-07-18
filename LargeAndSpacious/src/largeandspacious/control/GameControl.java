@@ -20,6 +20,7 @@ import largeandspacious.model.Item;
 import largeandspacious.model.Location;
 import largeandspacious.model.Map;
 import largeandspacious.model.Player;
+import largeandspacious.model.Questions;
 
 /**
  *
@@ -33,10 +34,13 @@ public class GameControl implements Serializable
         
         Game game = new Game();
         
+        //Create game obj to hold all game data for save and resume
         LargeAndSpacious.setCurrentGame(game);
         game.setPlayer(player);
         
+        //Create array (inventoryList) to hold inventory of items.
         Item[] inventoryList = GameControl.createInventoryList();
+        //Set pointer to inventoryList in game.
         game.setInventory(inventoryList);
         
         Map map = MapControl.createMap();
@@ -45,7 +49,7 @@ public class GameControl implements Serializable
         MapControl.moveActorsToStartingLocation(map);
         
     }
-    
+        
     public static Item[] createInventoryList()
     {                
         // created an array(list) of inventory items
@@ -93,7 +97,7 @@ public class GameControl implements Serializable
         return inventory;
     } 
 
-    public static void assignScenesToLocations(Map map, Scene[] scenes)
+    public static void assignScenesAndQuestionsToLocations(Map map, Scene[] scenes, Questions[] questionList)
     {
         Location[][] locations = map.getLocations();
         
@@ -102,11 +106,14 @@ public class GameControl implements Serializable
         int randomIndex;
         
         //Loop thru array, generate random number between 0 and NUMBER_OF_SCENES-1 to serve as index
-        for(int i=0; i<rows; i++)
-            for(int j=0; j<cols; j++)
+        for(int i=0, questionNumber=0; i<rows; i++)
+            for(int j=0; j<cols; j++, questionNumber++)
             {
                 randomIndex = (int)Math.floor(Math.random()*(Constants.NUMBER_OF_SCENES));
                 locations[i][j].setScene(scenes[randomIndex]);
+                if(questionNumber==Constants.NUMBER_OF_QUESTIONS)
+                    questionNumber = 0; //Start over with first question
+                locations[i][j].setQuestions(questionList[questionNumber]);
             }
         
         //DEBUG:  Print all locations to console
@@ -198,7 +205,6 @@ public class GameControl implements Serializable
         
     }
     
-
     public enum inventoryItem
     {
         fruit,
@@ -208,5 +214,4 @@ public class GameControl implements Serializable
         path,
         man
     }
-    
 }

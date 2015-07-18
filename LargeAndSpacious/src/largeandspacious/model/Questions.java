@@ -17,8 +17,9 @@ public class Questions implements Serializable {
     private int questionsID;
     private String question;
     private String answer;
+    private int fruitValue;
 
-    public Questions() {
+    public Questions(){
     }
     
     
@@ -46,6 +47,16 @@ public class Questions implements Serializable {
         this.answer = answer;
     }
 
+    public void setFruitValue(int value)
+    {
+        this.fruitValue = value;
+    }
+    
+    public int getFruitValue()
+    {
+        return this.fruitValue;
+    }
+    
     @Override
     public String toString() {
         return "Questions{" + "questionsID=" + questionsID + ", question=" + question + ", answer=" + answer + '}';
