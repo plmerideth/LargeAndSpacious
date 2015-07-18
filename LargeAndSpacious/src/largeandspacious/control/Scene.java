@@ -98,7 +98,7 @@ public class Scene implements Serializable
         this.testimonyDestruction = value;
     }
     
-    public int getTestimonyDestructin()
+    public int getTestimonyDestruction()
     {
         return testimonyDestruction;
     }
@@ -108,7 +108,7 @@ public class Scene implements Serializable
         this.obedienceDestruction = value;
     }
     
-    public int getObedienceDestructin()
+    public int getObedienceDestruction()
     {
         return obedienceDestruction;
     }
