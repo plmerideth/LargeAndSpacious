@@ -22,6 +22,7 @@ import largeandspacious.LargeAndSpacious;
 import largeandspacious.control.ActorControl;
 import largeandspacious.control.ChallengeControl;
 import largeandspacious.control.GameControl;
+import largeandspacious.control.GameControl.inventoryItem;
 import largeandspacious.control.InventoryControl;
 import largeandspacious.control.MapControl;
 import largeandspacious.exceptions.MapControlException;
@@ -152,6 +153,7 @@ public class GameMenuView extends View
         int diceRoll;
         Actor actor = Actor.Lehi;
         double sceneResult = 0;
+        int questionResult;
         String returnValue;
         
         Location newLocation = new Location();
@@ -194,35 +196,139 @@ public class GameMenuView extends View
         //this.console.println(newLocation.getScene().getDescription());
         //Add code to process move
         
-        if(newLocation.getRow() != -1)
-        {
-        try
-        {
-            //PLM:  ChallengeObedience, rollTwo, inventory are hard coded (see ChallengeControl class.  Talk to Julie.
-            sceneResult = ChallengeControl.getChallengeResult(getObediencePlayed(),moveMenu.rollDice(),
-                    4,0, 5);
-        } catch ( MapControlException me)
-        {
-                ErrorView.display(this.getClass().getName(), me.getMessage());
-                return;
-        }
+        //Check to see if player owns "Man in White Robe".  If so, show scene before getting
+        //testimony and obedience inputs.
         
-        returnValue = "You have gained " + sceneResult + " obedience points!";
-        // calculate the high score from the last challenge
-        // get the current score
-        double currentScore = LargeAndSpacious.getPlayer().getBestScore();
-        // get the new score - current score plus the challenge result
-        double newScore = currentScore + sceneResult ;
-        //set the players current score
-        LargeAndSpacious.getPlayer().setCurrentScore(newScore);
-        // if the new score is higher than the current score, we have a new high score.
-        // set the best score appropriately.
-        if (currentScore + sceneResult > currentScore) {
-            LargeAndSpacious.getPlayer().setBestScore(newScore);
-        }
-        this.console.println(returnValue);
+        //Insert Julie's get resources code here, to get testimony and obedience levels to risk from user.
+        
+        
+        
+        if(newLocation.getRow() != -1) //If user did not enter 'X' to exit
+        {
+            try
+            {
+                //Ask player question based on location
+                questionResult = askQuestion();
+
+                if(questionResult>=0) //If player answered correctly, award points
+                {
+                    Item[] inventory = LargeAndSpacious.getCurrentGame().getInventory();
+                    inventory[inventoryItem.fruit.ordinal()].addValue(questionResult);
+                    inventory[inventoryItem.obedience.ordinal()].addValue(3); //Temporary value
+                    inventory[inventoryItem.testimony.ordinal()].addValue(4); //Temporary value
+                }
+                else  //Player must take challenge
+                {
+                    
+                }
+                
+                //PLM:  ChallengeObedience, rollTwo, inventory are hard coded (see ChallengeControl class.  Talk to Julie.
+                //sceneResult = ChallengeControl.getChallengeResult(getObediencePlayed(),moveMenu.rollDice(), 4, 0, 5);
+            } catch ( MapControlException me)
+            {
+                    ErrorView.display(this.getClass().getName(), me.getMessage());
+                    return;
+            }
+
+            returnValue = "You have gained " + sceneResult + " obedience points!";
+            // calculate the high score from the last challenge
+            // get the current score
+            double currentScore = LargeAndSpacious.getPlayer().getBestScore();
+            // get the new score - current score plus the challenge result
+            double newScore = currentScore + sceneResult ;
+            //set the players current score
+            LargeAndSpacious.getPlayer().setCurrentScore(newScore);
+            // if the new score is higher than the current score, we have a new high score.
+            // set the best score appropriately.
+            if (currentScore + sceneResult > currentScore) {
+                LargeAndSpacious.getPlayer().setBestScore(newScore);
+            }
+            this.console.println(returnValue);
         }
     }
+    
+    private int askQuestion() throws MapControlException
+    {
+        int result;
+        String input, verify;
+        
+        Map map = LargeAndSpacious.getCurrentGame().getMap();
+        Player player = LargeAndSpacious.getCurrentGame().getPlayer();
+        Location[][] locations = map.getLocations();
+        Point currentLocation;
+        
+        currentLocation = player.getCurrentLocation();
+        int row = (int)currentLocation.getX()-1;
+        int col = (int)currentLocation.getY()-1;
+        
+        //Display scene description at current location.
+        this.console.println("\nThe scene at this location is: "
+           + locations[row][col].getScene().getDescription()+ "\n");
+        
+        //Ask player question at location
+        this.console.println("Here is your question: "
+            + locations[row][col].getQuestions().getQuestion()+ "?");
+        
+        OUTER:
+        while (true) {
+            this.console.println("Your answer: ");
+            input = this.getResponse();            
+            this.console.println("\nIs this your final answer (Y/N)?");
+            verify = this.getResponse();
+            switch (verify)
+            {
+                case "Y":
+                    break OUTER;
+                case "N":
+                    continue;
+                default:
+                    this.console.println("Invalid response.  Try again!");                    
+            }
+        }
+        
+        String answer = locations[row][col].getQuestions().getAnswer();
+        answer = answer.toUpperCase();
+        
+        if(answer.equals(input))
+            result=locations[row][col].getQuestions().getFruitValue();
+        else
+            result=-1;        
+        
+        return result;
+    }
+    
+    private String getResponse()
+    {
+        boolean valid = false;
+        String playersInput = null;
+        
+        try
+        {
+            while( !valid )
+            {
+                //Get the name from the keyboard and trim off spaces
+                playersInput = this.keyboard.readLine();
+                playersInput = playersInput.trim();
+                playersInput = playersInput.toUpperCase();
+
+                if( playersInput.length() < 1 )
+                {
+                    this.console.println("Invalid answer - the selection must not be blank");
+                    continue;
+                }
+
+                break;
+            }
+        }
+        catch(Exception e)
+        {
+            this.console.println("Error reading input: " + e.getMessage());
+        }
+        return playersInput;
+    }
+    
+    
+    
     private double getObediencePlayed()
     {
         boolean valid = false;
@@ -538,14 +644,12 @@ public class GameMenuView extends View
             }
         }
         
-        reportOutput += "\n\nSTA = Starting"
-                + "\nBUI = Building"
+        reportOutput += "\n\nBUI = Building"
                 + "\nMIS = Mists of Darkness"
                 + "\nFIN = Finger of Scorn"
                 + "\nPAT = Lost & Forbidden Path"
                 + "\nTRE = Tree of Life"
-                + "\nRIV = River of Water"
-                + "\nFIN = Finish";
+                + "\nRIV = River of Water";                
         
         this.console.println("\n\nThe Map Report was successfully created in "
                                 + mapFilePath);
@@ -607,8 +711,5 @@ public class GameMenuView extends View
         }
 
     }
-
-
-
 
 }
