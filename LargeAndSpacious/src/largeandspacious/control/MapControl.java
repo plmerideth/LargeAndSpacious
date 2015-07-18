@@ -97,8 +97,7 @@ public class MapControl {
         int y = rand.nextInt((max - min) + 1) + min;
         //System.out.println("y = " + y);
         //create the map
-        Map map = new Map(x, y);
-        //Map map = new Map(10,10); //Temporary for testing.
+        Map map = new Map(5, 7); //Not using random map size.  Fixed size of 35 spaces      
         
         //create a list of the different challenge scenes in the game
         Scene[] scenes = createScenes();
