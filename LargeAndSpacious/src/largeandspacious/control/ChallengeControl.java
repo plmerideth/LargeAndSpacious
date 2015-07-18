@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package largeandspacious.control;
-import largeandspacious.LargeAndSpacious;
 import largeandspacious.exceptions.MapControlException;
-import largeandspacious.model.Item;
 
 /**
  *
@@ -39,18 +37,7 @@ public class ChallengeControl {
         }
         result = ((playerObedience * rollOne) - challengeObedience); 
         result = result - ((challengeObedience * rollTwo) - playerObedience);
-        //update the player inventory
-        Item[] inventoryList = LargeAndSpacious.getCurrentGame().getInventory();
-        //System.out.println("About to set the inventory item level.");
-        double inStock = inventoryList[GameControl.inventoryItem.obedience.ordinal()].getValue();
-        System.out.println("inStock = " + inStock);
-        System.out.println("result = " + result);
-        if (inStock < result) {
-            result = playerObedience * -1;
-            inventoryList[GameControl.inventoryItem.obedience.ordinal()].setValue(0);
-        } else {
-            inventoryList[GameControl.inventoryItem.obedience.ordinal()].setValue(result);
-        }
+        //return the result
 	return result;
 
     }
