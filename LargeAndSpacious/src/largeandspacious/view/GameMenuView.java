@@ -191,47 +191,23 @@ public class GameMenuView extends View
             break;
         }
         
-        
-        //tell the player what scene they have landed on
-        //this.console.println(newLocation.getScene().getDescription());
-        //Add code to process move
-        
-        if(newLocation.getRow() != -1)
-        {
-            //tell the player what scene they have landed on
-            this.console.println("\n You have landed on a challenge! Your challenge "
-            + "\n is the mists of darkness. You cannot see where you are going. "
-            + "\n Enter the number of obedience points you wish to use below:");
-            //Create SelectResourceView object
-            SelectResourceView selectResource = new SelectResourceView();
-            //show the available resources
-            this.displayPlayerItems();
-            double playerObedience = selectResource.selectObedience();
-            double playerTestimony = selectResource.selectTestimony();
-            double playerRoll = moveMenu.rollDice();
-            double destructionRoll = moveMenu.rollDice();
-            //location array with the scene
-            double destructionPoints = 0;
-            double playerInventory = 2;
-        try
-        {
-             
-            //selectResource.selectObedience();
-            //PLM:  ChallengeObedience, rollTwo, inventory are hard coded (see ChallengeControl class. 
-            //JL: How do we know what the ChallengeObedience is worth? Is this built with the map when the scenes
-            //are assigned?
-            sceneResult = ChallengeControl.getChallengeResult(playerObedience,playerRoll,
-                    destructionPoints,destructionRoll, playerInventory);
-        } catch ( MapControlException me)
-        {
-                ErrorView.display(this.getClass().getName(), me.getMessage());
-                return;
-        }
         //Check to see if player owns "Man in White Robe".  If so, show scene before getting
         //testimony and obedience inputs.
-        
-        //Insert Julie's get resources code here, to get testimony and obedience levels to risk from user.
-        
+       
+        //Create SelectResourceView object
+        SelectResourceView selectResource = new SelectResourceView();
+        //show the available resources
+        this.displayPlayerItems();
+        Item[] inventory = LargeAndSpacious.getCurrentGame().getInventory();
+        double playerObedience = selectResource.selectObedience();
+        double playerTestimony = selectResource.selectTestimony();
+        double playerRoll = moveMenu.rollDice();
+        double destructionRoll = moveMenu.rollDice();
+        //location array with the scene
+        double destructObedPoints = newLocation.getScene().getObedienceDestructin();
+        double destructTestPoints = newLocation.getScene().getTestimonyDestructin();
+        double playerObedItems = inventory[inventoryItem.obedience.ordinal()].getValue();
+        double playerTestItems = inventory[inventoryItem.testimony.ordinal()].getValue();
         
         
         if(newLocation.getRow() != -1) //If user did not enter 'X' to exit
@@ -243,7 +219,6 @@ public class GameMenuView extends View
 
                 if(questionResult>=0) //If player answered correctly, award points
                 {
-                    Item[] inventory = LargeAndSpacious.getCurrentGame().getInventory();
                     inventory[inventoryItem.fruit.ordinal()].addValue(questionResult);
                     inventory[inventoryItem.obedience.ordinal()].addValue(3); //Temporary value
                     inventory[inventoryItem.testimony.ordinal()].addValue(4); //Temporary value
@@ -252,9 +227,7 @@ public class GameMenuView extends View
                 {
                     
                 }
-                
-                //PLM:  ChallengeObedience, rollTwo, inventory are hard coded (see ChallengeControl class.  Talk to Julie.
-                //sceneResult = ChallengeControl.getChallengeResult(getObediencePlayed(),moveMenu.rollDice(), 4, 0, 5);
+               
             } catch ( MapControlException me)
             {
                     ErrorView.display(this.getClass().getName(), me.getMessage());
