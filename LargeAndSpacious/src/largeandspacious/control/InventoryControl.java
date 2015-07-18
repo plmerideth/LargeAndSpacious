@@ -22,7 +22,7 @@ public class InventoryControl
         String avgHealth;
         //get the number of items in stock
         for (Item item : items) {
-            total = total + item.getQuantityInStock();
+            total = total + item.getValue();
         }
         double average = total / items.length;
         //return the average number of items in stock
@@ -57,27 +57,27 @@ public class InventoryControl
             switch(item.getDescription())
             {
                 case "fruit                 ":
-                    value = item.getQuantityInStock();
+                    value = item.getValue();
                     itemLevels += "\nYour Fruit level is " + value;
                 break;
                 case "testimony             ":
-                    value = item.getQuantityInStock();
+                    value = item.getValue();
                     itemLevels += "\nYour Testimony level is " + value;
                 break;
                 case "obedience             ":
-                    value = item.getQuantityInStock();
+                    value = item.getValue();
                     itemLevels += "\nYour Obedience level is " + value;
                 break;
                 case "Rod of Iron           ":
-                    value = item.getQuantityInStock();
+                    value = item.getValue();
                     itemLevels += "\nYour Rod of Iron level is " + value;
                 break;
                 case "Straight & Narrow Path":
-                    value = item.getQuantityInStock();
+                    value = item.getValue();
                     itemLevels += "\nYour Straight & Narrow Path level is " + value;
                 break;
                 case "Man in White Robe     ":
-                    value = item.getQuantityInStock();
+                    value = item.getValue();
                     itemLevels += "\nYour Your Man in White Robe level is " + value;
                 break;                
                 /*  Printout for debug purposes

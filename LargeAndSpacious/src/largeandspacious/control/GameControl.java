@@ -57,40 +57,34 @@ public class GameControl implements Serializable
         
         Item fruit = new Item();
         fruit.setDescription("fruit                 ");
-        fruit.setQuantityInStock(5);
         fruit.setValue(2);
         fruit.setRequiredAmount(0);
         inventory[inventoryItem.fruit.ordinal()] = fruit;
         
         Item obedience = new Item();
         obedience.setDescription("obedience             ");
-        obedience.setQuantityInStock(5);
         obedience.setValue(3);
         obedience.setRequiredAmount(0);
         inventory[inventoryItem.obedience.ordinal()] = obedience;
         
         Item testimony = new Item();
         testimony.setDescription("testimony             ");
-        testimony.setQuantityInStock(5);
         testimony.setValue(4);
         testimony.setRequiredAmount(0);
         inventory[inventoryItem.testimony.ordinal()] = testimony;
         
         Item ironRod = new Item();
         ironRod.setDescription("Rod of Iron           ");
-        ironRod.setQuantityInStock(0);
         ironRod.setRequiredAmount(0);
         inventory[inventoryItem.ironRod.ordinal()] = ironRod;
         
         Item path = new Item();
         path.setDescription("Straight & Narrow Path");
-        path.setQuantityInStock(0);
         path.setRequiredAmount(0);
         inventory[inventoryItem.path.ordinal()] = path;
         
         Item man = new Item();
         man.setDescription("Man in White Robe     ");
-        man.setQuantityInStock(0);
         man.setRequiredAmount(0);
         inventory[inventoryItem.man.ordinal()] = man;
         

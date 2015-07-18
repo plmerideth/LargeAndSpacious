@@ -70,19 +70,11 @@ public class Item implements Serializable {
     public void setItemCount(double itemCount) {
         this.itemCount = itemCount;
     }
-    
-     public void setQuantityInStock(double quantityInStock) {
-        this.quantityInStock = quantityInStock;
-    }
 
     public void setRequiredAmount(double requiredAmount) {
         this.requiredAmount = requiredAmount;
     }
-
-    public double getQuantityInStock() {
-        return quantityInStock;
-    }
-
+    
     public double getRequiredAmount() {
         return requiredAmount;
     }
