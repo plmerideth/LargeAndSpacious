@@ -16,5 +16,5 @@ public final class Constants {
         }
         public static final int NUMBER_OF_INVENTORY_ITEMS = 6;
         public static final int NUMBER_OF_SCENES = 6;
-        public static final int NUMBER_OF_QUESTIONS = 20;
+        public static final int NUMBER_OF_QUESTIONS = 35;
     }

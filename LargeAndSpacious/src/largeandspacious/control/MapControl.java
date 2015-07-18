@@ -97,7 +97,7 @@ public class MapControl {
         int y = rand.nextInt((max - min) + 1) + min;
         //System.out.println("y = " + y);
         //create the map
-        Map map = new Map(x, y);
+        Map map = new Map(5, 7);
         //Map map = new Map(10,10); //Temporary for testing.
         
         //create a list of the different challenge scenes in the game
@@ -126,7 +126,7 @@ public class MapControl {
         Questions Q2 = new Questions();
         Q2.setQuestion("It came to pass that I saw a man, and he was dressed in a _________.");
         Q2.setAnswer("white robe");
-        Q1.setFruitValue(3);
+        Q2.setFruitValue(3);
         questions[i++]=Q2;
         
         Questions Q3 = new Questions();
@@ -253,7 +253,7 @@ public class MapControl {
         Q17.setQuestion("And after they had partaken of the fruit of the tree "
                 + "\nthey did cast their eyes about as if they were _________");
         Q17.setAnswer("ashamed");
-        Q17.setFruitValue(1);
+        Q17.setFruitValue(2);
         questions[i++]=Q17;
         
         Questions Q18 = new Questions();
@@ -266,16 +266,141 @@ public class MapControl {
         questions[i++]=Q18;
         
         Questions Q19 = new Questions();
-        Q19.setQuestion("Question " + Integer.toString(i+1));
-        Q19.setAnswer("Answer " + Integer.toString(i+1));
-        Q19.setFruitValue(1);
+        Q19.setQuestion("And it was filled with people, both old and young, "
+                + "\nboth male and female; and their manner of dress was "
+                + "\nexceedingly fine; and they were in the attitude of _______ "
+                + "\nand pointing their fingers towards those who had come at "
+                + "\nand were partaking of the fruit");
+        Q19.setAnswer("mocking");
+        Q19.setFruitValue(2);
         questions[i++]=Q19;
         
         Questions Q20 = new Questions();
-        Q20.setQuestion("Question " + Integer.toString(i+1));
-        Q20.setAnswer("Answer " + Integer.toString(i+1));
-        Q20.setFruitValue(1);
+        Q20.setQuestion("And after they had tasted of the fruit they were "
+                + "\nashamed, because of those that were ________ at them; and "
+                + "\nthey fell away into forbidden paths and were lost");
+        Q20.setAnswer("scoffing");
+        Q20.setFruitValue(2);
         questions[i++]=Q20;
+                
+        Questions Q21 = new Questions();
+        Q21.setQuestion("Lehi saw other __________ pressing forward; and they "
+                + "\ncame and caught hold of the end of the rod of iron; and "
+                + "\nthey did press their way forward, continually holding fast "
+                + "\nto the rod of iron, until they came forth and fell down "
+                + "\nand partook of the fruit of the tree.");
+        Q21.setAnswer("multitudes");
+        Q21.setFruitValue(2);
+        questions[i++]=Q21;
+                
+        Questions Q22 = new Questions();
+        Q22.setQuestion("And it came to pass that many were ________ in the "
+                + "\ndepths of the fountain; and many were lost from his view, "
+                + "\nwandering in strange roads");
+        Q22.setAnswer("drowned");
+        Q22.setFruitValue(3);
+        questions[i++]=Q22;
+                
+        Questions Q23 = new Questions();
+        Q23.setQuestion("And after they did enter into that building they did "
+                + "\npoint the ___________ at me and those that were partaking "
+                + "\nof the fruit also; but we heeded them not.");
+        Q23.setAnswer("finger of scorn");
+        Q23.setFruitValue(4);
+        questions[i++]=Q23;
+                
+        Questions Q24 = new Questions();
+        Q24.setQuestion("I looked and beheld a tree; and it was like unto the "
+                + "\ntree which my father had seen; and the beauty thereof was "
+                + "\nfar beyond, yea, exceeding of all beauty; and the ________"
+                + "\nthereof did exceed the _________ of the driven snow.");
+        Q24.setAnswer("whiteness");
+        Q24.setFruitValue(1);
+        questions[i++]=Q24;
+                
+        Questions Q25 = new Questions();
+        Q25.setQuestion("I beheld that the rod of iron, which my father had "
+                + "\nseen, was the _________, which cled to the fountain of "
+                + "\nliving waters, or to the tree of life");
+        Q25.setAnswer("word of God");
+        Q25.setFruitValue(1);
+        questions[i++]=Q25;
+                
+        Questions Q26 = new Questions();
+        Q26.setQuestion("The waters are a representation of the _____________; "
+                + "\nand I also beheld that the tree of life was a representation "
+                + "\nof the ______________");
+        Q26.setAnswer("love of God");
+        Q26.setFruitValue(2);
+        questions[i++]=Q26;
+                
+        Questions Q27 = new Questions();
+        Q27.setQuestion("I looked and beheld the _________ of the world, of whom "
+                + "\nmy father had spoken");
+        Q27.setAnswer("Redeemer");
+        Q27.setFruitValue(2);
+        questions[i++]=Q27;
+                
+        Questions Q28 = new Questions();
+        Q28.setQuestion("And the Lamb of God went forth and was baptized of him; "
+                + "\nand after he was baptized, I beheld the heavens open, and "
+                + "\nthe _________ come down out of heaven and abide upon him in "
+                + "\nthe form of a dove.");
+        Q28.setAnswer("Holy Ghost");
+        Q28.setFruitValue(2);
+        questions[i++]=Q28;
+                
+        Questions Q29 = new Questions();
+        Q29.setQuestion("Behold the house of ______ hath gathered together to "
+                + "\nfight against the twelve apostles of the Lamb");
+        Q29.setAnswer("Israel");
+        Q29.setFruitValue(2);
+        questions[i++]=Q29;
+                
+        Questions Q30 = new Questions();
+        Q30.setQuestion("The great and spacious building was the ______ of the world");
+        Q30.setAnswer("pride");
+        Q30.setFruitValue(2);
+        questions[i++]=Q30;
+                
+        Questions Q31 = new Questions();
+        Q31.setQuestion("The great and spacious building fell, and the fall "
+                + "/nthereof was exceedingly ______");
+        Q31.setAnswer("great");
+        Q31.setFruitValue(2);
+        questions[i++]=Q31;
+                
+        Questions Q32 = new Questions();
+        Q32.setQuestion("Thus shall be the ____________ of all nations, kindreds, "
+                + "\ntongues, and people, that shall fight against the twelve "
+                + "\napostles of the Lamb.");
+        Q32.setAnswer("destruction");
+        Q32.setFruitValue(3);
+        questions[i++]=Q32;
+                
+        Questions Q33 = new Questions();
+        Q33.setQuestion("I beheld ____, and rumors of ____, and great slaughters "
+                + "\nwith the sword among my people");
+        Q33.setAnswer("wars");
+        Q33.setFruitValue(1);
+        questions[i++]=Q33;
+                
+        Questions Q34 = new Questions();
+        Q34.setQuestion("Behold the fountain of ______ water which thy father saw; "
+                + "\nyea, even the river of which he spake; and the depths thereof "
+                + "\nare the depths of hell");
+        Q34.setAnswer("filthy");
+        Q34.setFruitValue(1);
+        questions[i++]=Q34;
+                
+        Questions Q35 = new Questions();
+        Q35.setQuestion("The mists of darkness are the ___________ of the devil, "
+                + "\nwhich blindeth the eyes, and hardeneth the hearts of the "
+                + "\nchildren of men, and leadeth them away into broad roads, "
+                + "\nthat they perish and are lost");
+        Q35.setAnswer("temptations");
+        Q35.setFruitValue(1);
+        questions[i++]=Q35;
         
         return questions;
     }    
