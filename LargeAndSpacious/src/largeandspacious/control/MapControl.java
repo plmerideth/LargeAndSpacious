@@ -116,110 +116,152 @@ public class MapControl {
         Questions[] questions = new Questions[Constants.NUMBER_OF_QUESTIONS];
         
         Questions Q1 = new Questions();
-        Q1.setQuestion("Question " + Integer.toString(i+1));
-        Q1.setAnswer("Answer " + Integer.toString(i+1));
-        Q1.setFruitValue(5);
+        Q1.setQuestion("And it came to pass that while my father tarried in the "
+                + "\nwilderness he spake unto us, saying: Behold, I have dreamed "
+                + "\na dream; or, in other words, I have seen a ______.");
+        Q1.setAnswer("vision");
+        Q1.setFruitValue(2);
         questions[i++]=Q1;
         
         Questions Q2 = new Questions();
-        Q2.setQuestion("Question " + Integer.toString(i+1));
-        Q2.setAnswer("Answer " + Integer.toString(i+1));
+        Q2.setQuestion("It came to pass that I saw a man, and he was dressed in a _________.");
+        Q2.setAnswer("white robe");
         Q1.setFruitValue(3);
         questions[i++]=Q2;
         
         Questions Q3 = new Questions();
-        Q3.setQuestion("Question " + Integer.toString(i+1));
-        Q3.setAnswer("Answer " + Integer.toString(i+1));
+        Q3.setQuestion("It came to pass that I did go forth and partake of the "
+                + "\n______ thereof; and I beheld that it was most sweet, above "
+                + "\nall that I ever before tasted.");
+        Q3.setAnswer("fruit");
         Q3.setFruitValue(1);
         questions[i++]=Q3;
 
         Questions Q4 = new Questions();
-        Q4.setQuestion("Question " + Integer.toString(i+1));
-        Q4.setAnswer("Answer " + Integer.toString(i+1));
-        Q4.setFruitValue(1);
+        Q4.setQuestion("As I partook of the fruit thereof it filled my soul "
+                + "\nwith __________ great joy");
+        Q4.setAnswer("exceedingly");
+        Q4.setFruitValue(2);
         questions[i++]=Q4;
 
         Questions Q5 = new Questions();
-        Q5.setQuestion("Question " + Integer.toString(i+1));
-        Q5.setAnswer("Answer " + Integer.toString(i+1));
-        Q5.setFruitValue(1);
+        Q5.setQuestion("I began to be desirous that my ______ should partake "
+                + "\nof it also; for I knew that it was desirable above all other fruit.");
+        Q5.setAnswer("family");
+        Q5.setFruitValue(2);
         questions[i++]=Q5;
         
         Questions Q6 = new Questions();
-        Q6.setQuestion("Question " + Integer.toString(i+1));
-        Q6.setAnswer("Answer " + Integer.toString(i+1));
-        Q6.setFruitValue(1);
+        Q6.setQuestion("I cast my eyes round about, that perhaps I might "
+                + "\ndiscover my ______ also");
+        Q6.setAnswer("family");
+        Q6.setFruitValue(3);
         questions[i++]=Q6;
 
         Questions Q7 = new Questions();
-        Q7.setQuestion("Question " + Integer.toString(i+1));
-        Q7.setAnswer("Answer " + Integer.toString(i+1));
-        Q7.setFruitValue(1);
+        Q7.setQuestion("What was was near the tree of which Lehi was partaking the fruit?");
+        Q7.setAnswer("river of water");
+        Q7.setFruitValue(3);
         questions[i++]=Q7;
         
         Questions Q8 = new Questions();
-        Q8.setQuestion("Question " + Integer.toString(i+1));
-        Q8.setAnswer("Answer " + Integer.toString(i+1));
-        Q8.setFruitValue(1);
+        Q8.setQuestion("And I looked to behold from whence it came; and I saw "
+                + "\nthe head thereof a little way off; and at the head thereof "
+                + "\nI beheld _______________________________________; and they "
+                + "\nstood as if they knew not whither they should go."
+                + "\n Who did Lehi behold?"
+                + "\na. Sariah"
+                + "\nb. Sam"
+                + "\nc. Nephi"
+                + "\nd. a & b"
+                + "\ne. a & c"
+                + "\nf. a, b & c");
+        Q8.setAnswer("f");
+        Q8.setFruitValue(2);
         questions[i++]=Q8;
 
         Questions Q9 = new Questions();
-        Q9.setQuestion("Question " + Integer.toString(i+1));
-        Q9.setAnswer("Answer " + Integer.toString(i+1));
-        Q9.setFruitValue(1);
+        Q9.setQuestion("And it came to pass that I __________ unto them");
+        Q9.setAnswer("beckoned");
+        Q9.setFruitValue(2);
         questions[i++]=Q9;
         
         Questions Q10 = new Questions();
-        Q10.setQuestion("Question " + Integer.toString(i+1));
-        Q10.setAnswer("Answer " + Integer.toString(i+1));
-        Q10.setFruitValue(1);
+        Q10.setQuestion("Who would not come and partake of the fruit"
+                + "\na. Laman and Lemuel"
+                + "\nb. Nephi and Sam"
+                + "\nc. Zoram and Jacob");
+        Q10.setAnswer("a");
+        Q10.setFruitValue(2);
         questions[i++]=Q10;
         
         Questions Q11 = new Questions();
-        Q11.setQuestion("Question " + Integer.toString(i+1));
-        Q11.setAnswer("Answer " + Integer.toString(i+1));
-        Q11.setFruitValue(1);
+        Q11.setQuestion("What extended along the bank of the river, and led to "
+                + "\nthe tree Lehi stood?"
+                + "\na. mists of darkness"
+                + "\nb. straight and narrow path"
+                + "\nc. rod of iron");
+        Q11.setAnswer("c");
+        Q11.setFruitValue(3);
         questions[i++]=Q11;
 
         Questions Q12 = new Questions();
-        Q12.setQuestion("Question " + Integer.toString(i+1));
-        Q12.setAnswer("Answer " + Integer.toString(i+1));
-        Q12.setFruitValue(1);
+        Q12.setQuestion("What did Lehi also behold which came along by "
+                + "\nthe rod of iron, even to the tree where he stood."
+                + "\nthe tree Lehi stood?"
+                + "\na. mists of darkness"
+                + "\nb. straight and narrow path"
+                + "\nc. rod of iron");
+        Q12.setAnswer("b");
+        Q12.setFruitValue(2);
         questions[i++]=Q12;
         
         Questions Q13 = new Questions();
-        Q13.setQuestion("Question " + Integer.toString(i+1));
-        Q13.setAnswer("Answer " + Integer.toString(i+1));
+        Q13.setQuestion("The strait and narrow path also led by the head of "
+                + "\nthe fountain, unto a large and spacious field, as if it "
+                + "\nhad been a ______");
+        Q13.setAnswer("world");
         Q13.setFruitValue(1);
         questions[i++]=Q13;
         
         Questions Q14 = new Questions();
-        Q14.setQuestion("Question " + Integer.toString(i+1));
-        Q14.setAnswer("Answer " + Integer.toString(i+1));
-        Q14.setFruitValue(1);
+        Q14.setQuestion("I saw numberless ___________ of people, many of whom "
+                + "\nwere pressing forward, that they might obtain the path "
+                + "\nwhich led unto the tree by which I stood.");
+        Q14.setAnswer("concourses");
+        Q14.setFruitValue(3);
         questions[i++]=Q14;
         
         Questions Q15 = new Questions();
-        Q15.setQuestion("Question " + Integer.toString(i+1));
-        Q15.setAnswer("Answer " + Integer.toString(i+1));
-        Q15.setFruitValue(1);
+        Q15.setQuestion("And it came to pass that there arose a _______________; "
+                + "\nyea, even an exceedingly great _______________, "
+                + "\ninsomuch that they who had commenced in the path did lose "
+                + "\ntheir way, that they wandered off and were lost.");
+        Q15.setAnswer("mist of darkness");
+        Q15.setFruitValue(4);
         questions[i++]=Q15;
         
         Questions Q16 = new Questions();
-        Q16.setQuestion("Question " + Integer.toString(i+1));
-        Q16.setAnswer("Answer " + Integer.toString(i+1));
-        Q16.setFruitValue(1);
+        Q16.setQuestion("They did press forward through the mist of darkness, "
+                + "\n__________ to the rod of iron, even until they did come "
+                + "\nforth and partake of the fruit of the tree");
+        Q16.setAnswer("clinging");
+        Q16.setFruitValue(4);
         questions[i++]=Q16;
         
         Questions Q17 = new Questions();
-        Q17.setQuestion("Question " + Integer.toString(i+1));
-        Q17.setAnswer("Answer " + Integer.toString(i+1));
+        Q17.setQuestion("And after they had partaken of the fruit of the tree "
+                + "\nthey did cast their eyes about as if they were _________");
+        Q17.setAnswer("ashamed");
         Q17.setFruitValue(1);
         questions[i++]=Q17;
         
         Questions Q18 = new Questions();
-        Q18.setQuestion("Question " + Integer.toString(i+1));
-        Q18.setAnswer("Answer " + Integer.toString(i+1));
+        Q18.setQuestion("And I also cast my eyes round about, and beheld, on "
+                + "\nthe other side of the river of water, a great and spacious "
+                + "\n_______; and it stood as it were in the air, high above "
+                + "\nthe earth");
+        Q18.setAnswer("building");
         Q18.setFruitValue(1);
         questions[i++]=Q18;
         

@@ -242,7 +242,8 @@ public class GameMenuView extends View
                     return;
             }
 
-            returnValue = "You have gained " + sceneResult + " obedience points!";
+            //returnValue = "You have gained " + sceneResult + " obedience points!";
+            returnValue = "You have gained " + questionResult + " points!";
             // calculate the high score from the last challenge
             // get the current score
             double currentScore = LargeAndSpacious.getPlayer().getBestScore();
