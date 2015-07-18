@@ -59,7 +59,7 @@ public class GameMenuView extends View
             + "\n|------------------------------------------|"
             + "\n|  Game Menu                               |"
             + "\n|------------------------------------------|"
-            + "\n| S - Select a resource to use             |"
+            //+ "\n| S - Select a resource to use             |"
             + "\n| M - Move to a map location (Move Menu)   |"
             + "\n| D - Display Map                          |"
             + "\n| I - List player items                    |"
@@ -151,7 +151,7 @@ public class GameMenuView extends View
     {
         Point coordinates = new Point();
         int diceRoll;
-        Actor actor = Actor.Lehi;
+        Actor actor = LargeAndSpacious.getActor();
         double sceneResult = 0;
         int questionResult;
         String returnValue;
@@ -340,6 +340,9 @@ public class GameMenuView extends View
             this.console.println("\n You have landed on a challenge! Your challenge "
         + "\n is the mists of darkness. You cannot see where you are going. "
         + "\n Enter the number of obedience points you wish to use below:");
+            //Create SelectResourceView object
+            this.displayPlayerItems();
+            //this.console.println(selectResource();
             
             try
             {
@@ -348,7 +351,7 @@ public class GameMenuView extends View
             }
             catch( NumberFormatException nf)
             {
-                ErrorView.display(this.getClass().getName(), "\n Hey Dude! You must enter a valid number." +
+                ErrorView.display(this.getClass().getName(), "\nYou must enter a valid number." +
                         "Try again or enter X to exit");
                 break;
             }
@@ -534,7 +537,7 @@ public class GameMenuView extends View
     }
 
     private void listActorNames() {
-        //Show the Obedience, Testimony, and Fruit Levels
+        //Show the actors in the game
         this.console.println(ActorControl.showActors());
     }
     
@@ -709,6 +712,7 @@ public class GameMenuView extends View
         } catch (IOException e) {
     throw new MapControlException(e.getMessage());
         }
+        
 
     }
 

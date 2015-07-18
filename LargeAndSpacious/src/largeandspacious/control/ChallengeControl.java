@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package largeandspacious.control;
+import largeandspacious.LargeAndSpacious;
 import largeandspacious.exceptions.MapControlException;
+import largeandspacious.model.Item;
 
 /**
  *
@@ -28,7 +30,7 @@ public class ChallengeControl {
                 + "obedience points are less than zero, which is not allowed.");
             }
         
-        //PLM:  Dice roll from 1-6.  Talk to Julie about this.
+        //PLM:  Dice roll from 1-6. 
 	if ((rollOne > 6) || (rollOne < 0) || (rollTwo > 6) || (rollTwo < 0)) {
             /* the first roll should not be greater than 5 or less than 0
             or the 2nd roll should be greater than 5 or less than 0*/
@@ -37,7 +39,18 @@ public class ChallengeControl {
         }
         result = ((playerObedience * rollOne) - challengeObedience); 
         result = result - ((challengeObedience * rollTwo) - playerObedience);
-
+        //update the player inventory
+        Item[] inventoryList = LargeAndSpacious.getCurrentGame().getInventory();
+        //System.out.println("About to set the inventory item level.");
+        double inStock = inventoryList[GameControl.inventoryItem.obedience.ordinal()].getValue();
+        System.out.println("inStock = " + inStock);
+        System.out.println("result = " + result);
+        if (inStock < result) {
+            result = playerObedience * -1;
+            inventoryList[GameControl.inventoryItem.obedience.ordinal()].setValue(0);
+        } else {
+            inventoryList[GameControl.inventoryItem.obedience.ordinal()].setValue(result);
+        }
 	return result;
 
     }
