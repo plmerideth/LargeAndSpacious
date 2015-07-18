@@ -204,8 +204,8 @@ public class GameMenuView extends View
         double playerRoll = moveMenu.rollDice();
         double destructionRoll = moveMenu.rollDice();
         //location array with the scene
-        double destructObedPoints = newLocation.getScene().getObedienceDestructin();
-        double destructTestPoints = newLocation.getScene().getTestimonyDestructin();
+        //double destructObedPoints = locations[(int)currentRow][(int)currentCol].getScene().getObedienceDestruction();
+        //double destructTestPoints = locations[(int)currentRow][(int)currentCol].getScene().getTestimonyDestruction();
         double playerObedItems = inventory[inventoryItem.obedience.ordinal()].getValue();
         double playerTestItems = inventory[inventoryItem.testimony.ordinal()].getValue();
         

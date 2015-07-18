@@ -21,12 +21,12 @@ public class Scene implements Serializable
     private int testimonyDestruction;
     private int obedienceDestruction;
   
-  /*  
+    
     public static Scene[] createSceneList() {
         // created an array(list) of inventory items
         Scene[] scene = new Scene[Constants.NUMBER_OF_SCENES];
         
-        Scene start = new Scene();
+        /*Scene start = new Scene();
         start.setDescription("Start of Game");
         start.setBlocked(false);
         scene[SceneType.start.ordinal()] = start;        
@@ -34,38 +34,50 @@ public class Scene implements Serializable
         Scene building = new Scene();
         building.setDescription("Large and Spacious Building");
         building.setBlocked(false);
+        building.setObedienceDestruction(3);
+        building.setTestimonyDestruction(3);
         scene[SceneType.building.ordinal()] = building;
         
         Scene mists = new Scene();
         mists.setDescription("Miss of Darkness");
         mists.setBlocked(false);
+        mists.setObedienceDestruction(3);
+        mists.setTestimonyDestruction(3);
         scene[SceneType.mists.ordinal()] = mists;
         
         Scene finger = new Scene();
         finger.setDescription("Finger of Scorn");
         finger.setBlocked(false);
+        finger.setObedienceDestruction(1);
+        finger.setTestimonyDestruction(1);
         scene[SceneType.finger.ordinal()] = finger;
         
         Scene path = new Scene();
         path.setDescription("Straight & Narrow Path");
         path.setBlocked(false);
+        path.setObedienceDestruction(2);
+        path.setTestimonyDestruction(2);
         scene[SceneType.path.ordinal()] = path;
         
         Scene tree = new Scene();
         tree.setDescription("Tree of Life");
         tree.setBlocked(false);
+        tree.setObedienceDestruction(4);
+        tree.setTestimonyDestruction(4);
         scene[SceneType.tree.ordinal()] = tree;
         
         Scene river = new Scene();
         river.setDescription("River of Water");
         river.setBlocked(false);
+        river.setObedienceDestruction(3);
+        river.setTestimonyDestruction(3);
         scene[SceneType.river.ordinal()] = river;
         
       
         Scene finish = new Scene();
         finish.setDescription("Finish Game");
         finish.setBlocked(false);
-        scene[SceneType.finish.ordinal()] = finish;
+        scene[SceneType.finish.ordinal()] = finish;*/
  
         
         return scene;
@@ -78,7 +90,7 @@ public class Scene implements Serializable
         //Fill out locations
        //locations[0][0].setScene(scenes[SceneType.start.ordinal()]);
     }
-    */
+    
     
     public void setDescription(String description) {
         this.description = description;
@@ -98,7 +110,7 @@ public class Scene implements Serializable
         this.testimonyDestruction = value;
     }
     
-    public int getTestimonyDestructin()
+    public int getTestimonyDestruction()
     {
         return testimonyDestruction;
     }
@@ -108,7 +120,7 @@ public class Scene implements Serializable
         this.obedienceDestruction = value;
     }
     
-    public int getObedienceDestructin()
+    public int getObedienceDestruction()
     {
         return obedienceDestruction;
     }
