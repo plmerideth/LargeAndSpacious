@@ -1,3 +1,0 @@
-LargeAndSpacious -- Exception: java.lang.ArrayIndexOutOfBoundsException: 20
-Cause: null
-Message: 20
