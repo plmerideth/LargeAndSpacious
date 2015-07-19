@@ -97,7 +97,9 @@ public class MapControl {
         int y = rand.nextInt((max - min) + 1) + min;
         //System.out.println("y = " + y);
         //create the map
-        Map map = new Map(5, 7);
+
+        Map map = new Map(5, 7); //Not using random map size.  Fixed size of 35 spaces      
+
         //Map map = new Map(10,10); //Temporary for testing.
         
         //create a list of the different challenge scenes in the game
@@ -365,7 +367,7 @@ public class MapControl {
                 
         Questions Q31 = new Questions();
         Q31.setQuestion("The great and spacious building fell, and the fall "
-                + "/nthereof was exceedingly ______");
+                + "\nthereof was exceedingly ______");
         Q31.setAnswer("great");
         Q31.setFruitValue(2);
         questions[i++]=Q31;
@@ -427,18 +429,18 @@ public class MapControl {
         Scene buildingScene = new Scene();
         buildingScene.setDescription("BUI: The Large And Spacious Building:"
                 + "\nTestimony Destructive Force:  3 points."
-                + "\nObedience Destructive Force:  1 point.");        
+                + "\nObedience Destructive Force:  3 points.");        
         buildingScene.setBlocked(false);
         buildingScene.setTestimonyDestruction(3);
-        buildingScene.setObedienceDestruction(1);
+        buildingScene.setObedienceDestruction(3);
         scenes[SceneType.building.ordinal()] = buildingScene;
         
         Scene mistsScene = new Scene();
         mistsScene.setDescription("MIS: The Mists of Darkness:"
-                + "\nTestimony Destructive Force:  2 points."
+                + "\nTestimony Destructive Force:  3 points."
                 + "\nObedience Destructive Force:  5 points.");                        
         mistsScene.setBlocked(false);
-        mistsScene.setTestimonyDestruction(2);
+        mistsScene.setTestimonyDestruction(3);
         mistsScene.setObedienceDestruction(5);
         scenes[SceneType.mists.ordinal()] = mistsScene;
 
@@ -471,11 +473,11 @@ public class MapControl {
         
         Scene riverScene = new Scene();
         riverScene.setDescription("RIV: The River of Water:"
-                + "\nTestimony Destructive Force:  3 points"
-                + "\nObedience Destructive Force:  3 points");
+                + "\nTestimony Destructive Force:  4 points"
+                + "\nObedience Destructive Force:  4 points");
         riverScene.setBlocked(false);
-        riverScene.setTestimonyDestruction(3);
-        riverScene.setObedienceDestruction(3);
+        riverScene.setTestimonyDestruction(4);
+        riverScene.setObedienceDestruction(4);
         scenes[SceneType.river.ordinal()] = riverScene;        
         
         /*

@@ -9,6 +9,11 @@ import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import largeandspacious.LargeAndSpacious;
+import largeandspacious.control.GameControl;
+import largeandspacious.model.Item;
+import largeandspacious.model.Location;
+import largeandspacious.model.Map;
+import largeandspacious.model.Player;
 
 /**
  *
@@ -28,12 +33,14 @@ public abstract class View implements ViewInterface {
     public void display() {
         boolean done = false;
         
-        do {
+        do
+        {
             this.console.println(this.promptMessage); // display the menu
             
             String input = this.getInput();  // get the user's selection
             
-            done = this.doAction(input); // do action based on selection
+            done = this.doAction(input); // do action based on selection            
+                    
         } while (!done); // the selection is not "Return to Menu"
     }
     

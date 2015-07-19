@@ -66,7 +66,6 @@ public class GameMenuView extends View
             + "\n| C - List challenges                      |"
             + "\n| A - List attributes                      |"                
             + "\n| N - List Actor Names                     |"  
-            + "\n| A - List attributes                      |"
             + "\n| Y - Create Map Report                    |"                
             + "\n| R - Create Actor Report                  |" 
             + "\n| X - Return to Main Menu                  |"
@@ -89,7 +88,7 @@ public class GameMenuView extends View
                 break;
             case 'M': 
                 //Move to a map location (Move Menu)
-                this.displayMoveMenu();
+                done = this.displayMoveMenu();
                 break;
             case 'D': 
                 //Display Map
@@ -147,7 +146,7 @@ public class GameMenuView extends View
         
     }
 
-    private void displayMoveMenu()
+    private boolean displayMoveMenu()
     {
         Point coordinates = new Point();
         int diceRoll;
@@ -155,18 +154,20 @@ public class GameMenuView extends View
         Map map = LargeAndSpacious.getCurrentGame().getMap();
         Player player = LargeAndSpacious.getCurrentGame().getPlayer();
         Location[][] locations = map.getLocations();
+        Item[] inventory = LargeAndSpacious.getCurrentGame().getInventory();        
         
+        boolean done=false;
         double sceneResult = 0;
-        int questionResult;
+        double playerObedience, playerTestimony;
+        int questionResult, questionValue, challengeResult = 0;
         String returnValue;
-        double currentRow = player.getCurrentLocation().getX();
-        double currentCol = player.getCurrentLocation().getY();
+        double currentRow, currentCol;
         
         Location newLocation = new Location();
         
         MoveMenuView moveMenu = new MoveMenuView();
         // roll the dice to find out how many spaces the player can move
-        diceRoll = moveMenu.rollDice();
+        diceRoll = moveMenu.rollDice("Player"); //Force player to press 'R' to roll dice
         
         /* PLM(7-16-15):  I added this while() loop to player doesn't have to re-roll the dice when
         * an invalid location is entered.  Previously, if the player entered an invalid
@@ -197,67 +198,148 @@ public class GameMenuView extends View
             break;
         }
         
-        //Check to see if player owns "Man in White Robe".  If so, show scene before getting
-        //testimony and obedience inputs.
-       
-        //Create SelectResourceView object
-        SelectResourceView selectResource = new SelectResourceView();
-        //show the available resources
-        this.displayPlayerItems();
-        
-        Item[] inventory = LargeAndSpacious.getCurrentGame().getInventory();
-        double playerObedience = selectResource.selectObedience();
-        double playerTestimony = selectResource.selectTestimony();
-        double playerRoll = moveMenu.rollDice();
-        double destructionRoll = moveMenu.rollDice();
-        //location array with the scene
-        double destructObedPoints = locations[(int)currentRow][(int)currentCol].getScene().getObedienceDestruction();
-        double destructTestPoints = locations[(int)currentRow][(int)currentCol].getScene().getTestimonyDestruction();
-        
-        double playerObedItems = inventory[inventoryItem.obedience.ordinal()].getValue();
-        double playerTestItems = inventory[inventoryItem.testimony.ordinal()].getValue();
-        
-        
         if(newLocation.getRow() != -1) //If user did not enter 'X' to exit
         {
             try
             {
+                //Check to see if player owns "Man in White Robe".  If so, show scene before getting
+                //testimony and obedience inputs.
+
+                //Create SelectResourceView object
+                SelectResourceView selectResource = new SelectResourceView();
+                //show the available resources
+                this.displayPlayerItems();
+        
+                while(true) //Get player input for obedience
+                {                                                    
+                    playerObedience = selectResource.selectObedience();
+                    if(playerObedience <= inventory[inventoryItem.obedience.ordinal()].getValue())
+                        break;
+                    else
+                        this.console.println("ERROR:  You may not use more obedience points than you have in inventory.  Please try again!");
+                }
+        
+                while(true) //Get player input for testimony
+                {            
+                    playerTestimony = selectResource.selectTestimony();
+                    if(playerTestimony <= inventory[inventoryItem.testimony.ordinal()].getValue())
+                        break;
+                    else
+                        this.console.println("ERROR:  You may not use more testimony points than you have in inventory.  Please try again!");
+                }                                                                               
+         
                 //Ask player question based on location
                 questionResult = askQuestion();
 
+                currentRow = player.getCurrentLocation().getX()-1;
+                currentCol = player.getCurrentLocation().getY()-1;
+                //Get value of question from locations[][]
+                questionValue = locations[(int)currentRow][(int)currentCol].getQuestions().getFruitValue();
+                
                 if(questionResult>=0) //If player answered correctly, award points
                 {
+                    this.console.println("\nCONGRATULATIONS, you are correct!\n");
                     inventory[inventoryItem.fruit.ordinal()].addValue(questionResult);
-                    inventory[inventoryItem.obedience.ordinal()].addValue(3); //Temporary value
-                    inventory[inventoryItem.testimony.ordinal()].addValue(4); //Temporary value
+                    inventory[inventoryItem.obedience.ordinal()].addValue(playerObedience); //Temporary value
+                    inventory[inventoryItem.testimony.ordinal()].addValue(playerTestimony); //Temporary value
                 }
                 else  //Player must take challenge
                 {
+                    double playerRoll = moveMenu.rollDice("Auto");
+                    double destructionRoll = moveMenu.rollDice("Auto");
+
+                    this.console.println("\nYou have answered the question incorrectly.  You must take a challenge."
+                            + "\n\nThe scene you have landed on is "
+                            + locations[(int)currentRow][(int)currentCol].getScene().getDescription()
+                            + "\n\nThe Player random multiplier is: " + playerRoll
+                            + "\nThe scene random multiplier is " + destructionRoll);
                     
+                    double destructObedPoints = locations[(int)currentRow][(int)currentCol].getScene().getObedienceDestruction();
+                    double destructTestPoints = locations[(int)currentRow][(int)currentCol].getScene().getTestimonyDestruction();
+                    double playerObedPoints = inventory[inventoryItem.obedience.ordinal()].getValue();
+                    double playerTestPoints = inventory[inventoryItem.testimony.ordinal()].getValue();
+                    
+                    challengeResult = ChallengeControl.getChallengeResult(playerObedience, playerTestimony, destructObedPoints, destructTestPoints, playerRoll, destructionRoll);
+                    this.console.println("\nPRESS <ENTER> KEY TO SEE CHALLENGE RESULT ...");
+                    getResponse("AnyCharacter");
+                    this.console.println("The challenge result score is: " + challengeResult);
+                                        
+                    if(challengeResult >= 0)//player wins points.
+                    {
+                        this.console.println("\nCONGRATULATIONS, you have won the challenge!\n");
+                        inventory[inventoryItem.fruit.ordinal()].addValue(questionValue);
+                        inventory[inventoryItem.obedience.ordinal()].addValue(playerObedience);
+                        inventory[inventoryItem.testimony.ordinal()].addValue(playerTestimony);
+                    }
+                    else //Player loses points
+                    {
+                        this.console.println("\nSorry, but you have lost the challenge!\n");
+                        inventory[inventoryItem.fruit.ordinal()].subtractValue(questionValue);
+                        inventory[inventoryItem.obedience.ordinal()].subtractValue(playerObedience);
+                        inventory[inventoryItem.testimony.ordinal()].subtractValue(playerTestimony);
+                    }
                 }
-               
+                
+                this.console.println("Here are your new scores: \n");
+                this.displayPlayerItems();
+                
+                //Check for winning game
+                if(questionResult>=0 || challengeResult>=0)
+                {
+                    // calculate the high score from the last challenge
+                    // get the current score
+                    double currentScore = LargeAndSpacious.getPlayer().getBestScore();
+                    // get the new score - current score plus the challenge result
+                    double newScore = currentScore + sceneResult ;
+                    //set the players current score
+                    LargeAndSpacious.getPlayer().setCurrentScore(newScore);
+                    // if the new score is higher than the current score, we have a new high score.
+                    // set the best score appropriately.
+                    if (currentScore + sceneResult > currentScore)
+                    {
+                        LargeAndSpacious.getPlayer().setBestScore(newScore);
+                    }
+                
+                    this.console.println("\nYou have won "
+                            + questionValue + " fruit, "
+                            + playerObedience + " obedience points, and "
+                            + playerTestimony + " testimony points!");
+
+                    if((currentRow+1)==5 && (currentCol+1)==7)  //If player reaches bottom right corner, and has fruit, game is won.
+                    {
+                        //Clear out pastLocations ArrayList in player.
+                        player.getPastLocations().clear();
+                        this.console.println(                       
+                           "\n*****************************************************"                                    
+                          +"\n* CONGRATULATIONS, YOU MADE IT TO THE TREE OF LIFE! *"                                    
+                          +"\n*                 YOU WIN THE GAME!                 *"
+                          +"\n*****************************************************");
+                        done=true;
+                    }
+                }
+                else //Check for losing game
+                {
+                    this.console.println("\nYou have lost "
+                            + questionValue + " fruit, "
+                            + playerObedience + " obedience points, and "
+                            + playerTestimony + " testimony points!");
+                
+                    if(inventory[GameControl.inventoryItem.fruit.ordinal()].getValue() <= 0)  //Zero fruit = losing game
+                    {
+                        //Clear out pastLocations ArrayList in player.
+                        player.getPastLocations().clear();
+
+                        this.console.println("\n\nSORRY, YOU LOST ALL YOUR FRUIT!  YOU LOSE THE GAME!\nTry again!");
+                        done=true;
+                    }
+                }                
             } catch ( MapControlException me)
             {
                     ErrorView.display(this.getClass().getName(), me.getMessage());
-                    return;
+                    return false;
             }
-
-            //returnValue = "You have gained " + sceneResult + " obedience points!";
-            returnValue = "You have gained " + questionResult + " points!";
-            // calculate the high score from the last challenge
-            // get the current score
-            double currentScore = LargeAndSpacious.getPlayer().getBestScore();
-            // get the new score - current score plus the challenge result
-            double newScore = currentScore + sceneResult ;
-            //set the players current score
-            LargeAndSpacious.getPlayer().setCurrentScore(newScore);
-            // if the new score is higher than the current score, we have a new high score.
-            // set the best score appropriately.
-            if (currentScore + sceneResult > currentScore) {
-                LargeAndSpacious.getPlayer().setBestScore(newScore);
-            }
-            this.console.println(returnValue);
         }
+        return done;
     }
     
     private int askQuestion() throws MapControlException
@@ -275,19 +357,19 @@ public class GameMenuView extends View
         int col = (int)currentLocation.getY()-1;
         
         //Display scene description at current location.
-        this.console.println("\nThe scene at this location is: "
-           + locations[row][col].getScene().getDescription()+ "\n");
+        //this.console.println("\nThe scene at this location is: "
+        //   + locations[row][col].getScene().getDescription()+ "\n");
         
         //Ask player question at location
-        this.console.println("Here is your question: "
+        this.console.println("\nHere is your question: "
             + locations[row][col].getQuestions().getQuestion()+ "?");
         
         OUTER:
         while (true) {
             this.console.println("Your answer: ");
-            input = this.getResponse();            
+            input = this.getResponse("String");            
             this.console.println("\nIs this your final answer (Y/N)?");
-            verify = this.getResponse();
+            verify = this.getResponse("String");
             switch (verify)
             {
                 case "Y":
@@ -310,24 +392,33 @@ public class GameMenuView extends View
         return result;
     }
     
-    private String getResponse()
+    private String getResponse(String Type)
     {
         boolean valid = false;
         String playersInput = null;
+        int keyPress;
         
         try
         {
             while( !valid )
             {
                 //Get the name from the keyboard and trim off spaces
-                playersInput = this.keyboard.readLine();
-                playersInput = playersInput.trim();
-                playersInput = playersInput.toUpperCase();
-
-                if( playersInput.length() < 1 )
+                if(Type.equals("AnyCharacter"))
                 {
-                    this.console.println("Invalid answer - the selection must not be blank");
-                    continue;
+                    keyPress = this.keyboard.read();
+                    break;
+                }
+                else
+                {
+                    playersInput = this.keyboard.readLine();
+                    playersInput = playersInput.trim();
+                    playersInput = playersInput.toUpperCase();
+
+                    if( playersInput.length() < 1 )
+                    {
+                        this.console.println("Invalid answer - the selection must not be blank");
+                        continue;
+                    }
                 }
 
                 break;
@@ -508,18 +599,20 @@ public class GameMenuView extends View
     private void displayPlayerItems()
     {
         String Desc;
+        Item[] inventory = LargeAndSpacious.getCurrentGame().getInventory();        
         
-        Item[] inventory = GameControl.getSortedInventoryList();
-        this.console.println("\nList of Inventory Items");
-        this.console.println("DESCRIPTION             " + "\t\t\t" +
-                           "VALUE" + "\t\t" +
-                           "ITEM COUNT");
+        this.console.println("\nPlayer's list of Inventory Items");
+        this.console.println("====== RESOURCES ========== " + "\t" +
+                           "QUANTITY");                           
                 
+        int i=0;
         for(Item inventoryItem : inventory)
-        {            
-            this.console.println(inventoryItem.getDescription() + "\t\t\t\t" + 
-                               inventoryItem.getValue() + "\t\t" +
-                               inventoryItem.getItemCount());
+        {
+            i++;
+            this.console.println(inventoryItem.getDescription() + "\t\t  " + 
+                               inventoryItem.getValue());
+            if(i==3)
+                this.console.println("====== ATTRIBUTES =========");
         }
         
     }
