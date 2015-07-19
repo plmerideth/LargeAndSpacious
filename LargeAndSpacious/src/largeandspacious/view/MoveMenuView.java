@@ -186,24 +186,30 @@ public class MoveMenuView
         }
     }    
     
-    int rollDice()
+    int rollDice(String auto)
     {
         char selection = ' ';
         int diceValue = 0;
-        do
+        
+        if(auto!="Auto") //Force player to enter 'R' to roll dice
         {
-            this.console.println(ROLLDICE); // display the SelectResource menu
-            
-            String input = this.getDiceInput();  // get the user's selection
-            selection = input.charAt(0);  // get first character of string
-            if(selection != 'R')
-                this.console.println("\nInvalid entry.  Please try again");
-        }while (selection != 'R'); // the selection must be 'R' to roll dice
-        //this.console.println("\n*** rollDice() function called ***");
+            do
+            {
+                this.console.println(ROLLDICE); // display the SelectResource menu
+
+                String input = this.getDiceInput();  // get the user's selection
+                selection = input.charAt(0);  // get first character of string
+                if(selection != 'R')
+                    this.console.println("\nInvalid entry.  Please try again");
+            }while (selection != 'R'); // the selection must be 'R' to roll dice
+            //this.console.println("\n*** rollDice() function called ***");
+        }
         
         //Add code to roll dice (1-6) and return diceValue here
         diceValue = (int)(Math.random()*6) + 1;
-        this.console.println("Player rolled a " + diceValue + "!");
+        if(auto!="Auto")
+            this.console.println("Player rolled a " + diceValue + "!");
+        
         return diceValue;
     }
 

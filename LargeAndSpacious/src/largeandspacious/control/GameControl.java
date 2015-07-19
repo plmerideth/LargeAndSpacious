@@ -63,13 +63,13 @@ public class GameControl implements Serializable
         
         Item obedience = new Item();
         obedience.setDescription("obedience             ");
-        obedience.setValue(3);
+        obedience.setValue(2);
         obedience.setRequiredAmount(0);
         inventory[inventoryItem.obedience.ordinal()] = obedience;
         
         Item testimony = new Item();
         testimony.setDescription("testimony             ");
-        testimony.setValue(4);
+        testimony.setValue(2);
         testimony.setRequiredAmount(0);
         inventory[inventoryItem.testimony.ordinal()] = testimony;
         
@@ -133,7 +133,7 @@ public class GameControl implements Serializable
         System.out.println(myDesc);
                             
     }
-
+    
     public static Item[] getSortedInventoryList()
     {
         Item[] originalInventoryList = LargeAndSpacious.getCurrentGame().getInventory();

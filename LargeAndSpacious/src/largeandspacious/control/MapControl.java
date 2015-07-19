@@ -123,7 +123,7 @@ public class MapControl {
         Questions Q2 = new Questions();
         Q2.setQuestion("Question " + Integer.toString(i+1));
         Q2.setAnswer("Answer " + Integer.toString(i+1));
-        Q1.setFruitValue(3);
+        Q2.setFruitValue(3);
         questions[i++]=Q2;
         
         Questions Q3 = new Questions();
@@ -259,18 +259,18 @@ public class MapControl {
         Scene buildingScene = new Scene();
         buildingScene.setDescription("BUI: The Large And Spacious Building:"
                 + "\nTestimony Destructive Force:  3 points."
-                + "\nObedience Destructive Force:  1 point.");        
+                + "\nObedience Destructive Force:  3 points.");        
         buildingScene.setBlocked(false);
         buildingScene.setTestimonyDestruction(3);
-        buildingScene.setObedienceDestruction(1);
+        buildingScene.setObedienceDestruction(3);
         scenes[SceneType.building.ordinal()] = buildingScene;
         
         Scene mistsScene = new Scene();
         mistsScene.setDescription("MIS: The Mists of Darkness:"
-                + "\nTestimony Destructive Force:  2 points."
+                + "\nTestimony Destructive Force:  3 points."
                 + "\nObedience Destructive Force:  5 points.");                        
         mistsScene.setBlocked(false);
-        mistsScene.setTestimonyDestruction(2);
+        mistsScene.setTestimonyDestruction(3);
         mistsScene.setObedienceDestruction(5);
         scenes[SceneType.mists.ordinal()] = mistsScene;
 
@@ -303,11 +303,11 @@ public class MapControl {
         
         Scene riverScene = new Scene();
         riverScene.setDescription("RIV: The River of Water:"
-                + "\nTestimony Destructive Force:  3 points"
-                + "\nObedience Destructive Force:  3 points");
+                + "\nTestimony Destructive Force:  4 points"
+                + "\nObedience Destructive Force:  4 points");
         riverScene.setBlocked(false);
-        riverScene.setTestimonyDestruction(3);
-        riverScene.setObedienceDestruction(3);
+        riverScene.setTestimonyDestruction(4);
+        riverScene.setObedienceDestruction(4);
         scenes[SceneType.river.ordinal()] = riverScene;        
         
         /*

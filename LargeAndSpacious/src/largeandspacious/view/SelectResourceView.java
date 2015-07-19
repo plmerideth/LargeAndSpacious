@@ -95,9 +95,9 @@ public class SelectResourceView extends View
             }
             
             
-            if( playersObedience == 0 )
+            if( playersObedience < 0 )
             {
-                this.console.println("Invalid - obedience points must be greater than 0.");
+                this.console.println("Invalid - obedience points must be at least zero.");
                 continue;
             }
             break;
@@ -132,9 +132,9 @@ public class SelectResourceView extends View
             }
             
             
-            if( playersTestimony == 0 )
+            if( playersTestimony < 0 )
             {
-                this.console.println("Invalid - testimony points must be greater than 0.");
+                this.console.println("Invalid - testimony points must be at least zero.");
                 continue;
             }
             break;

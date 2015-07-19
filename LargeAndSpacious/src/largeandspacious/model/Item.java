@@ -63,6 +63,11 @@ public class Item implements Serializable {
         this.value += value;
     }
     
+    public void subtractValue(double value)
+    {
+        this.value -= value;
+    }
+    
     public double getItemCount() {
         return itemCount;
     }
