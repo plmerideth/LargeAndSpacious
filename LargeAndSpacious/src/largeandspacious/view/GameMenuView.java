@@ -242,6 +242,7 @@ public class GameMenuView extends View
                     inventory[inventoryItem.fruit.ordinal()].addValue(questionResult);
                     inventory[inventoryItem.obedience.ordinal()].addValue(playerObedience); //Temporary value
                     inventory[inventoryItem.testimony.ordinal()].addValue(playerTestimony); //Temporary value
+                    sceneResult = questionResult;
                 }
                 else  //Player must take challenge
                 {
@@ -270,6 +271,8 @@ public class GameMenuView extends View
                         inventory[inventoryItem.fruit.ordinal()].addValue(questionValue);
                         inventory[inventoryItem.obedience.ordinal()].addValue(playerObedience);
                         inventory[inventoryItem.testimony.ordinal()].addValue(playerTestimony);
+                        sceneResult = questionResult;
+                        
                     }
                     else //Player loses points
                     {
