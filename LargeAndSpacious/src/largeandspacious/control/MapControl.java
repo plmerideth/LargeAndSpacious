@@ -367,7 +367,7 @@ public class MapControl {
                 
         Questions Q31 = new Questions();
         Q31.setQuestion("The great and spacious building fell, and the fall "
-                + "/nthereof was exceedingly ______");
+                + "\nthereof was exceedingly ______");
         Q31.setAnswer("great");
         Q31.setFruitValue(2);
         questions[i++]=Q31;

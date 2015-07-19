@@ -307,6 +307,8 @@ public class GameMenuView extends View
 
                     if((currentRow+1)==5 && (currentCol+1)==7)  //If player reaches bottom right corner, and has fruit, game is won.
                     {
+                        //Clear out pastLocations ArrayList in player.
+                        player.getPastLocations().clear();
                         this.console.println(                       
                            "\n*****************************************************"                                    
                           +"\n* CONGRATULATIONS, YOU MADE IT TO THE TREE OF LIFE! *"                                    
@@ -324,6 +326,9 @@ public class GameMenuView extends View
                 
                     if(inventory[GameControl.inventoryItem.fruit.ordinal()].getValue() <= 0)  //Zero fruit = losing game
                     {
+                        //Clear out pastLocations ArrayList in player.
+                        player.getPastLocations().clear();
+
                         this.console.println("\n\nSORRY, YOU LOST ALL YOUR FRUIT!  YOU LOSE THE GAME!\nTry again!");
                         done=true;
                     }
