@@ -248,7 +248,7 @@ public class GameMenuView extends View
                     double playerRoll = moveMenu.rollDice("Auto");
                     double destructionRoll = moveMenu.rollDice("Auto");
 
-                    this.console.println("You have answered the question incorrectly.  You must take a challenge."
+                    this.console.println("\nYou have answered the question incorrectly.  You must take a challenge."
                             + "\n\nThe scene you have landed on is "
                             + locations[(int)currentRow][(int)currentCol].getScene().getDescription()
                             + "\n\nThe Player random multiplier is: " + playerRoll
@@ -361,7 +361,7 @@ public class GameMenuView extends View
         //   + locations[row][col].getScene().getDescription()+ "\n");
         
         //Ask player question at location
-        this.console.println("Here is your question: "
+        this.console.println("\nHere is your question: "
             + locations[row][col].getQuestions().getQuestion()+ "?");
         
         OUTER:
