@@ -39,6 +39,7 @@ import largeandspacious.model.Player;
 public class GameMenuView extends View
 {
     ErrorView errorView = new ErrorView();
+    //static variables
     private static PrintWriter mapFile = null;
     private static PrintWriter actorFile = null;
     
@@ -75,6 +76,7 @@ public class GameMenuView extends View
 
     @Override
     public boolean doAction(Object obj) {
+        //instance variables
         String value = (String) obj;
         boolean done = false;
         
@@ -242,7 +244,7 @@ public class GameMenuView extends View
                     inventory[inventoryItem.fruit.ordinal()].addValue(questionResult);
                     inventory[inventoryItem.obedience.ordinal()].addValue(playerObedience); //Temporary value
                     inventory[inventoryItem.testimony.ordinal()].addValue(playerTestimony); //Temporary value
-                    sceneResult = questionResult;
+                    sceneResult = playerObedience + playerTestimony;
                 }
                 else  //Player must take challenge
                 {
@@ -271,7 +273,7 @@ public class GameMenuView extends View
                         inventory[inventoryItem.fruit.ordinal()].addValue(questionValue);
                         inventory[inventoryItem.obedience.ordinal()].addValue(playerObedience);
                         inventory[inventoryItem.testimony.ordinal()].addValue(playerTestimony);
-                        sceneResult = questionResult;
+                        sceneResult = playerObedience + playerTestimony;
                         
                     }
                     else //Player loses points
@@ -712,15 +714,15 @@ public class GameMenuView extends View
         int rowNumber = 0;
         int rowCycles = (NoOfRows*2)+1;
         char desc[] = new char[3];
-        String reportOutput = "\n\nTHE LARGE AND SPACIOUS BUILDING MAP";
+        String reportOutput = "\r\nTHE LARGE AND SPACIOUS BUILDING MAP";
         
         //Draw map and insert scene types in each location
         for(int row=0; row<rowCycles; row++)
         {
             if(row==0) //For first row, add newline plus extra space at beginning of number line
-                reportOutput+="\n\n   ";
+                reportOutput+="\r\n   ";
             else //After 1st row, just add a new line
-                reportOutput +="\n";
+                reportOutput +="\r\n";
             
             if(row>0 && (row&1)==0)//Increment row counter if row number is even and past row 0
                 rowNumber++;
@@ -756,12 +758,12 @@ public class GameMenuView extends View
             }
         }
         
-        reportOutput += "\n\nBUI = Building"
-                + "\nMIS = Mists of Darkness"
-                + "\nFIN = Finger of Scorn"
-                + "\nPAT = Lost & Forbidden Path"
-                + "\nTRE = Tree of Life"
-                + "\nRIV = River of Water";                
+        reportOutput += "\r\nBUI = Building"
+                + "\r\nMIS = Mists of Darkness"
+                + "\r\nFIN = Finger of Scorn"
+                + "\r\nPAT = Lost & Forbidden Path"
+                + "\r\nTRE = Tree of Life"
+                + "\r\nRIV = River of Water";                
         
         this.console.println("\n\nThe Map Report was successfully created in "
                                 + mapFilePath);
@@ -810,16 +812,16 @@ public class GameMenuView extends View
         try (FileWriter writer = new FileWriter(filePath)) {
             
              //get the actors
-        List<Actor> actors = new ArrayList<>(EnumSet.allOf(Actor.class));
-        writer.write("    LIST OF ACTORS\r\n");
-        // go through each of the actors, get the name and description   
-        for (Actor actor: actors)
-        {
+            List<Actor> actors = new ArrayList<>(EnumSet.allOf(Actor.class));
+            writer.write("    LIST OF ACTORS\r\n");
+            // go through each of the actors, get the name and description   
+            for (Actor actor: actors)
+            {
             writer.write(actor.name() + ":\t\t" + actor.getDescription()+ "\r\n") ;     
-        }
-        writer.close();
+            }
+            writer.close();
         } catch (IOException e) {
-    throw new MapControlException(e.getMessage());
+            throw new MapControlException(e.getMessage());
         }
         
 
